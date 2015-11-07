@@ -1,20 +1,16 @@
-/**
- * Created by maikzimmermann on 03.11.15.
- */
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var mongoose = require('mongoose');
+var express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    mongoose = require('mongoose'),
+    port = process.env.PORT || 9000;
+
+mongoose.connect('mongodb://localhost:27018/crud');
 
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cors());
-app.use('/api', require('./app/routes/index'));
-app.use('/api/users',require('./app/routes/user'));
-mongoose.connect('mongodb://localhost:27018/users');
-
-var port = process.env.PORT || 8080; //wenn preocess.env gesetzt ist, nimm ihn, sonst Port 8080
-
+app.use('/api/users', require('./app/routes/user'));
 app.listen(port);
-console.log('Magic happens on Port: ' + port);
+
+console.log('Magic happens on port ' + port);
