@@ -2,22 +2,168 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b78702f-21c6-4e16-bc61-8001a2679603" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/clicker-05.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mongobox" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/app/models/User.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/app/routes/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/app/routes/user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/server.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mongobox" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/replace-ext/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/replace-ext/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/.zuul.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/doc/wg-meetings/2015-01-30.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/History.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/LICENCE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone-stats/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/inherits/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/replace-ext/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/graceful-fs/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/node_modules/is-utf8/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/inherits/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/isarray/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone-stats/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/replace-ext/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/lib/_stream_duplex.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/lib/_stream_passthrough.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/lib/_stream_readable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/lib/_stream_transform.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/lib/_stream_writable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/node_modules/is-utf8/ansi.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/build-output/maps/app.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/build-output/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/app.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/browser.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/isarray/build/build.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/clicker-05.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/clone.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/lib/cloneBuffer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/test/comment-regex.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/example/comment-to-json.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/isarray/component.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/test/convert-source-map.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/duplex.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/float.patch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/graceful-fs/fs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/graceful-fs/graceful-fs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/gulpfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/immutable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/build-output/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/isarray/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone-stats/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/replace-ext/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/inherits/inherits.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/inherits/inherits_browser.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/lib/inspectStream.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/node_modules/is-utf8/is-utf8.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/lib/isBuffer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/lib/isNull.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/lib/isStream.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/graceful-fs/legacy-streams.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/license.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/build-output/routes/list/list.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/routes/list/list.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/routes/list/list.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/routes/list/list.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/replace-ext/test/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/test/fixtures/map-file-comment-double-slash.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/test/fixtures/map-file-comment-inline.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/test/fixtures/map-file-comment.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/test/fixtures/map-file-comment.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/test/map-file-comment.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/mutable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/node.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/convert-source-map/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/graceful-fs/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/node_modules/is-utf8/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/replace-ext/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/passthrough.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/graceful-fs/polyfills.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/readable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/server.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/build-output/routes/single/single.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/routes/single/single.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/routes/single/single.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/routes/single/single.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/doc/stream.markdown" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/build-output/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/test-apart-ctx.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/test.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/node_modules/is-utf8/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/inherits/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/xtend/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/vinyl/node_modules/clone-stats/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/through2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/transform.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/app/models/user.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/app/routes/user.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/strip-bom/node_modules/is-utf8/utf8.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/util.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/lib/util.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/node_modules/gulp-sourcemaps/node_modules/through2/node_modules/readable-stream/writable.js" />
     </list>
     <ignored path="clicker-05.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,6 +249,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -111,10 +258,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clicker-05" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clicker-05" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clicker-05" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clicker-05" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clicker-05" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clicker-05" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -129,117 +313,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/src" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/README.md</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -505,6 +578,7 @@
       <workItem from="1447778959581" duration="5919000" />
       <workItem from="1447790852169" duration="2562000" />
       <workItem from="1447839365630" duration="3153000" />
+      <workItem from="1447842903219" duration="41000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1447791621637</created>
@@ -534,7 +608,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11634000" />
+    <option name="totallyTimeSpent" value="11675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
@@ -542,7 +616,6 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -557,6 +630,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -598,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -606,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.017123288">
           <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
