@@ -17,6 +17,9 @@
 
 # Package Files #
 *.jar
+/mongobox
+/.idea
+/client/node_modules
 *.war
 *.ear
 
