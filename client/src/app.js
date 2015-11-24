@@ -11,6 +11,7 @@
             'ui.router',                    // important module to handle views and routing
 
             /* our routes: */
+            'app.login',
             'app.list',
             'app.single'
 
