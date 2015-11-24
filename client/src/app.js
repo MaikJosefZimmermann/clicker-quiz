@@ -22,7 +22,7 @@
 
     function AppConfig ($urlRouterProvider){
         /* requests without URL will be redirected to the list-view: */
-        $urlRouterProvider.otherwise('/list');
+        $urlRouterProvider.otherwise('/login');
     }
 
 })();

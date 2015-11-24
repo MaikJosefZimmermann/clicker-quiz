@@ -15,15 +15,18 @@ router.route('/')
     .post(function (req, res) {
         var user = new User();
 
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
-        user.imageUrl = req.body.imageUrl;
-        user.text = req.body.text;
+        user.kuerzel = req.body.kuerzel;
+        user.password = req.body.password;
 
-        user.save(function (err) {
+        user.login(function (err) {
             if (err)
                 res.send(err);
+                console.log('scheiße');
             res.json({message: 'User created!'});
+        });
+
+        user.login(function(err) {
+            console.log('button geht');
         });
     })
 

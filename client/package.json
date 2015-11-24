@@ -9,6 +9,10 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "gulp-sourcemaps": "~1.6.0"
+    "gulp-sourcemaps": "~1.6.0",
+    "gulp-cached": "~1.1.0",
+    "gulp-remember": "~0.3.0",
+    "gulp-debug": "~2.1.2",
+    "gulp-util": "~3.0.7"
   }
 }
