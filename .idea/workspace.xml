@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b78702f-21c6-4e16-bc61-8001a2679603" name="Default" comment="login formular erstellt">
+    <list default="true" id="1b78702f-21c6-4e16-bc61-8001a2679603" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="clicker-05.iws" />
@@ -496,7 +496,7 @@
       <workItem from="1447840548733" duration="481000" />
       <workItem from="1448303095816" duration="69000" />
       <workItem from="1448304979858" duration="2097000" />
-      <workItem from="1448367332999" duration="1366000" />
+      <workItem from="1448367332999" duration="1372000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1447791621637</created>
@@ -522,11 +522,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448368084815</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="login formular erstellt">
+      <created>1448368707475</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1448368707475</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15800000" />
+    <option name="totallyTimeSpent" value="15806000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
