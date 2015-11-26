@@ -4,6 +4,7 @@
 
 # KDE directory preferences
 .directory
+/.idea
 .idea
 mongobox
 
