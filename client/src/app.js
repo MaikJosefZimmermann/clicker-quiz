@@ -13,7 +13,7 @@
             /* our routes: */
             'app.login',
             'app.list',
-            'app.single'
+            'app.single',
 
 
         ])
