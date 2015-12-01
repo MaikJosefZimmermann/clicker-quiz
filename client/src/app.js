@@ -12,7 +12,7 @@
 
             /* our routes: */
 
-            'app.login',
+
             'app.list',
             'app.single',
             'app.quiz'
@@ -25,7 +25,7 @@
 
     function AppConfig ($urlRouterProvider){
         /* requests without URL will be redirected to the login-view: */
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/quiz');
     }
 
 })();

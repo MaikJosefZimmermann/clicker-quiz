@@ -18,24 +18,34 @@
 
 
 
-    function QuizCtrl($scope, $state, $http) {                 // our controller for this view
+    function QuizCtrl($scope) {         // our controller for this view
+        $scope.frage ='frage1';
 
-        $scope.login = function () {                             // another scope function that will save a user object to our nodejs server
-            $http({
-                method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
-                data: $scope.user,                              // this passes the data from the user object  to the request.
-                url: 'http://localhost:9000/api/users/' + $stateParams.id
-            }).then(function successCallback(response) {
-                $state.go('list');
-            });
-        }
 
-        $http({                                                     // get all users from node server
-            method: 'POST',
-            url: 'http://localhost:9000/api/users'
-        }).then(function successCallback(response) {
-            $scope.users = response.data;                           // (async) when receive the response load the data into $scope.users
-        });
+        $scope.answers = [
+            {'id': 0, antwort:'antwort1'},
+            {'id': 1, antwort:'antwort2'},
+            {'id': 2, antwort:'antwort3'}
+        ];
 
+
+
+$scope.answer = function(btn) {
+
+
+
+    $scope.frage=btn;
+    if(btn =='0') {
+        $scope.frage = 'a=0';
+    }
+    if(btn =='1'){
+        $scope.frage = 'a=1';
+    }
+
+    if(a =='2'){
+        $scope.frage = 'ok';
+    }
+
+}
     }
 })();
