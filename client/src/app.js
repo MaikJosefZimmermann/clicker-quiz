@@ -11,9 +11,12 @@
             'ui.router',                    // important module to handle views and routing
 
             /* our routes: */
+
             'app.login',
             'app.list',
-            'app.single'
+            'app.single',
+            'app.quiz'
+
 
 
         ])
@@ -21,7 +24,7 @@
 
 
     function AppConfig ($urlRouterProvider){
-        /* requests without URL will be redirected to the list-view: */
+        /* requests without URL will be redirected to the login-view: */
         $urlRouterProvider.otherwise('/login');
     }
 

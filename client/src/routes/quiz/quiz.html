@@ -1,0 +1,67 @@
+<div class="content" id="home">
+
+    <md-subheader class="md-no-sticky">Quiz</md-subheader>
+    <md-content layout-padding>
+        <div class="content">
+
+
+            <md-subheader class="md-no-sticky" ng-if="new">
+                quiz
+            </md-subheader>
+
+            <md-content flex layout-padding>
+
+
+               <div layout="" layout-sm="column">
+
+
+                    <label style="text-align:center">Hier steht die Frage</label>
+
+                </div>
+
+                <div layout="" layout-sm="column">
+                    <md-input-container flex="">
+                        <button type="button">
+                           Antwort 1</button>
+                    </md-input-container>
+                    </div>
+                <div layout="" layout-sm="column">
+                    <md-input-container flex="">
+                     <button type="button">
+                            Antwort 2</button>
+                    </md-input-container>
+                </div>
+                <div layout="" layout-sm="column">
+                    <md-input-container flex="">
+                        <button type="button">
+                            Antwort 3</button>
+                    </md-input-container>
+                </div>
+              <!--  <div>
+                    <div ng-show="question.type === 'MultipleChoiceQuestion'" class="multiple-choice">
+                        <div class="choices">
+                            <button type="button" ng-repeat="(i, choice) in question.choices track by $index"
+                                    ng-model="question.submission" btn-radio="i" class="choice btn btn-default form-control"
+                                    ng-disabled="question.submitted"
+                                    ng-class="{selected: (question.submitted && (question.submission === i)),
+                               correct: (question.submitted && (question.submission === i && question.result.isCorrect) || (question.result.correctAnswerIndex === i)),
+                               incorrect: (question.submitted && (question.submission === i ? !question.result.isCorrect : (question.result.correctAnswerIndex !== i)))}">
+
+                    <span ng-show="question.submitted" class="result-icon">
+                        <span ng-show="(question.submission === i) && !question.result.isCorrect" class="glyphicon incorrect glyphicon-remove-sign"></span>
+                        <span ng-show="(question.submission === i) && question.result.isCorrect" class="glyphicon correct glyphicon-ok"></span>
+                        <span ng-show="(question.submission !== i) && question.result.correctAnswerIndex === i" class="glyphicon correct glyphicon-circle-arrow-right"></span>
+                    </span>
+
+                                {{choice}}
+                            </button>
+                        </div>
+                </div>-->
+
+
+
+
+             </md-content>
+         </div>
+    </md-content>
+</div>

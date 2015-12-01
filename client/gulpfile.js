@@ -81,7 +81,7 @@ gulp.task('watch', function () {
 
     gulp.watch('src/**/*.less', ['less']);
     gulp.watch('src/**/*.js', ['js']);
-    gulp.watch('src/**/*.html', ['move']);
+    gulp.watch('src/**/*.html', ['moveHtml']);
 
 });
 
