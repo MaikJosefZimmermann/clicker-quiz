@@ -37,10 +37,10 @@
         vm.ant = ant;
 
         function ant() {
-var q5 = 'testsssssssssss';
+            var q5 = 'testsssssssssss';
             console.log('test1');
 
-            vm.question=q1;
+            vm.question = q1;
             console.log(vm.question);
 
         }
