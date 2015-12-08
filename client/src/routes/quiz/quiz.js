@@ -17,35 +17,59 @@
     }
 
 
+    function QuizCtrl() {// our controller for this view
 
-    function QuizCtrl($scope) {         // our controller for this view
-        $scope.frage ='frage1';
+        var vm = this;
+        var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
+        var q0 = 'frage1', q1 = 'frage2', q2 = 'frage3', q3 = 'frage4';
 
 
-        $scope.answers = [
-            {'id': 0, antwort:'antwort1'},
-            {'id': 1, antwort:'antwort2'},
-            {'id': 2, antwort:'antwort3'}
+        vm.question = q0;
+
+
+        vm.questions = [
+            {question: q0},
+            {question: q1},
+            {question: q2},
+            {question: q3}
+
         ];
 
 
+        vm.answers = [
+            {'id': 0, answer: a0},
+            {'id': 1, answer: a1},
+            {'id': 2, answer: a2},
+            {'id': 3, answer: a3}
 
-$scope.answer = function(btn) {
+        ];
+
+        vm.ant = ant;
+
+        function ant() {
+var q5 = 'testsssssssssss';
+            console.log('test1');
+
+            vm.test = q5;
+
+        }
 
 
+        /*$scope.answer = function (btn) {
 
-    $scope.frage=btn;
-    if(btn =='0') {
-        $scope.frage = 'a=0';
-    }
-    if(btn =='1'){
-        $scope.frage = 'a=1';
-    }
 
-    if(a =='2'){
-        $scope.frage = 'ok';
-    }
+         $scope.frage = btn;
+         if (btn == '0') {
+         $scope.frage = 'a=0';
+         }
+         if (btn == '1') {
+         $scope.frage = 'a=1';
+         }
 
-}
+         if (a == '2') {
+         $scope.frage = 'ok';
+         }
+
+         }*/
     }
 })();

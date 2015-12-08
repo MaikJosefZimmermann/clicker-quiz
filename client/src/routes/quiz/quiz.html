@@ -11,24 +11,31 @@
 
             <md-content flex layout-padding>
 
-{{ frage }}
-
-               <div layout="" layout-sm="column">
 
 
-                    <label style="text-align:center">Hier steht die Frage</label>
-{{ zahl }}
+                <div layout="" layout-sm="column" ng-controller="QuizCtrl as Ctrl">
+
+
+                    <label style="text-align:center"
+                          >{{ Ctrl.question }}</label>
+
+
                 </div>
 
-                <div layout="" layout-sm="column">
-                    <button class=""
-                            ng-repeat="button in answers track by $index"
-                            ng-click="answer($index)"
-                            >{{ button.antwort }}</button>
+                <div layout="" layout-sm="column" ng-controller="QuizCtrl as Ctrl">
+                    <!--Antwort Button generieren-->
+
+                    <button ng-model="vm.answers"
+                            ng-repeat="a in Ctrl.answers"
+                            ng-click="vm.ant()">{{ a.answer }}
+                    </button>
+                    <button ng-model="vm.answers"
+                            ng-click="Ctrl.ant()">test
+                    </button>
 
 
-
-             </md-content>
-         </div>
+                </div>
+            </md-content>
+        </div>
     </md-content>
 </div>
