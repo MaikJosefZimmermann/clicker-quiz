@@ -13,7 +13,7 @@
 
 
 
-                <div layout="" layout-sm="column" ng-controller="QuizCtrl as Ctrl">
+                <div layout="" layout-sm="column">
 
 
                     <label style="text-align:center"
@@ -22,14 +22,14 @@
 
                 </div>
 
-                <div layout="" layout-sm="column" ng-controller="QuizCtrl as Ctrl">
+                <div layout="" layout-sm="column">
                     <!--Antwort Button generieren-->
 
-                    <button ng-model="vm.answers"
+                    <button ng-model="Ctrl.answers"
                             ng-repeat="a in Ctrl.answers"
-                            ng-click="vm.ant()">{{ a.answer }}
+                            ng-click="Ctrl.ant()">{{ a.answer }}
                     </button>
-                    <button ng-model="vm.answers"
+                    <button ng-model="Ctrl.answers"
                             ng-click="Ctrl.ant()">test
                     </button>
 

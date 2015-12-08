@@ -12,7 +12,7 @@
             .state('quiz', {                                        // declare list view
                 url: "/quiz",                                       // set url
                 templateUrl: 'routes/quiz/quiz.html',           // defines the HTML template
-                controller: 'QuizCtrl'                              // this view shall use the ListCtrl previously declared.
+                controller: 'QuizCtrl as Ctrl'                              // this view shall use the ListCtrl previously declared.
             })
     }
 
@@ -21,20 +21,10 @@
 
         var vm = this;
         var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
-        var q0 = 'frage1', q1 = 'frage2', q2 = 'frage3', q3 = 'frage4';
+        var q0 = 'frage1'
 
 
         vm.question = q0;
-
-
-        vm.questions = [
-            {question: q0},
-            {question: q1},
-            {question: q2},
-            {question: q3}
-
-        ];
-
 
         vm.answers = [
             {'id': 0, answer: a0},
@@ -50,7 +40,8 @@
 var q5 = 'testsssssssssss';
             console.log('test1');
 
-            vm.test = q5;
+            vm.question=q1;
+            console.log(vm.question);
 
         }
 
