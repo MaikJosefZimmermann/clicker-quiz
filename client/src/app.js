@@ -8,9 +8,9 @@
             'ngAnimate',
             'ngMaterial',
             'ngAria',
-            'ui.router',                    // important module to handle views and routing
-
-            /* our routes: */
+            'ui.router',
+            /* our rou                 // important module to handle views and routing
+             tes: */
 
 
             'app.list',
