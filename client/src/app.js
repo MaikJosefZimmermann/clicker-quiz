@@ -8,12 +8,16 @@
             'ngAnimate',
             'ngMaterial',
             'ngAria',
-            'ui.router',                    // important module to handle views and routing
+            'ui.router',
+            /* our rou                 // important module to handle views and routing
+             tes: */
 
-            /* our routes: */
-            'app.login',
+
             'app.list',
             'app.single',
+            'app.quiz',
+            'app.login'
+
 
 
         ])
@@ -21,8 +25,8 @@
 
 
     function AppConfig ($urlRouterProvider){
-        /* requests without URL will be redirected to the list-view: */
-        $urlRouterProvider.otherwise('/login');
+        /* requests without URL will be redirected to the login-view: */
+        $urlRouterProvider.otherwise('/list');
     }
 
 })();

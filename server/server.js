@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost:27018/crud');
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api/users', require('./app/routes/user'));
+app.use('/api/users', require('./app/routes/quiz'));
 app.listen(port);
 
 console.log('Magic happens on port ' + port);
