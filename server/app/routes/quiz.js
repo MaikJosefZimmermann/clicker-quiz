@@ -66,7 +66,7 @@ router.route('/:quizId')
             }
 
 
-            quiz.name = req.body.name;
+            quiz.qname = req.body.qname;
             quiz.question = req.body.question;
             quiz.answer1 = req.body.answer1;
             quiz.answer2 = req.body.answer2;
