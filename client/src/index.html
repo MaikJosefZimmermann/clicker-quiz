@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <title>Clicker-05</title>
 
+    <!--Angular-->
+    <script src="bower_components/angular/angular.js"></script>
 
+    <!--Angular Material-->
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 
+    <!-- UI Router -->
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
 
     <!-- Our App-->
@@ -14,11 +23,33 @@
 
 </head>
 <body>
+    <md-toolbar>
+        <div class="md-toolbar-tools" ui-sref="list">clicker-05</div>
+    </md-toolbar>
+    <md-sidenav md-component-id="left">
 
-    <md-content>
-        <md-toolbar>
-            <div class="md-toolbar-tools" ui-sref="list">clicker-05</div>
-        </md-toolbar>
+        <md-list>
+            <md-list-item>
+                <md-button>
+                    <md-icon>
+                        test
+                    </md-icon>
+                </md-button>
+            </md-list-item>
+
+            <md-list-item>
+                <md-button>
+                    <md-icon>
+                        test
+                    </md-icon>
+                </md-button>
+            </md-list-item>
+
+        </md-list>
+
+    </md-sidenav>
+    <md-content id="content">
+
     </md-content>
 
     <ui-view>
