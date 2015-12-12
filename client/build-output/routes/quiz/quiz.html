@@ -1,0 +1,40 @@
+<div class="content" id="home">
+
+    <md-subheader class="md-no-sticky">Quiz</md-subheader>
+    <md-content layout-padding>
+        <div class="content">
+
+
+            <md-subheader class="md-no-sticky" ng-if="new">
+                quiz
+            </md-subheader>
+
+            <md-content flex layout-padding>
+
+
+                <div layout="" layout-sm="column">
+
+
+                    <label style="text-align:center"
+                            >{{ Ctrl.question }}</label>
+
+
+                </div>
+
+                <div layout="" layout-sm="column">
+                    <!--Antwort Button generieren-->
+
+                    <button ng-model="Ctrl.answers"
+                            ng-repeat="a in Ctrl.answers"
+                            ng-click="Ctrl.ant()">{{ a.answer }}
+                    </button>
+                    <button ng-model="Ctrl.answers"
+                            ng-click="Ctrl.ant()">test
+                    </button>
+
+
+                </div>
+            </md-content>
+        </div>
+    </md-content>
+</div>
