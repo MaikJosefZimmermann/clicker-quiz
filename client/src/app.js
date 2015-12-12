@@ -16,7 +16,10 @@
             'app.list',
             'app.single',
             'app.quiz',
-            'app.login'
+            'app.login',
+            'app.quizSingle',
+            'app.quizList'
+
 
 
 
@@ -26,7 +29,7 @@
 
     function AppConfig ($urlRouterProvider){
         /* requests without URL will be redirected to the login-view: */
-        $urlRouterProvider.otherwise('/list');
+        $urlRouterProvider.otherwise('/quizList');
     }
 
 })();

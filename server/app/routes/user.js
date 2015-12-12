@@ -21,7 +21,7 @@ router.route('/')
         user.login(function (err) {
             if (err)
                 res.send(err);
-                console.log('scheiße');
+            console.log('test');
             res.json({message: 'User created!'});
         });
 
