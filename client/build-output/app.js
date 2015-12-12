@@ -23,19 +23,22 @@ this.itemSize&&this.containerUpdated()}},i.prototype.repeatListExpression_=funct
         t.state("quiz", {url: "/quiz", templateUrl: "routes/quiz/quiz.html", controller: "QuizCtrl as Ctrl"})
     }
 
-    function n() {
-        function t() {
-            console.log("test1"), n.question = s, console.log(n.question)
+    function n(t) {
+        function n() {
+            console.log("test1"), e.question = s, console.log(e.question)
         }
 
-        var n = this, r = "antwort1", o = "antwort2", e = "antwort3", i = "antwort4", a = "frage1", s = "frage2";
-        n.question = a, n.answers = [{id: 0, answer: r}, {id: 1, answer: o}, {id: 2, answer: e}, {
+        t({method: "GET", url: "http://localhost:9000/api/quizes"}).then(function (t) {
+            e.quizes = t.data
+        });
+        var e = this, o = "antwort1", i = "antwort2", r = "antwort3", a = "antwort4", u = "frage1", s = "frage2";
+        e.question = u, e.answers = [{id: 0, answer: o}, {id: 1, answer: i}, {id: 2, answer: r}, {
             id: 3,
-            answer: i
-        }], n.ant = t
+            answer: a
+        }], e.ant = n
     }
 
-    angular.module("app.quiz", []).config(t).controller("QuizCtrl", n), t.$inject = ["$stateProvider"]
+    angular.module("app.quiz", []).config(t).controller("QuizCtrl", n), t.$inject = ["$stateProvider"], n.$inject = ["$http"]
 }();
 !function () {
     "use strict";

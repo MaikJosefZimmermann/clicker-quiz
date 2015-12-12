@@ -17,7 +17,16 @@
     }
 
 
-    function QuizCtrl() {// our controller for this view
+    function QuizCtrl($http) {// our controller for this view
+
+
+        $http({                                                     // get all users from node server
+            method: 'GET',
+            url: 'http://localhost:9000/api/quizes'
+        }).then(function successCallback(response) {
+            vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
+        });
+
 
         var vm = this;
         var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
