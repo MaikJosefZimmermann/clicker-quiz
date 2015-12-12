@@ -51,10 +51,12 @@
                     <label>Antwort 4</label>
                     <input ng-model="quiz.answer4">
                 </md-input-container>
-
-
             </div>
-
+            <div class="form-group">
+                <label for="quizTime">Time Limit:</label>
+                <input ng-model="quizObj.timelimit" type="number" class="form-control" style="width: 70px;" id="quizTime" placeholder="10">
+                <label for="quizTime">Minutes</label>
+            </div>
 
             <div layout="row" layout-align="end center">
                 <md-button class="md-raised md-warn" ng-click="delete()" ng-if="edit">Delete Quiz</md-button>

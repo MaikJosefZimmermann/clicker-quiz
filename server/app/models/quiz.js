@@ -8,7 +8,8 @@ var QuizSchema = new Schema({
     answer1: String,
     answer2: String,
     answer3: String,
-    answer4: String
+    answer4: String,
+
 
 });
 
