@@ -1,0 +1,67 @@
+<md-content layout-padding>
+    <div class="content">
+
+
+        <md-subheader class="md-no-sticky" ng-if="new">
+            Add a new Quiz
+        </md-subheader>
+
+        <md-subheader class="md-no-sticky" ng-if="edit">
+            Edit Quiz with the id: {{quiz._id}}
+        </md-subheader>
+
+
+        <md-content flex layout-padding>
+
+
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label>Quizname</label>
+                    <input ng-model="quiz.qname">
+                </md-input-container>
+
+            </div>
+
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label>Frage</label>
+                    <input ng-model="quiz.question">
+                </md-input-container>
+
+            </div>
+
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label>Richtige Antwort</label>
+                    <input ng-model="quiz.answer1">
+                </md-input-container>
+                <md-input-container flex="">
+                    <label>Antwort 2</label>
+                    <input ng-model="quiz.answer2">
+                </md-input-container>
+
+
+            </div>
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label>Antwort 3</label>
+                    <input ng-model="quiz.answer3">
+                </md-input-container>
+                <md-input-container flex="">
+                    <label>Antwort 4</label>
+                    <input ng-model="quiz.answer4">
+                </md-input-container>
+
+
+            </div>
+
+
+            <div layout="row" layout-align="end center">
+                <md-button class="md-raised md-warn" ng-click="delete()" ng-if="edit">Delete Quiz</md-button>
+                <md-button class="md-raised" ui-sref="quizList">Abort</md-button>
+                <md-button class="md-raised md-primary" ng-click="qsave()">Save</md-button>
+            </div>
+        </md-content>
+
+    </div>
+</md-content>

@@ -16,7 +16,10 @@
             'app.list',
             'app.single',
             'app.quiz',
-            'app.login'
+            'app.login',
+            'app.quizSingle',
+            'app.quizList'
+
 
 
 
