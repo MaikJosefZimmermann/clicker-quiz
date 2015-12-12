@@ -1,7 +1,7 @@
 var express = require('express'),
     app = express(),
     router = express.Router(),
-    quiz = require('../models/quiz');
+    Quiz = require('../models/quiz');
 
 
 router.use(function (req, res, next) {
@@ -13,14 +13,16 @@ router.route('/')
 
 
     .post(function (req, res) {
-        var user = new Quiz();
+        var quiz = new Quiz();
+        quiz.name = req.body.name;
         quiz.question = req.body.question;
         quiz.answer1 = req.body.answer1;
         quiz.answer2 = req.body.answer2;
         quiz.answer3 = req.body.answer3;
+        quiz.answer4 = req.body.answer4;
 
 
-        quiz.login(function (err) {
+        /*   quiz.login(function (err) {
             if (err)
                 res.send(err);
                 console.log('scheiße');
@@ -29,52 +31,54 @@ router.route('/')
 
         user.login(function(err) {
             console.log('button geht');
-        });
+         });*/
     })
 
 
     .get(function (req, res) {
-        User.find(function (err, users) {
+        Quiz.find(function (err, quizes) {
             if (err) {
                 res.send(err);
             }
-            res.json(users);
+            res.json(quizes);
         });
     });
 
-router.route('/:userId')
+router.route('/:quizId')
 
 
     .get(function (req, res) {
-        User.findById(req.params.userId, function (err, user) {
+        Quiz.findById(req.params.quizId, function (err, quiz) {
 
             if (err) {
                 res.send(err);
             }
 
-            res.json(user);
+            res.json(quiz);
         });
     })
 
 
     .put(function (req, res) {
-        User.findById(req.params.userId, function (err, user) {
+        Quiz.findById(req.params.quizId, function (err, quiz) {
 
             if (err) {
                 res.send(err);
             }
 
 
-            user.firstName = req.body.firstName;
-            user.lastName = req.body.lastName;
-            user.imageUrl = req.body.imageUrl;
-            user.text = req.body.text;
+            quiz.name = req.body.name;
+            quiz.question = req.body.question;
+            quiz.answer1 = req.body.answer1;
+            quiz.answer2 = req.body.answer2;
+            quiz.answer3 = req.body.answer3;
+            quiz.answer4 = req.body.answer4;
 
-            user.save(function (err) {
+            quiz.save(function (err) {
                 if (err) {
                     res.send(err);
                 }
-                res.json({message: 'User updated!'});
+                res.json({message: 'Quiz updated!'});
             });
 
         });
@@ -82,9 +86,9 @@ router.route('/:userId')
 
 
     .delete(function (req, res) {
-        User.remove({
-            _id: req.params.userId
-        }, function (err, user) {
+        Quiz.remove({
+            _id: req.params.quizId
+        }, function (err, quiz) {
 
             if (err) {
                 res.send(err);
