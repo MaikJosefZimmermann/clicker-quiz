@@ -7,7 +7,10 @@
 #home .addBtn{font-size:50px}
 #home .addBtn{font-size:50px}
 #home .addBtn{font-size:50px}
-#home .addBtn{font-size:50px}
+
+#home .addBtn {
+    font-size: 50px
+}
 
 
 .content{max-width:864px}md-content.inner{padding:24px}
