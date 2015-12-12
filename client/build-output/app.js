@@ -95,9 +95,9 @@ this.itemSize&&this.containerUpdated()}},i.prototype.repeatListExpression_=funct
 !function () {
     "use strict";
     function i(i) {
-        i.otherwise("/quizList")
+        i.otherwise("/list")
     }
 
-    angular.module("app", ["ngAnimate", "ngMaterial", "ngAria", "ui.router", "app.list", "app.single", "app.quiz", "app.login", "app.quizSingle", "app.quizList"]).config(i), i.$inject = ["$urlRouterProvider"]
+    angular.module("app", ["ngAnimate", "ngMaterial", "ngAria", "ui.router", "app.list", "app.single", "app.quiz", "app.login"]).config(i), i.$inject = ["$urlRouterProvider"]
 }();
 //# sourceMappingURL=maps/app.js.map
