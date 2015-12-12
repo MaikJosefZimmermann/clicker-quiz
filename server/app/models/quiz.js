@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var QuizSchema = new Schema({
 
-    name: String,
+    qname: String,
     question: String,
     answer1: String,
     answer2: String,

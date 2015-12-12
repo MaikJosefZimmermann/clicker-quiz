@@ -29,7 +29,7 @@
 
     function AppConfig ($urlRouterProvider){
         /* requests without URL will be redirected to the login-view: */
-        $urlRouterProvider.otherwise('/quizList');
+        $urlRouterProvider.otherwise('/list');
     }
 
 })();

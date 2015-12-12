@@ -40,62 +40,58 @@ this.itemSize&&this.containerUpdated()}},i.prototype.repeatListExpression_=funct
 !function () {
     "use strict";
     function t(t) {
-        t.state("quizList", {
-            url: "/quizList",
-            templateUrl: "routes/quizList/quizList.html",
-            controller: "CreateCtrl as cq"
-        })
+        t.state("quizList", {url: "/quizList", templateUrl: "routes/quizList/quizList.html", controller: "qListCtrl"})
     }
 
-    function e(t, e, i) {
-        i({method: "GET", url: "http://localhost:9000/api/users"}).then(function (e) {
-            t.users = e.data
-        }), t.goSingle = function (t) {
-            e.go("qedit", {id: t})
+    function i(t, i, e) {
+        e({method: "GET", url: "http://localhost:9000/api/quizes"}).then(function (i) {
+            t.quizes = i.data
+        }), t.goQSingle = function (t) {
+            i.go("qedit", {id: t})
         }
     }
 
-    angular.module("app.quizList", []).config(t).controller("CreateCtrl", e), t.$inject = ["$stateProvider"], e.$inject = ["$scope", "$state", "$http"]
+    angular.module("app.quizList", []).config(t).controller("qListCtrl", i), t.$inject = ["$stateProvider"], i.$inject = ["$scope", "$state", "$http"]
 }();
 !function () {
     "use strict";
     function t(t) {
         t.state("qedit", {
-            url: "/edit/:id",
+            url: "/gedit/:id",
             templateUrl: "routes/quizSingle/quizSingle.html",
             controller: "EditCtrl"
         }).state("qadd", {url: "/qadd", templateUrl: "routes/quizSingle/quizSingle.html", controller: "AddCtrl"})
     }
 
-    function e(t, e, i, n) {
-        e.qedit = !0, i({method: "GET", url: "http://localhost:9000/api/users/" + t.id}).then(function (t) {
-            e.user = t.data
-        }), e["delete"] = function () {
-            i({method: "DELETE", url: "http://localhost:9000/api/users/" + t.id}).then(function (t) {
+    function i(t, i, e, n) {
+        i.edit = !0, e({method: "GET", url: "http://localhost:9000/api/quizes/" + t.id}).then(function (t) {
+            i.quiz = t.data
+        }), i["delete"] = function () {
+            e({method: "DELETE", url: "http://localhost:9000/api/quizes/" + t.id}).then(function (t) {
                 n.go("quizList")
             })
-        }, e.save = function () {
-            i({method: "PUT", data: e.user, url: "http://localhost:9000/api/users/" + t.id}).then(function (t) {
+        }, i.qsave = function () {
+            e({method: "PUT", data: i.quiz, url: "http://localhost:9000/api/quizes/" + t.id}).then(function (t) {
                 n.go("quizList")
             })
         }
     }
 
-    function i(t, e, i) {
-        t["new"] = !0, t.save = function () {
-            e({method: "POST", data: t.user, url: "http://localhost:9000/api/users"}).then(function (t) {
-                i.go("quizList")
+    function e(t, i, e) {
+        t["new"] = !0, t.qsave = function () {
+            i({method: "POST", data: t.quiz, url: "http://localhost:9000/api/quizes"}).then(function (t) {
+                e.go("quizList")
             })
         }
     }
 
-    angular.module("app.quizSingle", []).config(t).controller("EditCtrl", e).controller("AddCtrl", i), t.$inject = ["$stateProvider"], e.$inject = ["$stateParams", "$scope", "$http", "$state"], i.$inject = ["$scope", "$http", "$state"]
+    angular.module("app.quizSingle", []).config(t).controller("EditCtrl", i).controller("AddCtrl", e), t.$inject = ["$stateProvider"], i.$inject = ["$stateParams", "$scope", "$http", "$state"], e.$inject = ["$scope", "$http", "$state"]
 }();
 !function(){"use strict";function t(t){t.state("edit",{url:"/edit/:id",templateUrl:"routes/single/single.html",controller:"EditCtrl"}).state("add",{url:"/add",templateUrl:"routes/single/single.html",controller:"AddCtrl"})}function e(t,e,l,n){e.edit=!0,l({method:"GET",url:"http://localhost:9000/api/users/"+t.id}).then(function(t){e.user=t.data}),e["delete"]=function(){l({method:"DELETE",url:"http://localhost:9000/api/users/"+t.id}).then(function(t){n.go("list")})},e.save=function(){l({method:"PUT",data:e.user,url:"http://localhost:9000/api/users/"+t.id}).then(function(t){n.go("list")})}}function l(t,e,l){t["new"]=!0,t.save=function(){e({method:"POST",data:t.user,url:"http://localhost:9000/api/users"}).then(function(t){l.go("list")})}}angular.module("app.single",[]).config(t).controller("EditCtrl",e).controller("AddCtrl",l),t.$inject=["$stateProvider"],e.$inject=["$stateParams","$scope","$http","$state"],l.$inject=["$scope","$http","$state"]}();
 !function () {
     "use strict";
     function i(i) {
-        i.otherwise("/quizList")
+        i.otherwise("/list")
     }
 
     angular.module("app", ["ngAnimate", "ngMaterial", "ngAria", "ui.router", "app.list", "app.single", "app.quiz", "app.login", "app.quizSingle", "app.quizList"]).config(i), i.$inject = ["$urlRouterProvider"]

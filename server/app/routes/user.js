@@ -21,11 +21,10 @@ router.route('/')
         user.login(function (err) {
             if (err)
                 res.send(err);
-            console.log('test');
             res.json({message: 'User created!'});
         });
 
-        user.login(function(err) {
+        user.login(function (err) {
             console.log('button geht');
         });
     })

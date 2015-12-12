@@ -14,7 +14,7 @@ router.route('/')
 
     .post(function (req, res) {
         var quiz = new Quiz();
-        quiz.name = req.body.name;
+        quiz.qname = req.body.qname;
         quiz.question = req.body.question;
         quiz.answer1 = req.body.answer1;
         quiz.answer2 = req.body.answer2;
@@ -22,16 +22,15 @@ router.route('/')
         quiz.answer4 = req.body.answer4;
 
 
-        /*   quiz.login(function (err) {
+        quiz.save(function (err) {
             if (err)
                 res.send(err);
-                console.log('scheiße');
             res.json({message: 'User created!'});
         });
 
-        user.login(function(err) {
+        quiz.save(function (err) {
             console.log('button geht');
-         });*/
+        });
     })
 
 
