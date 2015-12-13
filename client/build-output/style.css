@@ -10,4 +10,4 @@
 #home .addBtn{font-size:50px}
 
 
-.content{max-width:864px}md-content.inner{padding:24px}
+.content{max-width:864px}md-content.inner{padding:24px}md-toolbar.md-default-theme:not(.md-menu-toolbar),md-toolbar:not(.md-menu-toolbar){background-color:#000}
