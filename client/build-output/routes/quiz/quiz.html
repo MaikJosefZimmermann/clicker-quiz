@@ -4,6 +4,37 @@
     <md-content layout-padding>
         <div class="content">
 
+            <div ng-controller="qListCtrl" ng-cloak>
+                <md-content>
+                    <md-list>
+                        <md-list-item class="md-3-line md-long-text" ng-repeat="item in quizes" ng-click="goQSingle(q._id)">
+                            <div class="md-list-item-text">
+                                <h3>{{item.qname}}</h3>
+                                <p>{{item.question.length}} Fragen</p>
+                                <p>Dauer: {{item.quiz.timelimit}}</p>
+                                <P>Startet in: {{getDate(q.quiz.start)}}</P>
+                            </div>
+
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+
+                <div ng-repeat="q in quizes" style="background-color: #f5f5f5;   border: 1px solid #B5B5B5; padding: 7px;">
+                    <span style="font-weight: bold;">{{q.qname}}</span>
+                    <span style="margin-left: 5px;">Bearbeitet: <i class="fa fa-calendar-o"></i> {{getDate(q.quiz.update_date)}}</span>
+                    <span style="margin-left: 5px;"><i class="fa fa-question-circle"></i> {{q.question.length}} Fragen</span>
+                    <span style="margin-left: 5px;"><i class="fa fa-clock-o"></i> Dauer: {{q.quiz.timelimit}}</span>
+
+                    <span  style="float: right; margin-right: 5px;"><a ng-click="goQSingle(q._id)">modify</a></span>
+                    <button>
+                    <span style="float: right; margin-right: 5px;"><a  ng-click="goQSingle(quiz._id)">Teilnehmen</a></span>
+                    </button>
+                        <span style="float: right; margin-right: 5px;"><a ng-click="goQSingle(quiz._id)">view</a></span>
+                    <span style="float: right; margin-right: 5px;">Startet in: <i class="fa fa-calendar-o"></i> {{getDate(q.quiz.start)}}</span>
+                </div>
+
+                </div>
+
 
             <md-subheader class="md-no-sticky" ng-if="new">
                 quiz
