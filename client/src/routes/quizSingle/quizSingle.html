@@ -14,7 +14,7 @@
         <md-content flex layout-padding>
 
 
-            <div layout="" layout-sm="column">
+            <div layout="" layout-sm="column" style="background-color: #f5f5f5">
                 <md-input-container flex="">
                     <label>Quizname</label>
                     <input ng-model="quiz.qname">
@@ -53,9 +53,9 @@
                 </md-input-container>
             </div>
             <div class="form-group">
-                <label for="quizTime">Time Limit:</label>
+                <md-label for="quizTime">Time Limit:</md-label>
                 <input ng-model="quizObj.timelimit" type="number" class="form-control" style="width: 70px;" id="quizTime" placeholder="10">
-                <label for="quizTime">Minutes</label>
+                <md-label for="quizTime">Minuten</md-label>
             </div>
 
             <div layout="row" layout-align="end center">
