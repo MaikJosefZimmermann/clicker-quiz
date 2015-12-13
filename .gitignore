@@ -8,6 +8,7 @@
 .idea
 mongobox
 
+
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 ### Vagrant templatgit commit -m 'initial commit'ge

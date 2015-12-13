@@ -31,10 +31,15 @@
                     <button ng-model="Ctrl.answers"
                             ng-click="Ctrl.ant()">test
                     </button>
-
-
                 </div>
+
+                <div class="md-list-item-text" ng-repeat="quiz in quizes">
+                    <h3>{{quiz.qname}}</h3></div>
+
+
             </md-content>
         </div>
+
     </md-content>
+
 </div>
