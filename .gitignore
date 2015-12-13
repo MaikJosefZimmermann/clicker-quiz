@@ -4,6 +4,9 @@
 
 # KDE directory preferences
 .directory
+/.idea
+.idea
+mongobox
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
@@ -17,9 +20,7 @@
 
 # Package Files #
 *.jar
-mongobox
 
-/.idea
 
 *.war
 *.ear
