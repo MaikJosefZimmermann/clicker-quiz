@@ -6,7 +6,8 @@
 .directory
 /.idea
 .idea
-mongobox
+/mongobox
+/client/build-output
 
 
 # Linux trash folder which might appear on any partition or disk
