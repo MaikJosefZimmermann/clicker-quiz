@@ -1,18 +1,26 @@
 <div class="content" id="home">
-
     <md-subheader class="md-no-sticky">
-        <h2>Quize erstellen</h2></md-subheader>
+        <h1>Quizübersicht </h1></md-subheader>
 
-    <md-list-item class="md-3-line md-long-text" ng-click="goQSingle(quiz._id)" ng-repeat="quiz in quizes">
+
+    <md-list-item class="md-3-line md-long-text"  ng-repeat="quiz in quizes">
 
         <div class="md-list-item-text">
-            <h3>{{quiz.qname}}</h3>
+            <p>
+            <h3>Quiz:   {{quiz.qname}}</h3>
+            <p>Dozent: </p>
+            <p>Dauer: {{item.quiz.timelimit}}</p>
+            <p>Anzahl der Fragen:  </p>
 
-            <p>{{quiz.question}}</p>
-        </div>
 
+            <hr/>
+            <md-button class="md-raised md-primary" ng-click="goQSingle(quiz._id)" >Bearbeiten</md-button>
 
-</div>
+            <md-button class="md-raised" >Kopieren</md-button>
+            <md-button class="md-raised md-accent" >Durchführen</md-button>
+
+            </p>
+            </div>
 
     </md-list-item>
 
@@ -20,9 +28,10 @@
 
     <div layout="row" layout-align="end center">
 
-        <md-button class="md-fab addBtn" ui-sref="qadd">
+        <md-button class="md-fab md-primary addBtn"ui-sref="qadd">
             +
         </md-button>
+
 
     </div>
 

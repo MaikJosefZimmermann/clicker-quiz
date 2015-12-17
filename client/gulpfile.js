@@ -23,7 +23,7 @@ var paths = {
 var onError = function (err) {
     util.log(util.colors.red.bold('[ERROR]:'), util.colors.bgRed(err.message));
     this.emit('end');
-}
+};
 
 var allJs = paths.bowerJs.concat(paths.js);
 var allLess = paths.bowerLess.concat(paths.less);
@@ -44,7 +44,7 @@ gulp.task('less', function () {
     s = s.pipe(gulp.dest(paths.target));
     s = s.pipe(browserSync.stream());
     return s;
-})
+});
 
 
 gulp.task('moveHtml', function () {
@@ -52,7 +52,7 @@ gulp.task('moveHtml', function () {
     s = s.pipe(gulp.dest('build-output'));
     s = s.pipe(browserSync.stream());
     return s;
-})
+});
 
 gulp.task('js', function () {
     var s = gulp.src(allJs);
@@ -67,7 +67,7 @@ gulp.task('js', function () {
     s = s.pipe(gulp.dest(paths.target));
     s = s.pipe(browserSync.stream());
     return s;
-})
+});
 
 // strg + shift + numpad / = auskommentieren
 
@@ -75,7 +75,7 @@ gulp.task('moveAssets', function () {
     var s = gulp.src('./assets/**');
     s = s.pipe(gulp.dest(paths.target + '/assets'));
     return s;
-})
+});
 
 gulp.task('watch', function () {
 
