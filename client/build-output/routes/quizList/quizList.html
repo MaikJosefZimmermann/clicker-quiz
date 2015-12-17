@@ -1,0 +1,31 @@
+<div class="content" id="home">
+
+    <md-subheader class="md-no-sticky">
+        <h2>Quize erstellen</h2></md-subheader>
+
+    <md-list-item class="md-3-line md-long-text" ng-click="goQSingle(quiz._id)" ng-repeat="quiz in quizes">
+
+        <div class="md-list-item-text">
+            <h3>{{quiz.qname}}</h3>
+
+            <p>{{quiz.question}}</p>
+        </div>
+
+
+</div>
+
+    </md-list-item>
+
+
+
+    <div layout="row" layout-align="end center">
+
+        <md-button class="md-fab addBtn" ui-sref="qadd">
+            +
+        </md-button>
+
+    </div>
+
+
+
+</div>

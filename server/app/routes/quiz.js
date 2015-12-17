@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express'),
     app = express(),
     router = express.Router(),
@@ -23,13 +24,13 @@ router.route('/')
 
 
         quiz.save(function (err) {
-            if (err)
-                res.send(err);
+            if (err){
+                res.send(err);}
             res.json({message: 'User created!'});
         });
 
         quiz.save(function (err) {
-            console.log('button geht');
+            console.log('button gehtt');
         });
     })
 
@@ -93,7 +94,7 @@ router.route('/:quizId')
                 res.send(err);
             }
 
-            res.json({message: 'Successfully deleted'});
+            res.json({message: 'Successfully deleed'});
         });
 
 
