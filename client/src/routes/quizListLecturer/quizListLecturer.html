@@ -1,0 +1,35 @@
+<!--<div class="content" id="home">
+
+    <md-subheader class="md-no-sticky">Verfügbare Fragen</md-subheader>
+<div ng-controller="qListLecturerCtrl as vm"layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+    <p>Suche hier nach einer Lehrveranstaltung zu welcher ihre Frage gehört:</p>
+    <input type="text" ng-model="search">
+    <ul>
+        <p ng-repeat="quiz in vm.quizes | filter:search">{{quiz.name}}</p>
+    </ul>
+
+</div>
+</div>-->
+
+<div class="content" id="home">
+
+    <md-subheader class="md-no-sticky">
+        <h2>Verfügbare Fragen</h2>
+    </md-subheader>
+    <div ng-controller="qListLecturerCtrl as vm"  style="padding:40px"
+         ng-cloak>
+        <p>Suche hier nach einer Lehrveranstaltung zu welcher ihre Frage gehört:</p>
+        <input type="text" ng-model="searchBox">
+
+
+        <md-list-item class="list-lecturer" ng-repeat="quiz in vm.quizes| filter:searchBox">
+
+            <div class="md-list-item-text">
+
+                <md-checkbox>   {{quiz.question}}</md-checkbox>
+            </div>
+
+        </md-list-item>
+    </div>
+
+</div>
