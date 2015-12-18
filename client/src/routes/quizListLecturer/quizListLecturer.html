@@ -1,0 +1,26 @@
+<div class="content" id="home">
+
+    <md-subheader class="md-no-sticky">
+        <h2>Verfügbare Fragen</h2>
+    </md-subheader>
+    <div ng-controller="qListLecturerCtrl as vm"  style="padding:10px" ng-cloak>
+        <input ng-model="quiz.qname" type="text" class="q-input-control form-control" style="width: 500px;" placeholder="Quiz Name">
+
+
+        <p>Suche hier nach einer Lehrveranstaltung zu welcher ihre Frage gehört:</p>
+        <input type="text" placeholder="Suche deine Frage" ng-model="searchBox">
+
+
+        <md-list-item class="list-lecturer" ng-repeat="quiz in vm.quizes| filter:searchBox">
+
+            <div class="md-list-item-text">
+
+                <md-checkbox>   {{quiz.question}}</md-checkbox>
+            </div>
+
+        </md-list-item>
+    </div>
+
+    <md-button class="md-raised">Quiz freigeben</md-button>
+
+</div>
