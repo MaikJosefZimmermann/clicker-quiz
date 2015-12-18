@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express'),
     app = express(),
     router = express.Router(),
@@ -18,9 +20,10 @@ router.route('/')
         user.kuerzel = req.body.kuerzel;
         user.password = req.body.password;
 
+
         user.login(function (err) {
-            if (err)
-                res.send(err);
+            if (err){
+                res.send(err);}
             res.json({message: 'User created!'});
         });
 
