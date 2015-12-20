@@ -11,7 +11,7 @@
         $stateProvider
             .state('list', {                                        // declare list view
                 url: '/list',                                       // set url
-                templateUrl: 'routes/list/list.html',           // defines the HTML template
+                templateUrl: 'routes/lecturer/list/list.html',           // defines the HTML template
                 controller: 'ListCtrl'                              // this view shall use the ListCtrl previously declared.
             });
     }
