@@ -11,7 +11,7 @@
         $stateProvider
             .state('quizList', {                                        // declare list view
                 url: '/quizList',                                       // set url
-                templateUrl: 'routes/quizList/quizList.html',           // defines the HTML template
+                templateUrl: 'routes/lecturer/quizList/quizList.html',           // defines the HTML template
                 controller: 'qListCtrl'                              // this view shall use the ListCtrl previously declared.
             });
     }

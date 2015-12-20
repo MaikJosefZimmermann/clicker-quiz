@@ -17,7 +17,9 @@
             'app.quiz',
             'app.quizSingle',
             'app.list',
-            'app.single'
+            'app.single',
+            'app.quizListLecturer',
+            'app.quizList'
 
         ])
         .config(AppConfig);
