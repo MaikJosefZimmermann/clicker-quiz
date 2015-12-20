@@ -17,8 +17,8 @@ router.route('/')
     .post(function (req, res) {
         var user = new User();
 
-        user.kuerzel = req.body.kuerzel;
-        user.password = req.body.password;
+        user.firstName = req.body.firstName;
+        user.lastName = req.body.lastName;
 
 
         user.login(function (err) {
@@ -67,8 +67,7 @@ router.route('/:userId')
 
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
-            user.imageUrl = req.body.imageUrl;
-            user.text = req.body.text;
+
 
             user.save(function (err) {
                 if (err) {

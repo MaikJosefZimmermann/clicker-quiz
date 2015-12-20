@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module("app.single", [])                   // creates new module
+        .module('app.single', [])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('EditCtrl', EditCtrl)           // bind EditCtrl to module
         .controller('AddCtrl', AddCtrl);            // bind AddCtrl to module
@@ -11,15 +11,15 @@
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
             .state('edit', {                        // edit state..
-                url: "/edit/:id",                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
+                url: '/edit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
                 templateUrl: 'routes/single/single.html',       // defines the HTML template
                 controller: 'EditCtrl'              // this view shall use the EditCtrl previously declared.
             })
             .state('add', {                         // add view
-                url: "/add",                        // this time without any parameters in the url
+                url: '/add',                        // this time without any parameters in the url
                 templateUrl: 'routes/single/single.html',   // loads the HTML template
                 controller: 'AddCtrl'               // this view shall use the AddCtrl previously declared.
-            })
+            });
 
     }
 
@@ -41,7 +41,7 @@
                 url: 'http://localhost:9000/api/users/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('list')        ;                       // when the server responses we rediret to the list
-            })
+            });
         };
 
         $scope.save = function () {                             // another scope function that will save a user object to our nodejs server
@@ -52,7 +52,7 @@
             }).then(function successCallback(response) {
                 $state.go('list');
             });
-        }
+        };
     }
 
     function AddCtrl($scope, $http, $state) {
@@ -65,9 +65,9 @@
                 data: $scope.user,
                 url: 'http://localhost:9000/api/users'
             }).then(function successCallback(response) {
-                $state.go('list')
+                $state.go('list');
             });
-        }
+        };
     }
 
 })();

@@ -2,17 +2,17 @@
     'use strict';
 
     angular
-        .module("app.quizListLecturer", [])                                     // creates new module
+        .module('app.quizListLecturer', [])                                     // creates new module
         .config(config)
         .controller('qListLecturerCtrl', qListLecturerCtrl);                    // config function for our module app.list
 
     function config($stateProvider) {                               // inject $stateProvider into config object
         $stateProvider
             .state('quizListLecturer', {                                        // declare list view
-                url: "/quizListLecturer",                                       // set url
+                url: '/quizListLecturer',                                       // set url
                 templateUrl: 'routes/quizListLecturer/quizListLecturer.html',           // defines the HTML template
                 controller: 'qListLecturerCtrl'                              // this view shall use the ListCtrl previously declared.
-            })
+            });
     }
 
     function qListLecturerCtrl($state, $http) {                      // our controller for this view

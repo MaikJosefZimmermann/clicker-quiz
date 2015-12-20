@@ -7,7 +7,7 @@ var remember = require('gulp-remember');
 
 gulp.task('lint', function () {
 
-    var s = gulp.src('app/**/*.js');
+    var s = gulp.src('src/**/*.js');
     s = s.pipe(cache('js'));
     s = s.pipe(debug());
     s = s.pipe(jshint());
@@ -20,10 +20,11 @@ gulp.task('lint', function () {
 
 gulp.task('develop', function () {
     nodemon({
-        script: './server.js',
+        script: './src/server.js',
         ext: 'js',
         env: {'NODE_ENV': 'development'},
         ignore: ['gulpfile.js']
+
     })
         .on('restart', function () {
             console.log('restarted!')
@@ -33,7 +34,7 @@ gulp.task('develop', function () {
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch('app/**/*.js', ['lint']);
+    gulp.watch('src/**/*.js', ['lint']);
 });
 
 // Default Task

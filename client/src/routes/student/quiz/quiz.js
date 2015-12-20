@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module("app.quiz", [])                                     // creates new module
+        .module('app.quiz', [])                                     // creates new module
         .config(config)                                             // config function for our module app.list
         .controller('QuizCtrl', QuizCtrl);                          // bind ListCtrl to module
 
@@ -10,10 +10,10 @@
     function config($stateProvider) {                               // inject $stateProvider into config object
         $stateProvider
             .state('quiz', {                                        // declare list view
-                url: "/quiz",                                       // set url
-                templateUrl: 'routes/quiz/quiz.html',           // defines the HTML template
+                url: '/quiz',                                       // set url
+                templateUrl: 'routes/student/quiz/quiz.html',           // defines the HTML template
                 controller: 'QuizCtrl as Ctrl'                              // this view shall use the ListCtrl previously declared.
-            })
+            });
     }
 
 
@@ -46,7 +46,7 @@
         vm.ant = ant;
 
         function ant() {
-            var q5 = 'testsssssssssss';
+
             console.log('test1');
 
             vm.question = q1;

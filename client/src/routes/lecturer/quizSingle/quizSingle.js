@@ -2,28 +2,28 @@
     'use strict';
 
     angular
-        .module("app.quizSingle", [])                   // creates new module
+        .module('app.quizSingle', [])                   // creates new module
         .config(config)                             // config function for our module app.single
-        .controller('EditCtrl', EditCtrl)           // bind EditCtrl to module
-        .controller('AddCtrl', AddCtrl);            // bind AddCtrl to module
+        .controller('qEditCtrl', qEditCtrl)           // bind EditCtrl to module
+        .controller('qAddCtrl', qAddCtrl);            // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
             .state('qedit', {                        // edit state..
-                url: "/gedit/:id",                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
+                url: '/qedit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
                 templateUrl: 'routes/quizSingle/quizSingle.html',       // defines the HTML template
-                controller: 'EditCtrl'              // this view shall use the EditCtrl previously declared.
+                controller: 'qEditCtrl'              // this view shall use the EditCtrl previously declared.
             })
             .state('qadd', {                         // add view
-                url: "/qadd",                        // this time without any parameters in the url
+                url: '/qadd',                        // this time without any parameters in the url
                 templateUrl: 'routes/quizSingle/quizSingle.html',   // loads the HTML template
-                controller: 'AddCtrl'               // this view shall use the AddCtrl previously declared.
-            })
+                controller: 'qAddCtrl'               // this view shall use the AddCtrl previously declared.
+            });
 
     }
 
-    function EditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
+    function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
@@ -41,7 +41,7 @@
                 url: 'http://localhost:9000/api/quizes/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('quizList');                       // when the server responses we rediret to the list
-            })
+            });
         };
 
         $scope.qsave = function () {                             // another scope function that will save a user object to our nodejs server
@@ -52,10 +52,10 @@
             }).then(function successCallback(response) {
                 $state.go('quizList');
             });
-        }
+        };
     }
 
-    function AddCtrl($scope, $http, $state) {
+    function qAddCtrl($scope, $http, $state) {
 
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
 
@@ -65,9 +65,9 @@
                 data: $scope.quiz,
                 url: 'http://localhost:9000/api/quizes'
             }).then(function successCallback(response) {
-                $state.go('quizList')
+                $state.go('quizList');
             });
-        }
+        };
     }
 
 })();
