@@ -4,7 +4,7 @@
     <md-content layout-padding>
         <div class="content">
 
-            <div ng-controller="qListCtrl" ng-cloak>
+            <div ng-controller="ListCtrl" ng-cloak>
                 <md-content>
                     <md-list>
                         <md-list-item class="md-3-line md-long-text" ng-repeat="item in quizes" ng-click="goQSingle(q._id)">
@@ -33,7 +33,8 @@
                     <span style="float: right; margin-right: 5px;">Startet in: <i class="fa fa-calendar-o"></i> {{getDate(q.quiz.start)}}</span>
                 </div>
 
-                </div>
+                </md-content>
+            </div>
 
 
             <md-subheader class="md-no-sticky" ng-if="new">

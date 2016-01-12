@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module("app.quizList", [])                                     // creates new module
+        .module('app.quizList', [])                                     // creates new module
         .config(config)                                             // config function for our module app.list
         .controller('qListCtrl', qListCtrl);                          // bind ListCtrl to module
 
@@ -10,10 +10,10 @@
     function config($stateProvider) {                               // inject $stateProvider into config object
         $stateProvider
             .state('quizList', {                                        // declare list view
-                url: "/quizList",                                       // set url
-                templateUrl: 'routes/quizList/quizList.html',           // defines the HTML template
+                url: '/quizList',                                       // set url
+                templateUrl: 'routes/lecturer/quizList/quizList.html',           // defines the HTML template
                 controller: 'qListCtrl'                              // this view shall use the ListCtrl previously declared.
-            })
+            });
     }
 
     function qListCtrl($scope, $state, $http) {                      // our controller for this view
@@ -30,5 +30,5 @@
             $state.go('qedit', {id: id});
         };
 
-    }
+    };
 })();

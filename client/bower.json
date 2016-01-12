@@ -1,10 +1,6 @@
 {
-  "name": "client",
-  "homepage": "",
-  "authors": [
-    "Can Kattw <ck115@hdm-stuttgart.de>"
-  ],
-  "description": "",
+  "name": "Client",
+   "description": "",
   "main": "",
   "moduleType": [],
   "license": "MIT",
@@ -16,13 +12,11 @@
     "tests"
   ],
   "dependencies": {
+    "angular-ui-router": "ui-router#~0.2.15",
+    "angular-animate": "~1.4.8",
+    "angular-aria": "~1.4.8",
     "angular-material": "~0.11.4",
-    "angular-ui-router": "ui-router#~0.2.15"
-  },
-  "overrides":{
-    "angular-material": {
-      "main": ""
-    }
+  "base64": "https://github.com/davidchambers/Base64.js.git#~0.3.0",
+    "ngstorage": "~0.3.10"
   }
-
 }

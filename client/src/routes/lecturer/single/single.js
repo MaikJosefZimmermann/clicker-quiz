@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module("app.quizSingle", [])                   // creates new module
+        .module('app.single', [])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('EditCtrl', EditCtrl)           // bind EditCtrl to module
         .controller('AddCtrl', AddCtrl);            // bind AddCtrl to module
@@ -10,16 +10,16 @@
     function config($stateProvider) {               // inject $stateProvider into config object
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
-            .state('qedit', {                        // edit state..
-                url: "/gedit/:id",                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
-                templateUrl: 'routes/quizSingle/quizSingle.html',       // defines the HTML template
+            .state('edit', {                        // edit state..
+                url: '/edit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
+                templateUrl: 'routes/lecturer/single/single.html',       // defines the HTML template
                 controller: 'EditCtrl'              // this view shall use the EditCtrl previously declared.
             })
-            .state('qadd', {                         // add view
-                url: "/qadd",                        // this time without any parameters in the url
-                templateUrl: 'routes/quizSingle/quizSingle.html',   // loads the HTML template
+            .state('add', {                         // add view
+                url: '/add',                        // this time without any parameters in the url
+                templateUrl: 'routes/lecturer/single/single.html',   // loads the HTML template
                 controller: 'AddCtrl'               // this view shall use the AddCtrl previously declared.
-            })
+            });
 
     }
 
@@ -29,45 +29,45 @@
 
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
-            url: 'http://localhost:9000/api/quizes/' + $stateParams.id
+            url: 'http://localhost:9000/api/users/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
-            $scope.quiz = response.data;                        // load the response data to the scope.user obj
+            $scope.user = response.data;                        // load the response data to the scope.user obj
         });
 
 
         $scope.delete = function () {                           // declare a scope function ( which is also accessible from html template)
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
                 method: 'DELETE',
-                url: 'http://localhost:9000/api/quizes/' + $stateParams.id
+                url: 'http://localhost:9000/api/users/' + $stateParams.id
             }).then(function successCallback(response) {
-                $state.go('quizList');                       // when the server responses we rediret to the list
-            })
+                $state.go('list')        ;                       // when the server responses we rediret to the list
+            });
         };
 
-        $scope.qsave = function () {                             // another scope function that will save a user object to our nodejs server
+        $scope.save = function () {                             // another scope function that will save a user object to our nodejs server
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
-                data: $scope.quiz,                              // this passes the data from the user object  to the request.
-                url: 'http://localhost:9000/api/quizes/' + $stateParams.id
+                data: $scope.user,                              // this passes the data from the user object  to the request.
+                url: 'http://localhost:9000/api/users/' + $stateParams.id
             }).then(function successCallback(response) {
-                $state.go('quizList');
+                $state.go('list');
             });
-        }
+        };
     }
 
     function AddCtrl($scope, $http, $state) {
 
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
 
-        $scope.qsave = function () {                              // for new users we only need the save function
+        $scope.save = function () {                              // for new users we only need the save function
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
-                data: $scope.quiz,
-                url: 'http://localhost:9000/api/quizes'
+                data: $scope.user,
+                url: 'http://localhost:9000/api/users'
             }).then(function successCallback(response) {
-                $state.go('quizList')
+                $state.go('list');
             });
-        }
+        };
     }
 
 })();

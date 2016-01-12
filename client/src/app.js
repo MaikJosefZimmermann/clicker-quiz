@@ -1,36 +1,53 @@
-(function(){
+(function () {
     'use strict';
 
-    angular                                 // declare our root module:
-        .module("app", [                    // we are now in a array where we pass any object we want to inject to root module
+    angular
+        .module('app', [
 
-            /* external modules: */
+            /* external Modules: */
             'ngAnimate',
             'ngMaterial',
             'ngAria',
             'ui.router',
-            /* our rou                 // important module to handle views and routing
-             tes: */
+            //'btford.socket-io',
 
 
+            /* Routes: */
+            //'app.display',
+            'app.quiz',
+            'app.quizSingle',
             'app.list',
             'app.single',
-            'app.quiz',
-            'app.login',
-            'app.quizSingle',
-            'app.quizList',
-            'app.quizListLecturer'
-
-
-
+            'app.quizListLecturer',
+            'app.quizList'
 
         ])
-        .config(AppConfig);                 // link config function to our module
+        .config(AppConfig);
+    /*.run(AppRun)
+     .service('socket', socket);*/
 
 
-    function AppConfig ($urlRouterProvider){
-        /* requests without URL will be redirected to the login-view: */
+    function AppConfig($urlRouterProvider) {
+
         $urlRouterProvider.otherwise('/quiz');
+
+        /*  $urlRouterProvider.otherwise(function ($injector) {
+         var $state = $injector.get('$state');
+         $state.go('display');
+         });*/
+
+
     }
 
+    /*function AppRun(socket) {
+
+     socket.emit('requestRooms');
+     }
+
+     function socket(socketFactory){
+     return socketFactory({
+     ioSocket: io.connect('//localhost:9000')
+     });
+     }
+     */
 })();
