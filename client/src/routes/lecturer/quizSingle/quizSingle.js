@@ -29,7 +29,7 @@
 
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
-            url: 'http://api/quizes/' + $stateParams.id
+            url: 'http://localhost:9000/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             $scope.quiz = response.data;                        // load the response data to the scope.user obj
         });
@@ -38,7 +38,7 @@
         $scope.delete = function () {                           // declare a scope function ( which is also accessible from html template)
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
                 method: 'DELETE',
-                url: 'http://api/quizes/' + $stateParams.id
+                url: 'http://localhost:9000/api/quizes/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('quizList');                       // when the server responses we rediret to the list
             });
@@ -48,7 +48,7 @@
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
                 data: $scope.quiz,                              // this passes the data from the user object  to the request.
-                url: 'http://api/quizes/' + $stateParams.id
+                url: 'http://localhost:9000/api/quizes/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('quizList');
             });
@@ -63,7 +63,7 @@
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
                 data: $scope.quiz,
-                url: 'http://api/quizes'
+                url: 'http://localhost:9000/api/quizes'
             }).then(function successCallback(response) {
                 $state.go('quizList');
             });

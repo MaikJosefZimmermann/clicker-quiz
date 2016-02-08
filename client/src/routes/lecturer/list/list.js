@@ -20,7 +20,7 @@
 
         $http({                                                     // get all users from node server
             method: 'GET',
-            url: 'http://api/users'
+            url: 'http://localhost:9000/api/users'
         }).then(function successCallback(response) {
             $scope.users = response.data;                           // (async) when receive the response load the data into $scope.users
         });
