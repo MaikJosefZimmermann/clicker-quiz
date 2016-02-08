@@ -20,7 +20,7 @@
 
         $http({                                                     // get all users from node server
             method: 'GET',
-            url: 'http://api/quizes'
+            url: 'http://localhost:9000/api/quizes'
         }).then(function successCallback(response) {
             $scope.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
         });
