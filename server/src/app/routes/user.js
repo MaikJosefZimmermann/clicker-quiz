@@ -21,7 +21,7 @@ router.route('/')
         user.lastName = req.body.lastName;
 
 
-        user.login(function (err) {
+        /*   user.login(function (err) {
             if (err){
                 res.send(err);}
             res.json({message: 'User created!'});
@@ -29,7 +29,7 @@ router.route('/')
 
         user.login(function (err) {
             console.log('button geht');
-        });
+         });*/
     })
 
 
