@@ -36,9 +36,10 @@
     "vinyl-ftp": "^0.4.5"
   },
   "dependencies": {
-    "gulp-sourcemaps": "~1.6.0",
     "gulp-exit": "0.0.2",
     "gulp-jshint": "^2.0.0",
+    "gulp-sourcemaps": "~1.6.0",
+    "http-proxy-middleware": "^0.10.0",
     "jshint": "^2.8.0"
   }
 }
