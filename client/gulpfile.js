@@ -26,6 +26,9 @@ var jshint = require('gulp-jshint');
 var lessVariables = require('./variables.json');
 var developmentMode = false;
 
+var proxyMiddleware = require('http-proxy-middleware');
+var proxyUrl = 'http://localhost:9000';
+
 
 var onError = function (err) {
     util.log(
@@ -221,7 +224,8 @@ gulp.task('browserSync', function () {
         port: 3000,
         server: {
             baseDir: 'build-output',
-            directory: false
+            directory: false,
+            middleware: proxyMiddleware('/api', {target: proxyUrl})
         }
     })
 });

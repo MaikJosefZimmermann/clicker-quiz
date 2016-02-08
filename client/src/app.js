@@ -46,7 +46,7 @@
 
      function socket(socketFactory){
      return socketFactory({
-     ioSocket: io.connect('//localhost:9000')
+     ioSocket: io.connect('/api')
      });
      }
      */
