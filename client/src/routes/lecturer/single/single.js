@@ -5,7 +5,8 @@
         .module('app.single', [])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('EditCtrl', EditCtrl)           // bind EditCtrl to module
-        .controller('AddCtrl', AddCtrl);            // bind AddCtrl to module
+        .controller('AddCtrl', AddCtrl)            // bind AddCtrl to module
+        .controller('AppCtrl', AddRole);
 
     function config($stateProvider) {               // inject $stateProvider into config object
 
@@ -63,11 +64,22 @@
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
                 data: $scope.user,
-                url: 'http://localhost:9000/api/users'
+                url: 'http://localhost:9000/api/users/'
             }).then(function successCallback(response) {
                 $state.go('list');
             });
         };
     }
+
+
+    function AddRole() {
+
+        this.userRole = '';
+        this.role = ('Dozent Administrator Student').split(' ').map(function (role) {
+            return {abbrev: role};
+        });
+
+    }
+
 
 })();
