@@ -19,17 +19,17 @@ router.route('/')
 
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
+        user.kuerzel = req.body.kuerzel;
+        user.role = req.body.role;
 
-
-        /*   user.login(function (err) {
-            if (err){
-                res.send(err);}
-            res.json({message: 'User created!'});
+        user.save(function (err) {
+            if (err) {
+                res.send(err);
+            }
+            res.json({message: 'User updated!'});
         });
 
-        user.login(function (err) {
-            console.log('button geht');
-         });*/
+
     })
 
 
@@ -67,6 +67,8 @@ router.route('/:userId')
 
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
+            user.kurzel = req.body.kuerzel;
+            user.role = req.body.role;
 
 
             user.save(function (err) {

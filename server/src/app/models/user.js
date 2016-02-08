@@ -5,6 +5,8 @@ var UserSchema = new Schema({
 
     firstName: String,
     lastName: String,
+    kuerzel: String,
+    role: String,
 
 });
 

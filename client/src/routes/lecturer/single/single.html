@@ -23,22 +23,24 @@
                     <label>Nachname</label>
                     <input ng-model="user.lastName">
                 </md-input-container>
-            </div>
-
-            <div layout="" layout-sm="column">
                 <md-input-container flex="">
-                    <label>Image URL</label>
-                    <input ng-model="user.imageUrl">
+                    <label>Kürzel</label>
+                    <input ng-model="user.kuerzel">
+                </md-input-container>
+            </div>
+            <div ng-controller="AppCtrl as ctrl" layout-sm="column">
+
+                <md-input-container>
+                    <label>Rolle</label>
+                    <md-select ng-model="user.role">
+                        <md-option ng-repeat="role in ctrl.role" value="{{role.abbrev}}">
+                            {{role.abbrev}}
+                        </md-option>
+                    </md-select>
                 </md-input-container>
 
             </div>
 
-            <div layout="" layout-sm="column">
-                <md-input-container flex="">
-                    <label>Text</label>
-                    <textarea ng-model="user.text"></textarea>
-                </md-input-container>
-            </div>
 
             <div layout="row" layout-align="end center">
                 <md-button class="md-raised md-warn" ng-click="delete()" ng-if="edit">Delete User</md-button>
