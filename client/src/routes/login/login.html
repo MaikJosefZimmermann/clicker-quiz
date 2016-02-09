@@ -1,0 +1,29 @@
+<md-content layout-padding id="login">
+    <div class="content">
+
+
+        <md-subheader class="md-no-sticky">
+            <strong>Login</strong>
+        </md-subheader>
+
+
+        <md-content flex layout-padding>
+
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label>Kürzel</label>
+                    <input ng-model="vm.user.username">
+                </md-input-container>
+                <md-input-container flex="">
+                    <label>Passwort</label>
+                    <input ng-model="vm.user.password" type="password">
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ng-click="vm.submit()">Login</md-button>
+            </div>
+        </md-content>
+
+    </div>
+</md-content>

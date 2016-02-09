@@ -4,7 +4,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     mongoose = require('mongoose'),
-    port = process.env.PORT || 9000;
+    port = process.env.PORT || 9000,
+    auth = require('./app/routes/auth');
 
 mongoose.connect('mongodb://localhost:27018/quiz');
 
@@ -14,6 +15,12 @@ app.use(cors());
 app.use('/api/quizes', require('./app/routes/quiz.js'));
 app.use('/api/users', require('./app/routes/user.js'));
 app.listen(port);
+
+app.post('/auth', auth.login);
+app.post('/logout', auth.logout);
+/*Anfrage wird erst bearbeitet wenn request bearbeitet wird
+ * anschließend gehts zur api*/
+app.use([require('./app/middlewares/validateRequest')]);
 
 console.log('Magic happens on port ' + port);
 
