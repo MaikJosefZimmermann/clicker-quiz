@@ -30,7 +30,7 @@
 
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
-            url: 'http://localhost:9000/api/users/' + $stateParams.id
+            url: '/api/users/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             $scope.user = response.data;                        // load the response data to the scope.user obj
         });
@@ -39,7 +39,7 @@
         $scope.delete = function () {                           // declare a scope function ( which is also accessible from html template)
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
                 method: 'DELETE',
-                url: 'http://localhost:9000/api/users/' + $stateParams.id
+                url: '/api/users/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('list')        ;                       // when the server responses we rediret to the list
             });
@@ -49,7 +49,7 @@
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
                 data: $scope.user,                              // this passes the data from the user object  to the request.
-                url: 'http://localhost:9000/api/users/' + $stateParams.id
+                url: '/api/users/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('list');
             });
@@ -64,7 +64,7 @@
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
                 data: $scope.user,
-                url: 'http://localhost:9000/api/users/'
+                url: '/api/users/'
             }).then(function successCallback(response) {
                 $state.go('list');
             });
