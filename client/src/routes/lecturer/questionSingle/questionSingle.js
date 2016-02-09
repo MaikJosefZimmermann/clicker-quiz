@@ -2,22 +2,22 @@
     'use strict';
 
     angular
-        .module('app.quizSingle', [])                   // creates new module
+        .module('app.questionSingle', [])                   // creates new module
         .config(config)                             // config function for our module app.single
-        .controller('qEditCtrl', qEditCtrl)           // bind EditCtrl to module
-        .controller('qAddCtrl', qAddCtrl);            // bind AddCtrl to module
+        .controller('qEditCtrl', qqEditCtrl)           // bind EditCtrl to module
+        .controller('qAddCtrl', qqAddCtrl);            // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
             .state('qedit', {                        // edit state..
                 url: '/qedit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
-                templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',       // defines the HTML template
+                templateUrl: 'routes/lecturer/questionSingle/questionSingle.html',       // defines the HTML template
                 controller: 'qEditCtrl'              // this view shall use the EditCtrl previously declared.
             })
             .state('qadd', {                         // add view
                 url: '/qadd',                        // this time without any parameters in the url
-                templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',   // loads the HTML template
+                templateUrl: 'routes/lecturer/questionSingle/questionSingle.html',   // loads the HTML template
                 controller: 'qAddCtrl'               // this view shall use the AddCtrl previously declared.
             });
 
@@ -29,7 +29,7 @@
 
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
-            url: 'http://localhost:9000/api/quizes/' + $stateParams.id
+            url: 'http://localhost:9000/api/questions/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             $scope.quiz = response.data;                        // load the response data to the scope.user obj
         });
@@ -38,7 +38,7 @@
         $scope.delete = function () {                           // declare a scope function ( which is also accessible from html template)
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
                 method: 'DELETE',
-                url: 'http://localhost:9000/api/quizes/' + $stateParams.id
+                url: 'http://localhost:9000/api/questions/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('quizList');                       // when the server responses we rediret to the list
             });
