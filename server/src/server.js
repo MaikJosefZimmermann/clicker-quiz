@@ -12,16 +12,16 @@ mongoose.connect('mongodb://localhost:27018/quiz');
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api/quizes', require('./app/routes/quiz.js'));
-app.use('/api/users', require('./app/routes/user.js'));
+
 app.listen(port);
 
-app.post('/auth', auth.login);
-app.post('/logout', auth.logout);
+app.post('/api/auth', auth.login);
+app.post('/api/logout', auth.logout);
 /*Anfrage wird erst bearbeitet wenn request bearbeitet wird
  * anschließend gehts zur api*/
 app.use([require('./app/middlewares/validateRequest')]);
-
+app.use('/api/quizes', require('./app/routes/quiz.js'));
+app.use('/api/users', require('./app/routes/user.js'));
 console.log('Magic happens on port ' + port);
 
 

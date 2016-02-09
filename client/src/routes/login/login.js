@@ -27,7 +27,7 @@
         vm.submit = submit;
 
         function submit() {
-            $http.post('//localhost:9000/auth', vm.user).then(function (res) {
+            $http.post('/api/auth', vm.user).then(function (res) {
                 // success
                 authService.isLogged = true;
                 authService.user = res.data.user.username; //userrole admin oder student

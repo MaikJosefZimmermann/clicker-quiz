@@ -96,7 +96,7 @@
 
                 var self = this;
 
-                $http.post('//localhost:9000/logout').then(function () {
+                $http.post('/api/logout').then(function () {
                     self.isLogged = false;
                     $localStorage.$reset(); // löscht alles aus localstorage
                     $state.go('login');
