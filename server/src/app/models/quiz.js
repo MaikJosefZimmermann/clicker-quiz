@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 var QuizSchema = new Schema({
 
     qname: String,
-
     genre: String,
 
 
