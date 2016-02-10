@@ -17,11 +17,12 @@ app.listen(port);
 
 app.post('/api/auth', auth.login);
 app.post('/api/logout', auth.logout);
+app.use('/api/quizes', require('./app/routes/quiz.js'));
+app.use('/api/users', require('./app/routes/user.js'));
 /*Anfrage wird erst bearbeitet wenn request bearbeitet wird
  * anschließend gehts zur api*/
 app.use([require('./app/middlewares/validateRequest')]);
-app.use('/api/quizes', require('./app/routes/quiz.js'));
-app.use('/api/users', require('./app/routes/user.js'));
+
 console.log('Magic happens on port ' + port);
 
 

@@ -23,6 +23,8 @@
                      * --> x-Access-Token setzen
                      * */
                     config.headers = config.headers || {};
+                    console.log($localStorage.token);
+                    console.log("tokeninter..")
                     if ($localStorage.token && config.url.substring(0, 11) === '//localhost') {
                         config.headers['X-Access-Token'] = $localStorage.token;
                         config.headers['X-Key'] = $localStorage.user;
