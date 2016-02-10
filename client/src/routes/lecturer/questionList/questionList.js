@@ -27,7 +27,7 @@
 
 
         $scope.goQSingle = function (id) {                           // scope function which calls a single state
-            $state.go('qedit', {id: id});
+            $state.go('questionedit', {id: id});
         };
 
     };
