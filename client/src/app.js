@@ -47,7 +47,7 @@
         //user roll checken, admin auf adminseite, student auf studentenseite
         $rootScope.$on('$stateChangeSuccess', function (event, nextRoute) {
             if (authService.isLogged === true && nextRoute.name === 'login') {
-                console.log(2);
+                console.log(eingeloggt);
                 event.preventDefault();
                 $state.go('quiz');
                 //TODO Unterscheidung ob Prof oder Student

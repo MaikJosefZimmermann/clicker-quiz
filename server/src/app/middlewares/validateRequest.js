@@ -6,8 +6,9 @@ module.exports = function (req, res, next) {
     if (req.method === 'OPTIONS') {
         next();
     }
-
+//TODO token leer
     var token = req.headers['x-access-token'];
+    console.log(token);
     if (token) { //überprüfen ob er da ist
         jwt.verify(token, require('../config/secret.js')(), function (err, decoded) {
             /*verifeziert den token*/
