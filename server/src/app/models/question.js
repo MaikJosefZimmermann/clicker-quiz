@@ -11,8 +11,9 @@ var QuestionSchema = new Schema({
     answer3: String,
     answer4: String,
     points: Number,
+    time: Number,
 
 
 });
 
-module.exports = mongoose.model('quiz', QuestionSchema);
+module.exports = mongoose.model('question', QuestionSchema);

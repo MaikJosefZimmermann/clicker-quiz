@@ -1,19 +1,26 @@
 <div class="content" id="home">
     <md-subheader class="md-no-sticky">
-        <h1>Quizübersicht </h1></md-subheader>
+        <h1>Fragenübersicht </h1></md-subheader>
 
 
-    <md-list-item class="md-3-line md-long-text" ng-repeat="quiz in quizes">
+    <md-list-item class="md-3-line md-long-text" ng-repeat="question in questions">
 
         <div class="md-list-item-text">
+            <p>
+            <h3>Frage: {{question.question}}</h3>
+            <p>Richtige Antwort: {{question.answer1}} </p>
+            <p>alternative Antworten: {{question.answer2}}</p>
+            <p>alternative Antworten: {{question.answer3}}</p>
+            <p>alternative Antworten: {{question.answer4}}</p>
+            <p>Schwierigkeitsgrad: {{question.points}}</p>
+            <p>Zeit in Sekunden: {{question.time}}</p>
 
 
+            <md-button class="md-raised md-primary" ng-click="goQSingle(question._id)">Bearbeiten</md-button>
+
+
+            <md-button class="md-raised md-accent" ng-click="delete()">Löschen</md-button>
             <hr/>
-            <md-button class="md-raised md-primary" ng-click="goQSingle(quiz._id)">Bearbeiten</md-button>
-
-            <md-button class="md-raised">Kopieren</md-button>
-            <md-button class="md-raised md-accent">Durchführen</md-button>
-
             </p>
         </div>
 
@@ -22,7 +29,7 @@
 
     <div layout="row" layout-align="end center">
 
-        <md-button class="md-fab md-primary addBtn" ui-sref="qadd">
+        <md-button class="md-fab md-primary addBtn" ui-sref="questionadd">
             +
         </md-button>
 

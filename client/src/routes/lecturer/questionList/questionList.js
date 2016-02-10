@@ -4,7 +4,7 @@
     angular
         .module('app.questionList', [])                                     // creates new module
         .config(config)                                             // config function for our module app.list
-        .controller('qListCtrl', qListCtrl);                          // bind ListCtrl to module
+        .controller('questionListCtrl', questionListCtrl);                          // bind ListCtrl to module
 
 
     function config($stateProvider) {                               // inject $stateProvider into config object
@@ -12,18 +12,23 @@
             .state('questionList', {                                        // declare list view
                 url: '/questionList',                                       // set url
                 templateUrl: 'routes/lecturer/questionList/questionList.html',           // defines the HTML template
-                controller: 'qListCtrl'                              // this view shall use the ListCtrl previously declared.
+                controller: 'questionListCtrl'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
-    function qListCtrl($scope, $state, $http) {                      // our controller for this view
+    function questionListCtrl($scope, $state, $http) {                      // our controller for this view
 
         $http({                                                     // get all users from node server
             method: 'GET',
-            url: '/api/quizes'
+            url: '/api/questions'
         }).then(function successCallback(response) {
-            $scope.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
+            $scope.questions = response.data;                           // (async) when receive the response load the data into $scope.users
         });
+
+        //TODO Delete funktion
+
+
+
 
 
         $scope.goQSingle = function (id) {                           // scope function which calls a single state

@@ -29,28 +29,28 @@
 
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
-            url: '/api/quizes/' + $stateParams.id
+            url: '/api/questions/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
-            $scope.quiz = response.data;                        // load the response data to the scope.user obj
+            $scope.question = response.data;                        // load the response data to the scope.user obj
         });
 
 
         $scope.delete = function () {                           // declare a scope function ( which is also accessible from html template)
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
                 method: 'DELETE',
-                url: '/api/quizes/' + $stateParams.id
+                url: '/api/questions/' + $stateParams.id
             }).then(function successCallback(response) {
-                $state.go('quizList');                       // when the server responses we rediret to the list
+                $state.go('questionList');                       // when the server responses we rediret to the list
             });
         };
 
-        $scope.qsave = function () {                             // another scope function that will save a user object to our nodejs server
+        $scope.questionSave = function () {                             // another scope function that will save a user object to our nodejs server
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
-                data: $scope.quiz,                              // this passes the data from the user object  to the request.
-                url: '/api/quizes/' + $stateParams.id
+                data: $scope.question,                              // this passes the data from the user object  to the request.
+                url: '/api/questions/' + $stateParams.id
             }).then(function successCallback(response) {
-                $state.go('quizList');
+                $state.go('questionList');
             });
         };
     }
@@ -59,15 +59,17 @@
 
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
 
-        $scope.qsave = function () {                              // for new users we only need the save function
+
+        $scope.questionSave = function () {                              // for new users we only need the save function
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
-                data: $scope.quiz,
-                url: '/api/quizes'
+                data: $scope.question,
+                url: '/api/questions'
             }).then(function successCallback(response) {
-                $state.go('quizList');
+                $state.go('questionList');
             });
         };
     }
+
 
 })();
