@@ -3,32 +3,33 @@
 
     angular
         .module('app.quizList', [])                                     // creates new module
-        .config(config)                                             // config function for our module app.list
-        .controller('qListCtrl', qListCtrl);                          // bind ListCtrl to module
-
+        .config(config)
+        .controller('quizListCtrl', quizListCtrl);                    // config function for our module app.list
 
     function config($stateProvider) {                               // inject $stateProvider into config object
         $stateProvider
             .state('quizList', {                                        // declare list view
                 url: '/quizList',                                       // set url
                 templateUrl: 'routes/lecturer/quizList/quizList.html',           // defines the HTML template
-                controller: 'qListCtrl'                              // this view shall use the ListCtrl previously declared.
+                controller: 'quizListCtrl'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
-    function qListCtrl($scope, $state, $http) {                      // our controller for this view
+    function quizListCtrl($state, $http) {                      // our controller for this view
+        var vm = this;
 
         $http({                                                     // get all users from node server
             method: 'GET',
-            url: '/api/quizes'
+            url: '/api/questions'
         }).then(function successCallback(response) {
-            $scope.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
+            vm.questions = response.data;                           // (async) when receive the response load the data into $scope.users
+            console.log("Fragen:" + vm.questions);
         });
 
 
-        $scope.goQSingle = function (id) {                           // scope function which calls a single state
+        vm.goQSingle = function (id) {                           // scope function which calls a single state
             $state.go('qedit', {id: id});
         };
 
-    };
+    }
 })();

@@ -26,7 +26,16 @@
         });
 
         //TODO Delete funktion
-
+        $scope.delete = function (id) {                           // declare a scope function ( which is also accessible from html template)
+            console.log(id);
+            console.log("Delete funktion");
+            $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
+                method: 'DELETE',
+                url: '/api/questions/' + id
+            }).then(function successCallback(response) {
+                $state.go('questionList');                       // when the server responses we rediret to the list
+            });
+        };
 
 
 
