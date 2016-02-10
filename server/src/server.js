@@ -22,7 +22,7 @@ app.use('/api/users', require('./app/routes/user.js'));
 /*Anfrage wird erst bearbeitet wenn request bearbeitet wird
  * anschließend gehts zur api*/
 app.use([require('./app/middlewares/validateRequest')]);
-
+//TODO hier kommen alle anwendungsrouten rein
 console.log('Magic happens on port ' + port);
 
 
