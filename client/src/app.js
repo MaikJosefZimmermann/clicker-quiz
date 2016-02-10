@@ -19,6 +19,8 @@
             'app.login',
             'app.quiz',
             'app.quizSingle',
+            'app.questionSingle',
+            'app.questionList',
             'app.list',
             'app.single',
             'app.quizListLecturer',
