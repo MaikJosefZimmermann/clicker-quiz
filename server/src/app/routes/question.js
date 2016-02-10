@@ -23,6 +23,7 @@ router.route('/')
         question.answer4 = req.body.answer4;
         question.points = req.body.points;
         question.time = req.body.time;
+        question.subject = req.body.subject;
 
 
         question.save(function (err) {
@@ -77,6 +78,7 @@ router.route('/:questionId')
             question.answer4 = req.body.answer4;
             question.points = req.body.points;
             question.time = req.body.time;
+            question.subject = req.body.subject;
 
             question.save(function (err) {
                 if (err) {

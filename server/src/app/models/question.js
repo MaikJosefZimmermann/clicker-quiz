@@ -12,6 +12,7 @@ var QuestionSchema = new Schema({
     answer4: String,
     points: Number,
     time: Number,
+    subject: String,
 
 
 });
