@@ -23,10 +23,22 @@ router.route('/')
         question.answer4 = req.body.answer4;
         question.points = req.body.points;
         question.time = req.body.time;
-        question.subject = req.body.subject;
+
+
+        if (question.time) {
+
+        } else {
+            question.time = 0;
+        }
+        if (question.points) {
+
+        } else {
+            question.points = 1;
+        }
 
 
         question.save(function (err) {
+
             if (err) {
                 res.send(err);
             }

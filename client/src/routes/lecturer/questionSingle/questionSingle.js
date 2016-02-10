@@ -61,6 +61,7 @@
 
 
         $scope.questionSave = function () {                              // for new users we only need the save function
+            console.log($scope.question);
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
                 data: $scope.question,
