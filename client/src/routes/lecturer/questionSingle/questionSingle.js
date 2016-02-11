@@ -24,6 +24,7 @@
     }
 
     var chips;
+    var self;
 
     function questionEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
@@ -33,7 +34,11 @@
             method: 'GET',
             url: '/api/questions/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
+            console.log("Inhalt:" + response.data);
+
             $scope.question = response.data;                        // load the response data to the scope.user obj
+            setTags($scope.question.tags);
+
         });
 
 
@@ -46,7 +51,8 @@
             });
         };
 
-        $scope.questionSave = function () {                             // another scope function that will save a user object to our nodejs server
+        $scope.questionSave = function () {
+            saveTags($scope.question);                             // another scope function that will save a user object to our nodejs server
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
                 data: $scope.question,                              // this passes the data from the user object  to the request.
@@ -60,7 +66,6 @@
     function questionAddCtrl($scope, $http, $state) {
 
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
-
 
         $scope.questionSave = function () {                        // for new users we only need the save function
             saveTags($scope.question);
@@ -79,19 +84,25 @@
 
 
     function chipCtrl() {
-        var self = this;
+
+        self = this;
         self.readonly = false;
         self.tags = [];
-        console.log("im ctrl");
-        console.log(self);
         chips = self;
+    }
+
+    function saveTags(currentQuestion) {
+
+
+        currentQuestion.tags = chips.tags;
+
 
     }
 
-    function saveTags(currentquestion) {
+    function setTags(tags) {
 
-
-        currentquestion.tags = chips.tags;
+        var temp = tags.split(",");
+        chips.tags = temp;
 
 
     }
