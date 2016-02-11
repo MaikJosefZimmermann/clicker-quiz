@@ -22,8 +22,8 @@
             method: 'GET',
             url: '/api/questions'
         }).then(function successCallback(response) {
-            vm.questions = response.data;                           // (async) when receive the response load the data into $scope.users
-            console.log("Fragen:" + vm.questions);
+            vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
+
         });
 
 
