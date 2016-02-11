@@ -1,4 +1,4 @@
-<div class="content" id="home">
+<div class="content" id="home" ng-controller="searchCtrl as vm">
 
     <md-subheader class="md-no-sticky">
         <h2>Quiz erstellen</h2>
@@ -11,7 +11,7 @@
         </md-input-container>
 
     </div>
-    <div ng-controller="searchCtrl as vm" style="padding:10px" ng-cloak>
+    <div style="padding:10px" ng-cloak>
 
 
         <div layout="" layout-sm="column">
@@ -31,12 +31,8 @@
             </div>
 
         </md-list-item>
+
+
     </div>
-
-
-</div>
-    </div>
-
-    <md-button class="md-raised">Quiz generieren</md-button>
-
+    <md-button class="md-raised" ng-click="vm.saveQuiz()">Quiz generieren</md-button>
 </div>
