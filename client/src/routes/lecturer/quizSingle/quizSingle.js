@@ -121,12 +121,14 @@
                 }
                 console.log("Array:" + ergebnis);
             })
-            angular.forEach(ergebnis, question in ergebnis);
-            {
+            angular.forEach(ergebnis, function (question) {
 
-                console.log("ERGEBNIS:" + question);
-
-            }
+                console.log("Frage (array):" + question);
+                if (question.selected === true) {
+                    ergebnis.push(question)
+                }
+                console.log("Array:" + ergebnis);
+            })
         }
 
     }
