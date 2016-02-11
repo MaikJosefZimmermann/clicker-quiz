@@ -5,8 +5,8 @@
         .module('app.questionSingle', [])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('questionEditCtrl', questionEditCtrl)           // bind EditCtrl to module
-        .controller('questionAddCtrl', questionAddCtrl);            // bind AddCtrl to module
-
+        .controller('questionAddCtrl', questionAddCtrl)           // bind AddCtrl to module
+        .controller('chipCtrl', chipCtrl);
     function config($stateProvider) {               // inject $stateProvider into config object
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
@@ -71,6 +71,23 @@
             });
         };
     }
+
+
+    function chipCtrl($timeout, $q) {
+        var self = this;
+        self.readonly = false;
+
+        self.tags = [];
+        self.newTag = function (chip) {
+            console.log(chip);
+            return {
+                name: chip,
+                type: 'unknown'
+            };
+        };
+        console.log(self);
+    }
+
 
 
 })();

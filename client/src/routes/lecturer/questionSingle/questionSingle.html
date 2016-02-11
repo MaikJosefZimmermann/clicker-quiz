@@ -12,7 +12,22 @@
 
 
         <md-content flex layout-padding>
+            <div ng-controller="chipCtrl as ctrl" layout="column" ng-cloak>
+                <md-content class="md-padding" layout="column">
 
+                    <h2 class="md-title">Setze Tags für diese Frage</h2>
+                    <md-chips
+                            ng-model="ctrl.tags"
+                            readonly="ctrl.readonly"
+                            placeholder="Enter a tag"
+                            delete-button-label="Remove Tag"
+                            delete-hint="Press delete to remove tag"
+                            secondary-placeholder="+Tag"></md-chips>
+
+                    <br/>
+                    <md-checkbox ng-model="ctrl.readonly">Readonly</md-checkbox>
+                </md-content>
+            </div>
 
 
 
