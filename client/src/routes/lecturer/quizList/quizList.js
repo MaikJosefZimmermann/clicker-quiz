@@ -20,11 +20,21 @@
 
         $http({                                                     // get all users from node server
             method: 'GET',
-            url: '/api/questions'
+            url: '/api/quizes'
         }).then(function successCallback(response) {
             vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
 
         });
+
+        vm.delete = function (id) {                           // declare a scope function ( which is also accessible from html template)
+
+            $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
+                method: 'DELETE',
+                url: '/api/quizes/' + id
+            }).then(function successCallback(response) {
+                $state.go('quizList');                       // when the server responses we rediret to the list
+            });
+        };
 
 
         vm.goQSingle = function (id) {                           // scope function which calls a single state
