@@ -23,6 +23,7 @@ router.route('/')
         question.answer4 = req.body.answer4;
         question.points = req.body.points;
         question.time = req.body.time;
+        question.tags = req.body.tags;
 
 
         if (question.time) {

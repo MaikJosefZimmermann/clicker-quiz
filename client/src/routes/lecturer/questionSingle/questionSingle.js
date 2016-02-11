@@ -23,6 +23,8 @@
 
     }
 
+    var chips;
+
     function questionEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
@@ -60,8 +62,11 @@
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
 
 
-        $scope.questionSave = function () {                              // for new users we only need the save function
+        $scope.questionSave = function () {                        // for new users we only need the save function
+            saveTags($scope.question);
             console.log($scope.question);
+
+
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
                 data: $scope.question,
@@ -73,21 +78,23 @@
     }
 
 
-    function chipCtrl($timeout, $q) {
+    function chipCtrl() {
         var self = this;
         self.readonly = false;
-
         self.tags = [];
-        self.newTag = function (chip) {
-            console.log(chip);
-            return {
-                name: chip,
-                type: 'unknown'
-            };
-        };
+        console.log("im ctrl");
         console.log(self);
+        chips = self;
+
     }
 
+    function saveTags(currentquestion) {
+
+
+        currentquestion.tags = chips.tags;
+
+
+    }
 
 
 })();
