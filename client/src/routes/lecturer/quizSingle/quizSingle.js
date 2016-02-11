@@ -25,7 +25,6 @@
 
     }
 
-    var allQuestions;
 
     function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
@@ -116,6 +115,7 @@
 
             angular.forEach(vm.questions, function (question) {
                 console.log("forschleife:" + question);
+                console.log(question);
                 if (question.selected === true) {
                     ergebnis.push(question)
                 }
