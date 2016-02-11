@@ -5,7 +5,9 @@
         .module('app.quizSingle', [])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('qEditCtrl', qEditCtrl)           // bind EditCtrl to module
-        .controller('qAddCtrl', qAddCtrl);            // bind AddCtrl to module
+        .controller('qAddCtrl', qAddCtrl)
+        .controller('searchCtrl', searchCtrl)
+    // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
 
@@ -22,6 +24,7 @@
             });
 
     }
+
 
     function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
@@ -70,4 +73,63 @@
         };
     }
 
+
+    function searchCtrl($http) {                      // our controller for this view
+        var vm = this;
+        vm.selected = [];
+
+        $http({                                                     // get all users from node server
+            method: 'GET',
+            url: '/api/questions'
+        }).then(function successCallback(response) {
+            vm.questions = response.data;                       // (async) when receive the response load the data into $scope.users
+
+
+        });
+
+        vm.exists = function (question) {
+
+
+            return question.selected;
+
+
+            // console.log(question);
+
+        };
+
+        vm.change = function (question) {
+            if (question.selected == false) {
+
+                question.selected = true;
+
+            } else {
+                question.selected = false;
+            }
+            console.log("toggle:" + question);
+
+
+        }
+
+        vm.saveQuiz = function () {
+            var ergebnis = [];
+
+            angular.forEach(vm.questions, function (question) {
+                console.log("forschleife:" + question);
+                console.log(question);
+                if (question.selected === true) {
+                    ergebnis.push(question)
+                }
+                console.log("Array:" + ergebnis);
+            })
+            angular.forEach(ergebnis, function (question) {
+
+                console.log("Frage (array):" + question.question);
+                if (question.selected === true) {
+                    ergebnis.push(question)
+                }
+                console.log("Array:" + ergebnis);
+            })
+        }
+
+    }
 })();

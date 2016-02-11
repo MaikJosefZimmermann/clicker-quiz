@@ -1,4 +1,4 @@
-<div class="content" id="home">
+<div class="content" id="home" ng-controller="searchCtrl as vm">
 
     <md-subheader class="md-no-sticky">
         <h2>Quiz erstellen</h2>
@@ -11,7 +11,7 @@
         </md-input-container>
 
     </div>
-    <div ng-controller="quizListCtrl as vm" style="padding:10px" ng-cloak>
+    <div style="padding:10px" ng-cloak>
 
 
         <div layout="" layout-sm="column">
@@ -25,15 +25,14 @@
         <md-list-item class="list-lecturer" ng-repeat="question in vm.questions| filter:searchBox">
 
             <div class="md-list-item-text">
-
-                <md-checkbox ng-checked="">
-                    {{question.question}}
+                <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
+                    Frage: {{question.question}} Tags: {{ question.tags }}
                 </md-checkbox>
             </div>
 
         </md-list-item>
+
+
     </div>
-
-    <md-button class="md-raised">Quiz generieren</md-button>
-
+    <md-button class="md-raised" ng-click="vm.saveQuiz()">Quiz generieren</md-button>
 </div>

@@ -2,7 +2,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var QuestionSchema = new Schema({
+var QuestionSchema;
+QuestionSchema = new Schema({
 
 
     question: String,
@@ -14,6 +15,7 @@ var QuestionSchema = new Schema({
     time: Number,
     subject: String,
     tags: String,
+    selected: Boolean
 
 
 });
