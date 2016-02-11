@@ -98,10 +98,10 @@
         };
 
         vm.change = function (question) {
-            if (question.selected === false) {
+            if (question.selected == false) {
                 question.selected = true;
                 console.log("toggle: TRUE" + question);
-            } else if (question.selected === true) {
+            } else {
                 question.selected = false;
                 console.log("toggle FALSE:" + question);
             }
