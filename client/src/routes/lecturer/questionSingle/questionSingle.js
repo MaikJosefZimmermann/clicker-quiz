@@ -5,8 +5,8 @@
         .module('app.questionSingle', [])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('questionEditCtrl', questionEditCtrl)           // bind EditCtrl to module
-        .controller('questionAddCtrl', questionAddCtrl);            // bind AddCtrl to module
-
+        .controller('questionAddCtrl', questionAddCtrl)           // bind AddCtrl to module
+        .controller('chipCtrl', chipCtrl);
     function config($stateProvider) {               // inject $stateProvider into config object
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
@@ -22,6 +22,8 @@
             });
 
     }
+
+    var chips;
 
     function questionEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
@@ -60,8 +62,11 @@
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
 
 
-        $scope.questionSave = function () {                              // for new users we only need the save function
+        $scope.questionSave = function () {                        // for new users we only need the save function
+            saveTags($scope.question);
             console.log($scope.question);
+
+
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
                 data: $scope.question,
@@ -70,6 +75,25 @@
                 $state.go('questionList');
             });
         };
+    }
+
+
+    function chipCtrl() {
+        var self = this;
+        self.readonly = false;
+        self.tags = [];
+        console.log("im ctrl");
+        console.log(self);
+        chips = self;
+
+    }
+
+    function saveTags(currentquestion) {
+
+
+        currentquestion.tags = chips.tags;
+
+
     }
 
 

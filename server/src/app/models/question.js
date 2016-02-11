@@ -13,6 +13,7 @@ var QuestionSchema = new Schema({
     points: Number,
     time: Number,
     subject: String,
+    tags: String,
 
 
 });
