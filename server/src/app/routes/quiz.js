@@ -86,7 +86,7 @@ router.route('/:quizId')
                 res.send(err);
             }
 
-            res.json({message: 'Successfully deleed'});
+            res.json({message: 'Successfully deleted'});
         });
 
 

@@ -110,7 +110,7 @@
 
         }
 
-        vm.saveQuiz = function () {
+        vm.saveQuiz = function ($state) {
             var ergebnis = [];
 
             angular.forEach(vm.questions, function (question) {
@@ -132,8 +132,10 @@
                 method: 'POST',
                 data: data,
                 url: '/api/quizes'
-            });
+            }).then(function successCallback(response) {
+                $state.go('quizList');
 
+            })
         }
 
     }

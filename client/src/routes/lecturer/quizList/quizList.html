@@ -1,4 +1,4 @@
-<div class="content" id="home" ng-controller="qListLecturerCtrl as vm">
+<div class="content" id="home" ng-controller="quizListCtrl as vm">
     <md-subheader class="md-no-sticky">
         <h1>Quizübersicht </h1></md-subheader>
 
@@ -14,7 +14,7 @@
             <md-button class="md-raised md-primary" ng-click="goQSingle(question._id)">Bearbeiten</md-button>
 
 
-            <md-button class="md-raised md-accent" ng-click="delete(question._id)">Löschen</md-button>
+            <md-button class="md-raised md-accent" ng-click="vm.delete(quiz._id)">Löschen</md-button>
             <hr/>
             </p>
         </div>
