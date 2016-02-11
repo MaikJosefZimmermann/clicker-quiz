@@ -18,7 +18,7 @@
 
 
     function QuizCtrl($http) {// our controller for this view
-
+        var vm = this;
 
         $http({                                                     // get all users from node server
             method: 'GET',
@@ -28,7 +28,6 @@
         });
 
 
-        var vm = this;
         var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
         var q0 = 'frage1', q1 = 'frage2';
 
