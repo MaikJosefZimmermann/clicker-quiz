@@ -58,9 +58,8 @@
     }
 
 
-
-    function AppConfig($urlRouterProvider) {
-
+    function AppConfig($urlRouterProvider, $httpProvider) {
+        $httpProvider.interceptors.push('tokenInterceptor');
         $urlRouterProvider.otherwise('/quiz');
 
         /*  $urlRouterProvider.otherwise(function ($injector) {
