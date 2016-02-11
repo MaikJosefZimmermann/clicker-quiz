@@ -5,7 +5,10 @@
         .module('app.quizSingle', [])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('qEditCtrl', qEditCtrl)           // bind EditCtrl to module
-        .controller('qAddCtrl', qAddCtrl);            // bind AddCtrl to module
+        .controller('qAddCtrl', qAddCtrl)
+        .controller('cbCtrl', cbCtrl)
+        .controller('searchCtrl', searchCtrl)
+    // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
 
@@ -22,6 +25,8 @@
             });
 
     }
+
+    var allQuestions;
 
     function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
@@ -70,4 +75,77 @@
         };
     }
 
+    function cbCtrl($scope) {
+
+        $scope.items = [12, 2, 3, 4, 5];
+        $scope.selected = [];
+        $scope.toggle = function (item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) list.splice(idx, 1);
+            else list.push(item);
+        };
+        $scope.exists = function (item, list) {
+
+            var a = list.indexOf(item) > -1;
+            console.log("EXISTS " + a);
+            return a
+
+        };
+    }
+
+    function searchCtrl($state, $http) {                      // our controller for this view
+        var vm = this;
+        vm.selected = [];
+
+        $http({                                                     // get all users from node server
+            method: 'GET',
+            url: '/api/questions'
+        }).then(function successCallback(response) {
+            vm.questions = response.data;                       // (async) when receive the response load the data into $scope.users
+
+            setAllQuestions(vm.questions);
+            console.log("Fragen:" + vm.questions);
+        });
+
+        vm.exists = function (question) {
+
+
+            return question.selected;
+
+
+            // console.log(question);
+
+        };
+        var selectedQuestions = [];
+        vm.change = function (question) {
+            if (question.selected == false) {
+                selectedQuestions = question;
+                console.log("selcted:" + selectedQuestions.toLocaleString());
+                question.selected = true;
+
+            } else {
+                question.selected = false;
+            }
+            console.log("toggle:" + question);
+
+        }
+
+
+    }
+
+    function setAllQuestions(questions) {
+
+        questions.forEach(setObject);
+        console.log("Alle Fragen" + questions);
+
+    }
+
+    function setObject(value, index, ar) {
+
+
+        var quest = value;
+
+        console.log("einzelne frage:" + quest);
+
+    }
 })();

@@ -24,6 +24,7 @@ router.route('/')
         question.points = req.body.points;
         question.time = req.body.time;
         question.tags = req.body.tags;
+        question.selected = false;
 
 
         if (question.time) {
@@ -93,6 +94,8 @@ router.route('/:questionId')
             question.time = req.body.time;
             question.subject = req.body.subject;
             question.tags = req.body.tags;
+            question.selected = req.body.selected;
+
 
             question.save(function (err) {
                 if (err) {

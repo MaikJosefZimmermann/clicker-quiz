@@ -24,7 +24,7 @@
     }
 
     var chips;
-    var self;
+
 
     function questionEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
@@ -85,7 +85,7 @@
 
     function chipCtrl() {
 
-        self = this;
+        var self = this;
         self.readonly = false;
         self.tags = [];
         chips = self;
