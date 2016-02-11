@@ -16,11 +16,7 @@ router.route('/')
     .post(function (req, res) {
         var quiz = new Quiz();
         quiz.qname = req.body.qname;
-        quiz.question = req.body.question;
-        quiz.answer1 = req.body.answer1;
-        quiz.answer2 = req.body.answer2;
-        quiz.answer3 = req.body.answer3;
-        quiz.answer4 = req.body.answer4;
+        quiz.questions = req.body.questions;
 
 
         quiz.save(function (err) {
@@ -68,11 +64,7 @@ router.route('/:quizId')
 
 
             quiz.qname = req.body.qname;
-            quiz.question = req.body.question;
-            quiz.answer1 = req.body.answer1;
-            quiz.answer2 = req.body.answer2;
-            quiz.answer3 = req.body.answer3;
-            quiz.answer4 = req.body.answer4;
+            quiz.questions = req.body.questions;
 
             quiz.save(function (err) {
                 if (err) {

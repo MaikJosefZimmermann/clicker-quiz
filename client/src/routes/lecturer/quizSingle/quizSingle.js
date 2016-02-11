@@ -114,21 +114,26 @@
             var ergebnis = [];
 
             angular.forEach(vm.questions, function (question) {
-                console.log("forschleife:" + question);
-                console.log(question);
-                if (question.selected === true) {
-                    ergebnis.push(question)
-                }
-                console.log("Array:" + ergebnis);
-            })
-            angular.forEach(ergebnis, function (question) {
 
-                console.log("Frage (array):" + question.question);
                 if (question.selected === true) {
                     ergebnis.push(question)
                 }
-                console.log("Array:" + ergebnis);
+
             })
+
+
+            var data = {
+                qname: vm.qname,
+                questions: ergebnis
+            };
+
+            // for new users we only need the save function
+            $http({                                              // same as in the EditCtrl
+                method: 'POST',
+                data: data,
+                url: '/api/quizes'
+            });
+
         }
 
     }
