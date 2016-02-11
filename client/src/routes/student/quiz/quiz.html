@@ -17,14 +17,11 @@
                                 <p>Dauer:{{item.quiz.timelimit}}</p> 
                             </md-card-content>
                              
-                            <md-card-actions> 
-                                <div layout="row">  <p>Startet in: {{getDate(q.quiz.start)}}</p> 
-                                    <md-button layout-align="end center" class="md-raised md-primary"  
-                                               style="background-color: #3EB2AC">Beitreten 
-                                    </md-button>
-                                     
-                                </div>
-                                 
+                            <md-card-actions layout="row" layout-align="space-between center"> 
+                                <p>Startet in: {{getDate(q.quiz.start)}}</p> 
+                                <md-button class="md-raised md-primary"
+                                           style="background-color: #3EB2AC"> Beitreten 
+                                </md-button>
                             </md-card-actions>
                               
                             <md-divider ng-if="!$last"></md-divider>
@@ -46,15 +43,11 @@
                                 {{item.quiz.timelimit}}</p> 
                             </md-card-content>
                              
-                            <md-card-actions> 
-                                <div layout="row"> 
-                                    <div layout="row">  <p>Startet in: {{getDate(q.quiz.start)}}</p> 
-                                        <md-button layout-align="end center" class="md-raised md-primary"  
-                                                   style="background-color: #3EB2AC">Beitreten 
+                            <md-card-actions layout="row" layout-align="space-between center"> 
+                                <p>Startet in: {{getDate(q.quiz.start)}}</p> 
+                                <md-button class="md-raised md-primary"
+                                           style="background-color: #3EB2AC"> Beitreten 
                                         </md-button>
-                                         
-                                    </div>
-                                     
                             </md-card-actions>
                               
                             <md-divider ng-if="!$last"></md-divider>
