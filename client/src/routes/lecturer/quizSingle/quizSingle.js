@@ -123,7 +123,7 @@
             })
             angular.forEach(ergebnis, function (question) {
 
-                console.log("Frage (array):" + question);
+                console.log("Frage (array):" + question.question);
                 if (question.selected === true) {
                     ergebnis.push(question)
                 }
