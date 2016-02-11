@@ -92,6 +92,7 @@ router.route('/:questionId')
             question.points = req.body.points;
             question.time = req.body.time;
             question.subject = req.body.subject;
+            question.tags = req.body.tags;
 
             question.save(function (err) {
                 if (err) {
