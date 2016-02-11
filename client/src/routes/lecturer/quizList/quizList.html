@@ -8,7 +8,7 @@
         <div class="md-list-item-text">
             <p>
             <h3>Quizname: {{quiz.qname}}</h3>
-            <p>Anzahl der Fragen: {{question.answer1}} </p>
+            <p>Anzahl der Fragen: {{quiz.questions.length}} </p>
 
 
             <md-button class="md-raised md-primary" ng-click="goQSingle(question._id)">Bearbeiten</md-button>
