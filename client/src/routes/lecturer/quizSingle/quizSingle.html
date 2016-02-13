@@ -30,16 +30,12 @@
                 </md-checkbox>
             </div>
             <div ng-controller="DialogCtrl" class="md-padding" id="popupContainer" ng-cloak>
-                <md-button class="md-raised md-warn" ng-click="showTabDialog($event)" ng-if="question.selected">Frage
+                <md-button class="md-raised md-warn" ng-click="showDialog($event, question)" ng-if="question.selected">
+                    Frage
                     bearbeiten
                 </md-button>
             </div>
-            <div ng-if="status">
-                <br/>
-                <b layout="row" layout-align="center center" class="md-padding">
-                    {{status}}
-                </b>
-            </div>
+
 
         </md-list-item>
 

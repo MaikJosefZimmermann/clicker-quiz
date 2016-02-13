@@ -156,14 +156,16 @@
             })
         }
 
+
     }
 
-    function dialogCtrl($scope, $mdDialog, $mdMedia) {
+    function dialogCtrl($scope, $mdDialog, $mdMedia, $state) {
         $scope.status = '  ';
         $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
 
-        $scope.showTabDialog = function (ev) {
+        $scope.showDialog = function (ev, question) {
+            goSingle(question._id);
             $mdDialog.show({
                     controller: DialogController,
                     templateUrl: 'routes/lecturer/quizSingle/questionChangeDialog.tmpl.html',
@@ -176,6 +178,10 @@
                 }, function () {
                     $scope.status = 'You cancelled the dialog.';
                 });
+        };
+
+        function goSingle(id) {                           // scope function which calls a single state
+            $state.go('questionedit', {id: id});
         };
     }
 
