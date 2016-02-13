@@ -165,10 +165,11 @@
 
 
         $scope.showDialog = function (ev, question) {
-            goSingle(question._id);
+            goSingle(question._id)
             $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: 'routes/lecturer/quizSingle/questionChangeDialog.tmpl.html',
+                    //  controller: DialogController,
+                    // controller: 'questionEditCtrl',
+                    templateUrl: 'routes/lecturer/questionSingle/questionSingle.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true
@@ -184,22 +185,6 @@
             $state.go('questionedit', {id: id});
         };
     }
-
-    function DialogController($scope, $mdDialog) {
-        $scope.hide = function () {
-            $mdDialog.hide();
-        };
-        $scope.cancel = function () {
-            $mdDialog.cancel();
-        };
-        $scope.answer = function (answer) {
-            $mdDialog.hide(answer);
-        };
-    }
-
-
-
-
 
 
 })();
