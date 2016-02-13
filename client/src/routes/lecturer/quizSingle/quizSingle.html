@@ -28,39 +28,26 @@
                 <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
                     Frage: {{question.question}} Tags: {{ question.tags }}
                 </md-checkbox>
-                <md-button class="md-raised md-warn" ng-click="" ng-if="question.selected">Frage bearbeiten
+            </div>
+            <div ng-controller="DialogCtrl" class="md-padding" id="popupContainer" ng-cloak>
+                <md-button class="md-raised md-warn" ng-click="showTabDialog($event)" ng-if="question.selected">Frage
+                    bearbeiten
                 </md-button>
+            </div>
+            <div ng-if="status">
+                <br/>
+                <b layout="row" layout-align="center center" class="md-padding">
+                    {{status}}
+                </b>
             </div>
 
         </md-list-item>
 
 
     </div>
-    <div ng-controller="DialogCtrl" class="md-padding" id="popupContainer" ng-cloak>
-        <p class="inset">
-            Open a dialog over the app's content. Press escape or click outside to close the dialog and
-            send focus back to the triggering button.
-        </p>
-        <div class="dialog-demo-content" layout="row" layout-wrap layout-margin>
 
-            <div hide-gt-sm layout="row" layout-align="center center" flex="100">
-                <md-checkbox ng-model="customFullscreen" aria-label="Fullscreen Custom Dialog">Custom Dialog
-                    Fullscreen
-                </md-checkbox>
-            </div>
-            <md-button class="md-primary md-raised" ng-click="showTabDialog($event)" flex="100" flex-gt-md="auto">
-                Tab Dialog
-            </md-button>
-        </div>
-        <p class="footer">Note: The <b>Confirm</b> dialog does not use <code>$mdDialog.clickOutsideToClose(true)</code>.
-        </p>
-        <div ng-if="status">
-            <br/>
-            <b layout="row" layout-align="center center" class="md-padding">
-                {{status}}
-            </b>
-        </div>
-    </div>
+
+</div>
 
     <md-button class="md-raised" ui-sref="quizList" ng-click="vm.saveQuiz()">Quiz generieren</md-button>
 </div>
