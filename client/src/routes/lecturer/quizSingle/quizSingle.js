@@ -184,6 +184,11 @@
         function goSingle(id) {                           // scope function which calls a single state
             $state.go('questionedit', {id: id});
         };
+
+        function DialogController(question) {
+            console.log("übergebene Frage: " + question)
+
+        }
     }
 
 
