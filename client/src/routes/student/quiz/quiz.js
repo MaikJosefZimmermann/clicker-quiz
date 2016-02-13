@@ -27,9 +27,10 @@
             vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
         });
 
-        $scope.goSingle = function (id) {
-            alert(id);               // another scope function that will save a user object to our nodejs server
-            $state.go('quizSingleStudent', {id: id});
+        $scope.goQuiz = function (quiz) {
+            alert("Willst du das Quiz: " + quiz.qname + " beginnen?")  // another scope function that will save a user object to our nodejs server
+            console.log(quiz._id);
+            $state.go('quizSingleStudent', {quiz: quiz});
         }
 
         var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
