@@ -33,8 +33,8 @@
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
             url: '/api/questions/' + $stateParams.id
-        }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
-            console.log("Inhalt:" + response.data);
+        }).then(function successCallback(response) {          // hint: async! when the data is fetched we do ..
+
 
             $scope.question = response.data;                        // load the response data to the scope.user obj
             setTags($scope.question.tags);
