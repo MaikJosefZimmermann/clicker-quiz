@@ -165,7 +165,7 @@
     }
 
     function dialogCtrl($scope, $mdDialog, $mdMedia, $state, $stateParams, $http) {
-
+        var q;
         var self = this;
         self.readonly = false;
         self.tags = [];
@@ -192,20 +192,21 @@
 
 
         $scope.showDialog = function (ev, question) {
-
+            q = question;
 
             $http({                                                 // http get requst to our api passing the id. this will load a specific user object
                 method: 'GET',
                 url: '/api/questions/' + question._id
             }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
                 console.log("Inhalt:" + response.data);
-                $scope.question = response.data;
-                setTags($scope.question.tags);
+                q = response.data;
+                setTags(q.tags);
 
                 //setTags($scope.question.tags);
 
-                });
+            });
 
+            $scope.question = q;
 
             // $scope.question = a;
             $mdDialog.show({
