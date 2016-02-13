@@ -2,11 +2,12 @@
     'use strict';
 
     angular
-        .module('app.quizSingle', [])                   // creates new module
+        .module('app.quizSingle', ['ngMaterial'])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('qEditCtrl', qEditCtrl)           // bind EditCtrl to module
         .controller('qAddCtrl', qAddCtrl)
         .controller('searchCtrl', searchCtrl)
+        .controller('DialogCtrl', dialogCtrl);
     // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
@@ -21,11 +22,16 @@
                 url: '/qadd',                        // this time without any parameters in the url
                 templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',   // loads the HTML template
                 controller: 'qAddCtrl'               // this view shall use the AddCtrl previously declared.
+            })
+            .state('questionEdit', {                         // add view
+                url: '/qadd',                        // this time without any parameters in the url
+                templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',   // loads the HTML template
+                controller: 'qAddCtrl'               // this view shall use the AddCtrl previously declared.
             });
 
     }
 
-
+    var chips;
     function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
@@ -98,16 +104,34 @@
         };
 
         vm.change = function (question) {
+            var a = false;
             if (question.selected == true) {
+
                 question.selected = false;
                 console.log("toggle: TRUE" + question);
             } else {
+
                 question.selected = true;
                 console.log("toggle FALSE:" + question);
             }
 
+            angular.forEach(vm.questions, function (question) {
+                console.log("Schleife läuft")
+                if (question.selected == true) {
+                    a = true;
+                }
 
-        }
+            });
+
+            if (a == true) {
+                vm.button = true;
+            }
+            else {
+                vm.button = false;
+            }
+
+
+        };
 
         vm.saveQuiz = function ($state) {
             var ergebnis = [];
@@ -137,5 +161,78 @@
             })
         }
 
+
     }
+
+    function dialogCtrl($scope, $mdDialog, $mdMedia, $state, $stateParams, $http) {
+        var q;
+        var self = this;
+        self.readonly = false;
+        self.tags = [];
+        chips = self;
+
+
+        function saveTags(currentQuestion) {
+
+
+            currentQuestion.tags = chips.tags;
+
+
+        }
+
+        function setTags(tags) {
+
+            var temp = tags.split(",");
+            chips.tags = temp;
+        }
+
+        var a;
+        $scope.status = '  ';
+        $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
+
+        $scope.showDialog = function (ev, question) {
+            q = question;
+
+            $http({                                                 // http get requst to our api passing the id. this will load a specific user object
+                method: 'GET',
+                url: '/api/questions/' + question._id
+            }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
+                console.log("Inhalt:" + response.data);
+                q = response.data;
+                setTags(q.tags);
+
+                //setTags($scope.question.tags);
+
+            });
+
+            $scope.question = q;
+
+            // $scope.question = a;
+            $mdDialog.show({
+                    controller: dialogCtrl,
+                    // controller: 'questionEditCtrl',
+                    templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                .then(function (answer) {
+                    $scope.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+        function goSingle(id) {                           // scope function which calls a single state
+            $state.go('questionEdit', {id: id});
+        };
+
+        function DialogController(question) {
+            console.log("übergebene Frage: " + question)
+
+        }
+
+    }
+
 })();
