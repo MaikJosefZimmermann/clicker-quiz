@@ -22,11 +22,16 @@
                 url: '/qadd',                        // this time without any parameters in the url
                 templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',   // loads the HTML template
                 controller: 'qAddCtrl'               // this view shall use the AddCtrl previously declared.
+            })
+            .state('questionEdit', {                         // add view
+                url: '/qadd',                        // this time without any parameters in the url
+                templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',   // loads the HTML template
+                controller: 'qAddCtrl'               // this view shall use the AddCtrl previously declared.
             });
 
     }
 
-
+    var chips;
     function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
@@ -159,17 +164,54 @@
 
     }
 
-    function dialogCtrl($scope, $mdDialog, $mdMedia, $state) {
+    function dialogCtrl($scope, $mdDialog, $mdMedia, $state, $stateParams, $http) {
+
+        var self = this;
+        self.readonly = false;
+        self.tags = [];
+        chips = self;
+
+
+        function saveTags(currentQuestion) {
+
+
+            currentQuestion.tags = chips.tags;
+
+
+        }
+
+        function setTags(tags) {
+
+            var temp = tags.split(",");
+            chips.tags = temp;
+        }
+
+        var a;
         $scope.status = '  ';
         $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
 
         $scope.showDialog = function (ev, question) {
-            goSingle(question._id)
+
+
+            $http({                                                 // http get requst to our api passing the id. this will load a specific user object
+                method: 'GET',
+                url: '/api/questions/' + question._id
+            }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
+                console.log("Inhalt:" + response.data);
+                $scope.question = response.data;
+                setTags($scope.question.tags);
+
+                //setTags($scope.question.tags);
+
+                });
+
+
+            // $scope.question = a;
             $mdDialog.show({
-                    //  controller: DialogController,
+                    controller: dialogCtrl,
                     // controller: 'questionEditCtrl',
-                    templateUrl: 'routes/lecturer/questionSingle/questionSingle.html',
+                    templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true
@@ -182,14 +224,14 @@
         };
 
         function goSingle(id) {                           // scope function which calls a single state
-            $state.go('questionedit', {id: id});
+            $state.go('questionEdit', {id: id});
         };
 
         function DialogController(question) {
             console.log("übergebene Frage: " + question)
 
         }
-    }
 
+    }
 
 })();
