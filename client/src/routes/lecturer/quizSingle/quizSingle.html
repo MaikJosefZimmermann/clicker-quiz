@@ -27,6 +27,8 @@
             <div class="md-list-item-text">
                 <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
                     Frage: {{question.question}} Tags: {{ question.tags }}
+                    <md-button class="md-raised md-warn" ng-click="" ng-if="question.selected">Frage bearbeiten
+                    </md-button>
                 </md-checkbox>
             </div>
 

@@ -98,16 +98,34 @@
         };
 
         vm.change = function (question) {
+            var a = false;
             if (question.selected == true) {
+
                 question.selected = false;
                 console.log("toggle: TRUE" + question);
             } else {
+
                 question.selected = true;
                 console.log("toggle FALSE:" + question);
             }
 
+            angular.forEach(vm.questions, function (question) {
+                console.log("Schleife läuft")
+                if (question.selected == true) {
+                    a = true;
+                }
 
-        }
+            });
+
+            if (a == true) {
+                vm.button = true;
+            }
+            else {
+                vm.button = false;
+            }
+
+
+        };
 
         vm.saveQuiz = function ($state) {
             var ergebnis = [];
