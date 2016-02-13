@@ -2,11 +2,12 @@
     'use strict';
 
     angular
-        .module('app.quizSingle', [])                   // creates new module
+        .module('app.quizSingle', ['ngMaterial'])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('qEditCtrl', qEditCtrl)           // bind EditCtrl to module
         .controller('qAddCtrl', qAddCtrl)
         .controller('searchCtrl', searchCtrl)
+        .controller('DialogCtrl', dialogCtrl);
     // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
@@ -156,4 +157,43 @@
         }
 
     }
+
+    function dialogCtrl($scope, $mdDialog, $mdMedia) {
+        $scope.status = '  ';
+        $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
+
+        $scope.showTabDialog = function (ev) {
+            $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: 'routes/lecturer/quizSingle/questionChangeDialog.tmpl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                .then(function (answer) {
+                    $scope.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    $scope.status = 'You cancelled the dialog.';
+                });
+        };
+    }
+
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+        $scope.answer = function (answer) {
+            $mdDialog.hide(answer);
+        };
+    }
+
+
+
+
+
+
 })();
