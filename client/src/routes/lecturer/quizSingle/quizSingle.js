@@ -9,7 +9,6 @@
         .controller('dialogCtrl', dialogCtrl);
 
 
-
     // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
@@ -66,7 +65,7 @@
 
     var vm;
 
-    function qAddCtrl($http, $state, $mdDialog) {
+    function qAddCtrl($http, $mdDialog) {
 
         vm = this;
         vm.selected = [];
@@ -145,15 +144,12 @@
                 data: data,
                 url: '/api/quizes'
             }).then(function successCallback(response) {
-                $state.go('quizList');
-
+                //   $state.go('quizList');
             })
         };
 
 
-
         vm.goDialog = function (question) {
-
 
 
             $mdDialog.show({
@@ -180,7 +176,6 @@
         vm.save = function (newQuestion) {
 
 
-
             $mdDialog.cancel(newQuestion);
 
         };
@@ -192,9 +187,6 @@
 
 
     }
-
-
-
 
 
 })();
