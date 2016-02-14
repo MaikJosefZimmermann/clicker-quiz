@@ -31,7 +31,8 @@
     }
 
 
-    function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
+    function qEditCtrl($stateParams, $scope, $http, $state) {
+        var vm = this;
         console.log($stateParams);
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
@@ -120,7 +121,6 @@
         };
 
         vm.saveQuiz = function ($state) {
-            console.log("In SAVE");
             var ergebnis = [];
 
 
@@ -162,22 +162,14 @@
                 templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
-                locals: {question: question},
+                locals: {question: question}
 
 
             })
 
         };
 
-        function setQuestion(newQuestion) {
-            angular.forEach(vm.questions, function (question) {
-                console.log(question);
-                if (newQuestion._id == question._id) {
-                    console.log("in der IF");
-                }
 
-            });
-        }
     }
 
 
@@ -185,18 +177,9 @@
         var vm = this;
         vm.question = question;
 
-        //var currentQuestion = question;
-
-
-        //vm.question = currentQuestion;
-
         vm.save = function (newQuestion) {
-            console.log("in der save");
-            console.log(newQuestion);
-            //  question = newQuestion;
 
 
-            // question.changed = true;
 
             $mdDialog.cancel(newQuestion);
 
@@ -206,11 +189,6 @@
         vm.cancel = function () {
             $mdDialog.cancel();
         };
-
-
-
-
-
 
 
     }
