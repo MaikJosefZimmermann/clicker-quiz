@@ -28,7 +28,7 @@
 
     }
 
-    var chips;
+
     function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
@@ -139,7 +139,7 @@
                     ergebnis.push(question)
                 }
 
-            })
+            });
 
 
             var data = {
@@ -161,36 +161,22 @@
 
     }
 
-    function dialogCtrl($scope, $mdDialog, $mdMedia, $http) {
+    var qeditsave;
 
-
+    function dialogCtrl($mdDialog, $http) {
+        console.log("Durchlauf");
         var vm = this;
-        vm.readonly = false;
-        vm.tags = [];
-        vm.question = {};
+        console.log("VM INHALT");
+        console.log(vm);
 
+        qeditsave = vm;
 
-        chips = vm;
+        vm.save = function (question) {
+            console.log("VM Inhalt:");
+            console.log(question);
+        };
 
-
-        function saveTags(currentQuestion) {
-
-
-            currentQuestion.tags = chips.tags;
-
-
-        }
-
-        function setTags(tags) {
-
-            var temp = tags.split(",");
-            chips.tags = temp;
-
-
-        }
-
-
-        $scope.showDialog = function (ev, question) {
+        vm.editDialog = function (ev, question) {
 
             $http({                                                 // http get requst to our api passing the id. this will load a specific user object
                 method: 'GET',
@@ -200,29 +186,28 @@
                 vm.question = response.data;
                 console.log("qcc" + vm.question);
                 console.log(vm.question);
-                chips.question = vm.question;
-
-                setTags(vm.question.tags);
+                qeditsave.question = vm.question;
 
             });
+            showDialog(ev);
+
+        };
+
+        function showDialog(ev) {
 
             $mdDialog.show({
-                    // controller: dialogCtrl,
-                    controller: '',
-                    templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
+
+
+                templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true
                 })
-                .then(function (answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function () {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+
         };
-
-
-
+        vm.cancel = function () {
+            $mdDialog.cancel();
+        };
 
     }
 
