@@ -27,6 +27,7 @@
 
 
         $scope.goSingle = function (id) {                           // scope function which calls a single state
+            console.log("UserID" + id);
             $state.go('edit', {id: id});
         };
 
