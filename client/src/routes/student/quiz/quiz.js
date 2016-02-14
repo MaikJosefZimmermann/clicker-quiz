@@ -19,7 +19,6 @@
 
     function QuizCtrl($scope, $http, $state) {// our controller for this view
         var vm = this;
-
         $http({                                                     // get all users from node server
             method: 'GET',
             url: '/api/quizes'
@@ -27,10 +26,11 @@
             vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
         });
 
-        $scope.goQuiz = function (quiz) {
-            alert("Willst du das Quiz: " + quiz.qname + " beginnen?")  // another scope function that will save a user object to our nodejs server
-            console.log(quiz._id);
-            $state.go('quizSingleStudent', {quiz: quiz});
+        $scope.goQuiz = function (id) {
+            // another scope function that will save a user object to our nodejs server
+
+            $state.go('quizSingleStudent', {id: id});
+            console.log("QUIZID2 " + id)
         }
 
         var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';

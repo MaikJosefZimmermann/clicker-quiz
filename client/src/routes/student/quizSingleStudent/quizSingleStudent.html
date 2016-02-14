@@ -1,12 +1,12 @@
-<md-content layout-padding id="quizSingle" ng-controller="quizSingleStudentCtrl">
+<md-content layout-padding id="quizSingle" ng-controller="startCtrl as vm">
     <div class="content">
 
 
-        <h1>Quiz Name</h1>
+        <h1>{{vm.quiz.qname}} Quiz</h1>
         <h2>Frage</h2>
 
         <section layout="row" layout-sm="column" layout-align=" start center" layout-wrap>
-            <md-button class="md-raised">Antwort 1</md-button>
+            <md-button class="md-raised">{{quiz.qname}}</md-button>
             <md-button class="md-raised">Antwort 2</md-button>
             <md-button class="md-raised">Antwort 3</md-button>
             <md-button class="md-raised">Antwort 4</md-button>
