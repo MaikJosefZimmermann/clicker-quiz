@@ -1,4 +1,4 @@
-<div class="content" id="home" ng-controller="searchCtrl as vm">
+<div class="content" id="home" ng-controller="qAddCtrl as vm">
 
     <md-subheader class="md-no-sticky">
         <h2>Quiz erstellen</h2>
@@ -29,8 +29,9 @@
                     Frage: {{question.question}} Tags: {{ question.tags }}
                 </md-checkbox>
             </div>
-            <div ng-controller="DialogCtrl" class="md-padding" id="popupContainer" ng-cloak>
-                <md-button class="md-raised md-warn" ng-click="showDialog($event, question)" ng-if="question.selected">
+            <div class="md-padding" id="popupContainer" ng-cloak>
+                <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
+                           ng-if="question.selected">
                     Frage
                     bearbeiten
                 </md-button>
