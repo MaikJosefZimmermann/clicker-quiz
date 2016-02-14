@@ -196,25 +196,31 @@
             });
         };
 
-        vm.goDialog = function (id) {
+        vm.goDialog = function (question) {
+
+
 
             $mdDialog.show({
 
-                controller: 'dialogCtrl',
+                controller: 'dialogCtrl as vm',
                 templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
-                locals: {id: id}
+                locals: {question: question}
+
             })
 
         };
     }
 
 
-    function dialogCtrl($http, id) {
+    function dialogCtrl($http, question) {
         var vm = this;
+
+        vm.question = question;
         console.log("dialogCtrl");
-        console.log(id);
+        console.log(question);
+
 
 
 
