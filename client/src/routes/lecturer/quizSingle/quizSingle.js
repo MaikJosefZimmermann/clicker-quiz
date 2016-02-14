@@ -158,22 +158,29 @@
             })
         }
 
+        function getQuestions() {
+            return vm.questions;
+        }
+
 
     }
 
     var qeditsave;
 
     function dialogCtrl($mdDialog, $http) {
-        console.log("Durchlauf");
+        var questions = getQuestions();
+        console.log("questions:");
+        console.log(questions);
         var vm = this;
-        console.log("VM INHALT");
-        console.log(vm);
+
 
         qeditsave = vm;
 
         vm.save = function (question) {
-            console.log("VM Inhalt:");
-            console.log(question);
+
+
+            question.changed = true;
+
         };
 
         vm.editDialog = function (ev, question) {
