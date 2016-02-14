@@ -9,7 +9,6 @@
         .controller('dialogCtrl', dialogCtrl);
 
 
-
     // bind AddCtrl to module
 
     function config($stateProvider) {               // inject $stateProvider into config object
@@ -31,7 +30,8 @@
     }
 
 
-    function qEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
+    function qEditCtrl($stateParams, $scope, $http, $state) {
+        var vm = this;
         console.log($stateParams);
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
@@ -65,7 +65,7 @@
 
     var vm;
 
-    function qAddCtrl($http, $state, $mdDialog) {
+    function qAddCtrl($http, $mdDialog) {
 
         vm = this;
         vm.selected = [];
@@ -120,7 +120,6 @@
         };
 
         vm.saveQuiz = function ($state) {
-            console.log("In SAVE");
             var ergebnis = [];
 
 
@@ -145,15 +144,12 @@
                 data: data,
                 url: '/api/quizes'
             }).then(function successCallback(response) {
-                $state.go('quizList');
-
+                //   $state.go('quizList');
             })
         };
 
 
-
         vm.goDialog = function (question) {
-
 
 
             $mdDialog.show({
@@ -162,22 +158,14 @@
                 templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
-                locals: {question: question},
+                locals: {question: question}
 
 
             })
 
         };
 
-        function setQuestion(newQuestion) {
-            angular.forEach(vm.questions, function (question) {
-                console.log(question);
-                if (newQuestion._id == question._id) {
-                    console.log("in der IF");
-                }
 
-            });
-        }
     }
 
 
@@ -185,18 +173,8 @@
         var vm = this;
         vm.question = question;
 
-        //var currentQuestion = question;
-
-
-        //vm.question = currentQuestion;
-
         vm.save = function (newQuestion) {
-            console.log("in der save");
-            console.log(newQuestion);
-            //  question = newQuestion;
 
-
-            // question.changed = true;
 
             $mdDialog.cancel(newQuestion);
 
@@ -208,15 +186,7 @@
         };
 
 
-
-
-
-
-
     }
-
-
-
 
 
 })();
