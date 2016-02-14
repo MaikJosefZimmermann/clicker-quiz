@@ -63,9 +63,11 @@
         };
     }
 
-    function qAddCtrl($scope, $http, $state, $mdDialog) {
+    var vm;
 
-        var vm = this;
+    function qAddCtrl($http, $state, $mdDialog) {
+
+        vm = this;
         vm.selected = [];
 
         $http({                                                     // get all users from node server
@@ -118,7 +120,9 @@
         };
 
         vm.saveQuiz = function ($state) {
+            console.log("In SAVE");
             var ergebnis = [];
+
 
             angular.forEach(vm.questions, function (question) {
 
@@ -128,12 +132,13 @@
 
             });
 
-
             var data = {
                 qname: vm.qname,
                 questions: ergebnis
             };
 
+
+            console.log(data);
             // for new users we only need the save function
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
@@ -143,58 +148,9 @@
                 $state.go('quizList');
 
             })
-        }
-
-
-        vm.editDialog = function (ev, question) {
-
-            $http({                                                 // http get requst to our api passing the id. this will load a specific user object
-                method: 'GET',
-                url: '/api/questions/' + question._id
-            }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
-                console.log("Inhalt:" + response.data);
-                vm.question = response.data;
-                console.log("qcc" + vm.question);
-                console.log(vm.question);
-
-
-            });
-            showDialog();
-
-        };
-
-        function showDialog(ev, question) {
-
-            $mdDialog.show({
-
-                controller: 'dialogCtrl',
-                templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: true
-            })
-
-        };
-
-        vm.save = function (question) {
-
-            question.changed = true;
-
         };
 
 
-        vm.cancel = function () {
-            $mdDialog.cancel();
-        };
-
-        $scope.qsave = function () {                              // for new users we only need the save function
-            $http({                                              // same as in the EditCtrl
-                method: 'POST',
-                data: $scope.quiz,
-                url: '/api/quizes'
-            }).then(function successCallback(response) {
-                $state.go('quizList');
-            });
-        };
 
         vm.goDialog = function (question) {
 
@@ -206,23 +162,50 @@
                 templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
-                locals: {question: question}
+                locals: {question: question},
+
 
             })
 
         };
+
+        function setQuestion(newQuestion) {
+            angular.forEach(vm.questions, function (question) {
+                console.log(question);
+                if (newQuestion._id == question._id) {
+                    console.log("in der IF");
+                }
+
+            });
+        }
     }
 
 
-    function dialogCtrl($http, question) {
+    function dialogCtrl($mdDialog, $http, question) {
         var vm = this;
-
         vm.question = question;
-        console.log("dialogCtrl");
-        console.log(question);
+
+        //var currentQuestion = question;
 
 
+        //vm.question = currentQuestion;
 
+        vm.save = function (newQuestion) {
+            console.log("in der save");
+            console.log(newQuestion);
+            //  question = newQuestion;
+
+
+            // question.changed = true;
+
+            $mdDialog.cancel(newQuestion);
+
+        };
+
+
+        vm.cancel = function () {
+            $mdDialog.cancel();
+        };
 
 
 
