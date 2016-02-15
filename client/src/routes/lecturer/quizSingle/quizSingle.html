@@ -14,7 +14,7 @@
     <div layout="" layout-sm="column">
         <md-input-container flex="">
             <label>Quiz Name</label>
-            <input ng-model="vm.quiz.qname">{{ vm }}
+            <input ng-model="vm.quiz.qname">
         </md-input-container>
 
     </div>
@@ -28,15 +28,21 @@
             </md-input-container>
         </div>
 
-        <h3>Verfügbare Fragen</h3>
+        <h3>Verwendete Fragen</h3>
         <md-list-item class="list-lecturer" ng-if="vm.new" ng-repeat="question in vm.questions| filter:searchBox">
 
             <div class="md-list-item-text">
                 <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
                     Frage: {{question.question}} Tags: {{ question.tags }}
                 </md-checkbox>
+                <md-button class="md-raised md-warn" layout="row" layout-align="end" ng-click="vm.goDialog(question)"
+                           ng-if="question.selected">
+                    Frage
+                    bearbeiten
+                </md-button>
             </div>
             <div class="md-padding" id="popupContainer" ng-cloak>
+
                 <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
                            ng-if="question.selected">
                     Frage
@@ -44,22 +50,29 @@
                 </md-button>
             </div>
         </md-list-item>
+
         <md-list-item class="list-lecturer" ng-if="vm.edit" ng-repeat="question in vm.quiz.questions| filter:searchBox">
 
             <div class="md-list-item-text" ng-if="vm.edit">
                 <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
                     Frage: {{question.question}} Tags: {{ question.tags }}
                 </md-checkbox>
+
             </div>
-            <div class="md-padding" ng-if="vm.edit" ng-cloak>
-                <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
+            <div>
+                <md-button class="md-raised md-warn" layout="row" layout-align="center" ng-click="vm.goDialog(question)"
                            ng-if="question.selected">
                     Frage
                     bearbeiten
                 </md-button>
             </div>
+            <div class="md-padding" layout="row" layout-align="center center" ng-if="vm.edit" ng-cloak>
+
+            </div>
 
         </md-list-item>
+        <hr/>
+        <h3>Verfügbare Fragen</h3>
         <md-list-item class="list-lecturer" ng-if="vm.edit" ng-repeat="question in vm.questions| filter:searchBox">
 
             <div class="md-list-item-text" ng-if="vm.edit">

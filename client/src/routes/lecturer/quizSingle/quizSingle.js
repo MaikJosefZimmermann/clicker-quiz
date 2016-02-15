@@ -32,6 +32,7 @@
 
     function qEditCtrl($stateParams, $http, $state, $mdDialog) {
         var vm = this;
+
         vm.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
         $http({                                                     // get all users from node server
@@ -48,6 +49,16 @@
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             vm.quiz = response.data;                               // load the response data to the scope.user obj
+
+        });
+        var currentQuestion = [];
+        angular.forEach(vm.quiz, function (question) {
+
+            if (question.selected === true) {
+                console.log("neue FRAGE");
+                console.log(question);
+                ergebnis.push(question)
+            }
 
         });
 
