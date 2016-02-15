@@ -17,58 +17,106 @@
             .state('qedit', {                        // edit state..
                 url: '/qedit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
                 templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',       // defines the HTML template
-                controller: 'qEditCtrl'              // this view shall use the EditCtrl previously declared.
+                controller: 'qEditCtrl as vm'              // this view shall use the EditCtrl previously declared.
             })
 
             .state('qadd', {                         // add view
                 url: '/qadd',                        // this time without any parameters in the url
                 templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',   // loads the HTML template
-                controller: 'qAddCtrl'               // this view shall use the AddCtrl previously declared.
+                controller: 'qAddCtrl as vm'               // this view shall use the AddCtrl previously declared.
             });
 
 
     }
 
 
-    function qEditCtrl($stateParams, $scope, $http, $state) {
+    function qEditCtrl($stateParams, $http, $state, $mdDialog) {
         var vm = this;
-        console.log($stateParams);
-        $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
+        vm.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
-            $scope.quiz = response.data;                        // load the response data to the scope.user obj
+            vm.quiz = response.data;                               // load the response data to the scope.user obj
+            console.log(vm.quiz.questions);
         });
 
 
-        $scope.delete = function () {                           // declare a scope function ( which is also accessible from html template)
-            $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
-                method: 'DELETE',
-                url: '/api/quizes/' + $stateParams.id
-            }).then(function successCallback(response) {
-                $state.go('quizList');                       // when the server responses we rediret to the list
-            });
-        };
-
-        $scope.qsave = function () {                             // another scope function that will save a user object to our nodejs server
+        vm.qsave = function () {                             // another scope function that will save a user object to our nodejs server
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
-                data: $scope.quiz,                              // this passes the data from the user object  to the request.
+                data: vm.quiz,                              // this passes the data from the user object  to the request.
                 url: '/api/quizes/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('quizList');
             });
         };
+
+        vm.exists = function (question) {
+
+
+            return question.selected;
+            console.log(question.selected);
+
+
+            // console.log(question);
+
+        };
+
+        vm.change = function (question) {
+            var a = false;
+            if (question.selected == true) {
+
+                question.selected = false;
+
+            } else {
+
+                question.selected = true;
+
+            }
+
+            angular.forEach(vm.questions, function (question) {
+
+                if (question.selected == true) {
+                    a = true;
+                }
+
+            });
+
+            if (a == true) {
+                vm.button = true;
+            }
+            else {
+                vm.button = false;
+            }
+
+
+        };
+        vm.goDialog = function (question) {
+
+
+            $mdDialog.show({
+
+                controller: 'dialogCtrl as vm',
+                templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                locals: {question: question}
+
+
+            })
+
+        };
     }
 
-    var vm;
 
+// var vm;
     function qAddCtrl($http, $mdDialog) {
 
-        vm = this;
+        var vm = this;
         vm.selected = [];
+        vm.new = true;
 
         $http({                                                     // get all users from node server
             method: 'GET',

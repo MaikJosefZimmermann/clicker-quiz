@@ -1,13 +1,20 @@
-<div class="content" id="home" ng-controller="qAddCtrl as vm">
-
-    <md-subheader class="md-no-sticky">
+<div class="content" id="home">
+    <div ng-if="vm.new">
+        <md-subheader class="md-no-sticky">
         <h2>Quiz erstellen</h2>
     </md-subheader>
 
+    </div>
+    <div ng-if="vm.edit">
+        <md-subheader class="md-no-sticky">
+            <h2>Quiz bearbeiten</h2>
+        </md-subheader>
+
+    </div>
     <div layout="" layout-sm="column">
         <md-input-container flex="">
             <label>Quiz Name</label>
-            <input ng-model="vm.qname">
+            <input ng-model="vm.quiz.qname">{{ vm }}
         </md-input-container>
 
     </div>
@@ -22,14 +29,26 @@
         </div>
 
         <h3>Verfügbare Fragen</h3>
-        <md-list-item class="list-lecturer" ng-repeat="question in vm.questions| filter:searchBox">
+        <md-list-item class="list-lecturer" ng-repeat="question in vm.quiz.questions| filter:searchBox">
 
-            <div class="md-list-item-text">
+            <div class="md-list-item-text" ng-if="vm.new">
                 <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
                     Frage: {{question.question}} Tags: {{ question.tags }}
                 </md-checkbox>
             </div>
-            <div class="md-padding" id="popupContainer" ng-cloak>
+            <div class="md-padding" id="popupContainer" ng-if="vm.new" ng-cloak>
+                <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
+                           ng-if="question.selected">
+                    Frage
+                    bearbeiten
+                </md-button>
+            </div>
+            <div class="md-list-item-text" ng-if="vm.edit">
+                <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
+                    Frage: {{question.question}} Tags: {{ question.tags }}
+                </md-checkbox>
+            </div>
+            <div class="md-padding" ng-if="vm.edit" ng-cloak>
                 <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
                            ng-if="question.selected">
                     Frage
@@ -37,13 +56,14 @@
                 </md-button>
             </div>
 
-
         </md-list-item>
 
 
     </div>
 
-    <md-button class="md-raised" ui-sref="quizList" ng-click="vm.saveQuiz()">Quiz generieren</md-button>
+    <md-button class="md-raised" ng-if="vm.new" ui-sref="quizList" ng-click="vm.saveQuiz()">Quiz generieren</md-button>
+    <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="">Speichern</md-button>
+    <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="">Abbrechen</md-button>
 </div>
 
 
