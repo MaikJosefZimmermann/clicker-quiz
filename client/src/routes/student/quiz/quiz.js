@@ -28,7 +28,7 @@
 
         $scope.goQuiz = function (id) {
             // another scope function that will save a user object to our nodejs server
-
+            //Todo Alert hinzufügen für die Besätigung
             $state.go('quizSingleStudent', {id: id});
             console.log("QUIZID2 " + id)
         }

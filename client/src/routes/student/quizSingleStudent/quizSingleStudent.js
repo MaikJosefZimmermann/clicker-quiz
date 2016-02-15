@@ -25,15 +25,32 @@
         var vm = this;
         vm.quizSingleStudent = true;
         console.log($stateParams);
+        var quizData;
 
 
         $http({                                                     // get all users from node server
             method: 'GET',
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {
-            vm.quiz = response.data;                           // (async) when receive the response load the data into $scope.users
-            console.log(vm.quiz);
+            vm.quiz = response.data;
+            quizData = vm.quiz.questions;
+            getQuestion();
+
         });
+
+        function getQuestion() {
+            console.log(quizData[0])
+            vm.quizData = quizData[0];
+        }
+
+        function getNextQuestion() {
+
+        }
+
+
+
+
+
 
 
     }
