@@ -34,19 +34,59 @@
         var vm = this;
         vm.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
+        $http({                                                     // get all users from node server
+            method: 'GET',
+            url: '/api/questions'
+        }).then(function successCallback(response) {
+            vm.questions = response.data;                       // (async) when receive the response load the data into $scope.users
+
+
+        });
+
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             vm.quiz = response.data;                               // load the response data to the scope.user obj
-            console.log(vm.quiz.questions);
+
         });
 
 
-        vm.qsave = function () {                             // another scope function that will save a user object to our nodejs server
+        vm.qsave = function (vm) {
+            console.log(vm);
+            var ergebnis = [];
+            angular.forEach(vm.questions, function (question) {
+
+                if (question.selected === true) {
+                    console.log("neue FRAGE");
+                    console.log(question);
+                    ergebnis.push(question)
+                }
+
+            });
+
+            angular.forEach(vm.quiz.questions, function (question) {
+
+                if (question.selected === true) {
+                    console.log("alte FRAGE");
+                    console.log(question);
+                    ergebnis.push(question)
+                }
+
+            });
+
+            var data = {
+                qname: vm.quiz.qname,
+                questions: ergebnis
+            };
+
+
+            console.log(data);
+            // for new users we only need the save function
+
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
-                data: vm.quiz,                              // this passes the data from the user object  to the request.
+                data: data,                              // this passes the data from the user object  to the request.
                 url: '/api/quizes/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('quizList');
