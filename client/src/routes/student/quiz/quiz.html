@@ -1,4 +1,4 @@
-<div class="content" id="home" ng-controller="QuizCtrl as vm">   
+<div class="content" id="home">   
     <md-content layout-padding>  
         <div class="content">  <h1>Quiz - Übersicht</h1>  
             <div ng-cloak>  
@@ -12,8 +12,9 @@
                                     
                             </md-card-title>
                                 
-                            <md-card-content>   <p> Anzahl der Fragen: {{quiz.questions.length}}</p>   <p>
-                                Dauer:{{quiz.questions.time}}</p>  
+                            <md-card-content>  
+                                <p>Anzahl der Fragen: {{quiz.questions.length}}</p>  
+                                <p>Dauer: {{vm.timesum}} Sekunden</p>  
                             </md-card-content>
                                 
                             <md-card-actions layout="row" layout-align="space-between center">   <p>Startet in:
