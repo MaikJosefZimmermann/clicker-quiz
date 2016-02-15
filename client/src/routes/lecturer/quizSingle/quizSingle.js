@@ -88,7 +88,8 @@
 
             var data = {
                 qname: vm.quiz.qname,
-                questions: ergebnis
+                questions: ergebnis,
+                key: vm.quiz.key
             };
 
 

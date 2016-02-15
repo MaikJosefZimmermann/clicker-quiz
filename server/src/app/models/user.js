@@ -7,6 +7,7 @@ var UserSchema = new Schema({
     lastName: String,
     kuerzel: String,
     role: String,
+    regQuizzes: []
 
 });
 

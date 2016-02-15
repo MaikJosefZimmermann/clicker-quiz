@@ -45,7 +45,7 @@
                 $state.go('login');
             }
         });
-//ladebalken beendet
+
         //wenn user eingeloggt dann direkt auf die quizseite
         //user roll checken, admin auf adminseite, student auf studentenseite
         $rootScope.$on('$stateChangeSuccess', function (event, nextRoute) {

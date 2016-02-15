@@ -19,6 +19,13 @@
 
     </div>
     <div style="padding:10px" ng-cloak>
+        <div layout="" layout-sm="column">
+            <md-input-container flex="">
+                <label>Einschreibeschlüssel</label>
+                <input ng-model="vm.quiz.key">
+            </md-input-container>
+
+        </div>
 
 
         <div layout="" layout-sm="column">
@@ -27,6 +34,7 @@
                 <input type="text" ng-model="searchBox">
             </md-input-container>
         </div>
+
 
         <h3>Verwendete Fragen</h3>
         <md-list-item class="list-lecturer" ng-if="vm.new" ng-repeat="question in vm.questions| filter:searchBox">
