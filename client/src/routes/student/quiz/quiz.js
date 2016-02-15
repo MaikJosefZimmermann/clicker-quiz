@@ -12,25 +12,28 @@
             .state('quiz', {                                        // declare list view
                 url: '/quiz',                                       // set url
                 templateUrl: 'routes/student/quiz/quiz.html',           // defines the HTML template
-                controller: 'QuizCtrl as Ctrl'                              // this view shall use the ListCtrl previously declared.
+                controller: 'QuizCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
 
     function QuizCtrl($scope, $http, $state) {// our controller for this view
         var vm = this;
+        vm.quizes;
         $http({                                                     // get all users from node server
             method: 'GET',
             url: '/api/quizes'
         }).then(function successCallback(response) {
             vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
+            console.log(vm.quizes);
+            timeSum(vm.quizes);
         });
 
         $scope.goQuiz = function (id) {
             // another scope function that will save a user object to our nodejs server
             //Todo Alert hinzufügen für die Besätigung
             $state.go('quizSingleStudent', {id: id});
-            console.log("QUIZID2 " + id)
+
         }
 
         var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
@@ -54,10 +57,20 @@
             console.log('test1');
 
             vm.question = q1;
-            console.log(vm.question);
-
         }
 
+        function timeSum(quizes) {
+            console.log(quizes[0])
+            console.log(quizes[0].questions.length)
+            var total = 0;
+            for (var i = 0; i < quizes[0].questions.length; i++) {
+                total = total + quizes[0].questions[i].time;
+            }
+
+            vm.timesum = total;
+            return total;
+
+        }
 
         /*$scope.answer = function (btn) {
 
