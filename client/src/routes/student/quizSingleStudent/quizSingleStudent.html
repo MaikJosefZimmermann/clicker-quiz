@@ -1,18 +1,22 @@
-<md-content layout-padding id="quizSingle" ng-controller="startCtrl as vm">
+<md-content layout-padding id="quizSingle">
     <div class="content">
 
 
         <h1>{{vm.quiz.qname}} Quiz</h1>
-        <h2>Frage</h2>
+        <div>
+            <h2> Frage {{vm.quizData.question}}</h2>
+            <md-card>
+                <card-title>
+                    quiz
+                </card-title>
+                <section layout="row" layout-sm="column" layout-align=" start center" layout-wrap>
+                    <md-button class="md-raised">{{vm.quizData.answer1}}</md-button>
+                    <md-button class="md-raised">{{vm.quizData.answer2}}</md-button>
+                    <md-button class="md-raised">{{vm.quizData.answer3}}</md-button>
+                    <md-button class="md-raised">{{vm.quizData.answer4}}</md-button>
 
-        <section layout="row" layout-sm="column" layout-align=" start center" layout-wrap>
-            <md-button class="md-raised">{{quiz.qname}}</md-button>
-            <md-button class="md-raised">Antwort 2</md-button>
-            <md-button class="md-raised">Antwort 3</md-button>
-            <md-button class="md-raised">Antwort 4</md-button>
-
-        </section>
-
-
+                </section>
+            </md-card>
+        </div>
     </div>
 </md-content>
