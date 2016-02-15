@@ -21,8 +21,10 @@
             });
     }
 
-    function startCtrl($stateParams, $http) {                      // our controller for this view
+    function startCtrl($stateParams, $http, $state) {                      // our controller for this view
         var vm = this;
+        vm._id = 0;
+
         vm.quizSingleStudent = true;
         console.log($stateParams);
         var quizData;
@@ -35,22 +37,38 @@
             vm.quiz = response.data;
             quizData = vm.quiz.questions;
             getQuestion();
+            //TODO Anworten zufällig rausgeben
 
         });
 
         function getQuestion() {
-            console.log(quizData[0])
-            vm.quizData = quizData[0];
+
+            if (vm._id < quizData.length) {
+                vm.quizData = quizData[vm._id];
+            } else {
+                alert('Das Quiz ist zuende' + $state.go('quiz'));
+            }
+
+
         }
 
         function getNextQuestion() {
+            console.log('nexQ');
+            vm._id++;
+            getQuestion();
+        };
+
+        function checkAnswer() {
+            console.log('CHECK');
+            //TODO richtige Antwort finden
+
+        };
+
+        vm.answerButton = function () {
+            checkAnswer();
+            getNextQuestion();
 
         }
-
-
-
-
-
 
 
     }
