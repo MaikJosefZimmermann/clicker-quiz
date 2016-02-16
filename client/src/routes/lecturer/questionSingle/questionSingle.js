@@ -26,7 +26,7 @@
     var chips;
 
 
-    function questionEditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
+    function questionEditCtrl($stateParams, $scope, $http, $state, $localStorage) {    // inject stuff into our Ctrl Function so that we can use them.
 
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
@@ -34,10 +34,9 @@
             method: 'GET',
             url: '/api/questions/' + $stateParams.id
         }).then(function successCallback(response) {          // hint: async! when the data is fetched we do ..
-
-
             $scope.question = response.data;                        // load the response data to the scope.user obj
             setTags($scope.question.tags);
+            $scope.question.creator = $localStorage.user;
 
         });
 
@@ -63,13 +62,14 @@
         };
     }
 
-    function questionAddCtrl($scope, $http, $state) {
+    function questionAddCtrl($scope, $http, $state, $localStorage) {
 
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
 
         $scope.questionSave = function () {                        // for new users we only need the save function
             saveTags($scope.question);
             console.log($scope.question);
+            $scope.question.creator = $localStorage.user;
 
 
             $http({                                              // same as in the EditCtrl
@@ -104,8 +104,6 @@
         var temp = tags.split(",");
         chips.tags = temp;
 
-
     }
-
 
 })();
