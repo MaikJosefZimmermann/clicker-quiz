@@ -38,7 +38,8 @@
                 // bei den rollen unterscheiden z.b.
                 $localStorage.token = res.data.token;
                 $localStorage.user = res.data.user.username; // to fetch the user details on refresh
-                $localStorage.userRole = res.data.user.type; // to fetch the user details on refresh
+                //      $localStorage.userRole = res.data.user.type; // to fetch the user details on refresh
+                $localStorage.userRole = "admin"; // to fetch the user details on refresh
 
                 $rootScope.userRole = $localStorage.userRole;
                 //$rootScope.notLogged = 'false';

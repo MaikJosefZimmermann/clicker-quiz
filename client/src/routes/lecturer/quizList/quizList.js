@@ -11,7 +11,7 @@
             .state('quizList', {                                        // declare list view
                 url: '/quizList',                                       // set url
                 templateUrl: 'routes/lecturer/quizList/quizList.html',           // defines the HTML template
-                controller: 'quizListCtrl'                              // this view shall use the ListCtrl previously declared.
+                controller: 'quizListCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
@@ -22,7 +22,8 @@
             method: 'GET',
             url: '/api/quizes'
         }).then(function successCallback(response) {
-            vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
+            vm.quizes = response.data;// (async) when receive the response load the data into $scope.users
+            timeSum(vm.quizes);
 
         });
 
@@ -40,6 +41,28 @@
         vm.goQSingle = function (id) {                           // scope function which calls a single state
             $state.go('qedit', {id: id});
         };
+
+        function timeSum(quizes) {
+            var total = 0;
+
+
+            angular.forEach(quizes, function (quiz) {
+                for (var i = 0; i < quiz.questions.length; i++) {
+                    total = total + quiz.questions[i].time;
+
+                }
+                quiz.TiSum = total;
+
+
+            });
+
+
+            // vm.quiz.timeSum = total;
+            // console.log("timesum");
+            //console.log(vm.quiz.timeSum);
+            //return total;
+
+        }
 
     }
 })();

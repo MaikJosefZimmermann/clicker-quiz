@@ -60,16 +60,19 @@
         }
 
         function timeSum(quizes) {
-            console.log(quizes[0])
-            console.log(quizes[0].questions.length)
             var total = 0;
-            for (var i = 0; i < quizes[0].questions.length; i++) {
-                total = total + quizes[0].questions[i].time;
-            }
 
-            vm.timesum = total;
-            return total;
+            // console.log(quizes[0].questions.length);
 
+            angular.forEach(quizes, function (quiz) {
+                for (var i = 0; i < quiz.questions.length; i++) {
+                    total = total + quiz.questions[i].time;
+
+                }
+                quiz.TiSum = total;
+
+
+            });
         }
 
         /*$scope.answer = function (btn) {
