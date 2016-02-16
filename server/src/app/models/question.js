@@ -16,8 +16,7 @@ QuestionSchema = new Schema({
     subject: String,
     tags: String,
     selected: Boolean,
-
-
+    creator: String
 
 });
 
