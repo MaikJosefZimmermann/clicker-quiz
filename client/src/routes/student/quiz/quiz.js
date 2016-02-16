@@ -62,14 +62,24 @@
         function timeSum(quizes) {
             var total = 0;
 
-            // console.log(quizes[0].questions.length);
 
             angular.forEach(quizes, function (quiz) {
                 for (var i = 0; i < quiz.questions.length; i++) {
                     total = total + quiz.questions[i].time;
 
                 }
-                quiz.TiSum = total;
+                var min = total / 60;
+                var sek = total % 60;
+
+                var str = min.toString();
+                str = str.substring(0, str.indexOf("."));
+
+
+                console.log("Minuten:");
+                console.log(min);
+                console.log("Sekunden:");
+                console.log(sek);
+                quiz.TiSum = str + " Minuten " + sek + " Sekunden ";
 
 
             });
