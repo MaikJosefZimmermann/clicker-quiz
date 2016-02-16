@@ -32,28 +32,36 @@
         .config(AppConfig)
         .run(AppRun);
 
-    function AppRun($rootScope, authService, $state) {
+    function AppRun($rootScope, authService, $state, $localStorage) {
         authService.check();
+
+
         //stateChangeStart & check wird beim routen wechsel getriggert
         //start ladebalken
         //nicht eingeloggte user abfangen
 
         $rootScope.$on('$stateChangeStart', function (event, nextRoute) {
             if (!authService.isLogged && nextRoute.name !== 'login') {
+                $rootScope.notLogged = true;
                 console.log("Nutzer eingeloggt");
                 event.preventDefault();
                 $state.go('login');
             }
         });
 
+        //TODO wird momentan nicht benutzt
         //wenn user eingeloggt dann direkt auf die quizseite
         //user roll checken, admin auf adminseite, student auf studentenseite
         $rootScope.$on('$stateChangeSuccess', function (event, nextRoute) {
             if (authService.isLogged === true && nextRoute.name === 'login') {
-                console.log(eingeloggt);
+                console.log("eingeloggt");
                 event.preventDefault();
                 $state.go('quiz');
                 //TODO Unterscheidung ob Prof oder Student
+                // wenn user eingeloggt
+            }else if (authService.isLogged == true) {
+                //abfragen der UserRolle
+                $rootScope.userRole = $localStorage.userRole;
             }
         });
     }
