@@ -99,6 +99,7 @@
                 $http.post('/api/logout').then(function () {
                     self.isLogged = false;
                     $localStorage.$reset(); // löscht alles aus localstorage
+                    console.log("seite aktualisierne")
                     $state.go('login');
 
                 }, function (err) {
