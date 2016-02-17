@@ -24,12 +24,14 @@ app.post('/api/auth', auth.login);
 app.post('/api/logout', auth.logout);
 /*Anfrage wird erst bearbeitet wenn request bearbeitet wird
  * anschließend gehts zur api*/
-//app.use([require('./app/middlewares/validateRequest')]);
+app.use([require('./app/middlewares/validateRequest')]);
 //TODO hier kommen alle anwendungsrouten rein
 app.use('/api/quizes', require('./app/routes/quiz.js'));
 app.use('/api/users', require('./app/routes/user.js'));
 app.use('/api/questions', require('./app/routes/question.js'));
 console.log('Magic happens on port ' + port);
+
+
 function getRooms() {
     return [
         'IT-Advanced',
@@ -42,6 +44,7 @@ function dice() {
 io.on('connection', function (socket) {
     console.log("connection!!");
     socket.on('requestRooms', function () {
+        console.log("room request");
         socket.emit('printRooms', getRooms());
     });
     socket.on('doDice', function (room) {

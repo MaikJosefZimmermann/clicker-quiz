@@ -15,9 +15,15 @@
             });
     }
 
-    function quizListCtrl($state, $http) {                      // our controller for this view
+    function quizListCtrl($state, $http, socket) {                      // our controller for this view
         var vm = this;
         timeSum(vm.quizes);
+        socket.emit('requestRooms');
+
+        socket.on('printRooms', function (rooms) {
+            // vm.rooms = rooms;
+            console.log(rooms);
+        });
 
         $http({                                                     // get all users from node server
             method: 'GET',
