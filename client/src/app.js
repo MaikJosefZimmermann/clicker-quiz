@@ -68,11 +68,13 @@
                 $rootScope.user = $localStorage.user;
             }
         });
-        function socket(socketFactory) {
-            return socketFactory({
-                ioSocket: io.connect('http://localhost:9000')
-            });
-        }
+
+    }
+
+    function socket(socketFactory) {
+        return socketFactory({
+            ioSocket: io.connect('http://localhost:9000')
+        });
     }
 
 
