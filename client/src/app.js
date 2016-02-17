@@ -44,6 +44,7 @@
         $rootScope.$on('$stateChangeStart', function (event, nextRoute) {
             if (!authService.isLogged && nextRoute.name !== 'login') {
                 $rootScope.notLogged = true;
+                socket.emit('requestRooms');
                 console.log("Nutzer eingeloggt");
                 event.preventDefault();
                 $state.go('login');
