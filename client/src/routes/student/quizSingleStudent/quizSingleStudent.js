@@ -21,48 +21,48 @@
             });
     }
 
-    function startCtrl($stateParams, $http, $state, $timeout, socket) {                      // our controller for this view
+    function startCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
         var vm = this;
-        vm._id = 0;
-
-        socket.emit('requestRooms');
-
-        socket.on('printRooms', function (rooms) {
-            // vm.rooms = rooms;
-            console.log(rooms);
-        });
-
-        vm.quizSingleStudent = true;
-        console.log($stateParams);
         var quizData;
+        vm._id = 0;
+        console.log("startCtrl");
+        vm.quizSingleStudent = true;
+
+        socket.emit('requestQuiz', $stateParams.id);
 
 
-        $http({                                                     // get all users from node server
-            method: 'GET',
-            url: '/api/quizes/' + $stateParams.id
-        }).then(function successCallback(response) {
-            vm.quiz = response.data;
+        socket.on('printQuiz', function (quiz) {
+            console.log(quiz);
+            // vm.rooms = rooms;
+            vm.quiz = quiz;
             quizData = vm.quiz.questions;
             getQuestion();
-            //TODO Anworten zufällig rausgeben
 
         });
+
+
+        //  console.log($stateParams);
+
+
+        //TODO Anworten zufällig rausgeben
+
+
 
         function getQuestion() {
             if (vm._id < quizData.length) {
                 vm.quizData = quizData[vm._id];
                 countDown(vm.quizData);
             } else {
-                alert('Das Quiz ist zuende');
-                $state.go('quiz');
+
             }
 
         }
 
         function getNextQuestion() {
+
             console.log('nexQ');
             vm._id++;
-            getQuestion();
+            //getQuestion();
         }
 
 

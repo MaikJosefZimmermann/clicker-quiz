@@ -34,22 +34,50 @@ app.use('/api/questions', require('./app/routes/question.js'));
 
 console.log('Magic happens on port ' + port);
 
+
+var Quiz = require('./app/models/quiz');
 // Socket.io Funktionen
 
-function getRooms() {
-    return [
-        'IT-Advanced',
-        'Informatik'
-    ];
+
+function getQuiz(quizId, callback) {
+
+
+    Quiz.findById(quizId, function (err, quiz) {
+
+        if (err) {
+            return err;
+        }
+
+    }).then(function successCallback(response) {
+        if (response) {
+            console.log("durchlauf");
+            callback(response);
+        }
+        //setQuiz(quiz);// (async) when receive the response load the data into $scope.users
+    });
+
 }
+
+
+
+
+
 function dice() {
     return (Math.random());
 }
 io.on('connection', function (socket) {
     console.log("Socket.io connection done");
-    socket.on('requestRooms', function () {
-        console.log("room request");
-        socket.emit('printRooms', getRooms());
+    socket.on('requestQuiz', function (quizId) {
+
+        getQuiz(quizId, function (currentQuiz) {
+            console.log("Objekt vor dem senden:");
+            console.log(currentQuiz);
+            sendQuiz(currentQuiz);
+        });
+        function sendQuiz(currentQuiz) {
+            socket.emit('printQuiz', currentQuiz);
+        };
+
     });
     socket.on('doDice', function (room) {
         if (socket.adapter.rooms[room]) {
