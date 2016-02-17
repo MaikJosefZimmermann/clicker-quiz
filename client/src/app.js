@@ -9,11 +9,11 @@
             'ngMaterial',
             'ngAria',
             'ui.router',
-            //'btford.socket-io',
+            'btford.socket-io',
 
 
             /* Routes: */
-            //'app.display',
+            'app.display',
             // 'app.questionList',
             // 'app.questionSingle',
             'app.login',
@@ -30,9 +30,10 @@
 
         ])
         .config(AppConfig)
-        .run(AppRun);
+        .run(AppRun)
+        .service('socket', socket);
 
-    function AppRun($rootScope, authService, $state, $localStorage) {
+    function AppRun($rootScope, authService, $state, $localStorage, socket) {
         authService.check();
 
         $rootScope.logout = authService.logout;
@@ -66,7 +67,13 @@
                 $rootScope.user = $localStorage.user;
             }
         });
+        function socket(socketFactory) {
+            return socketFactory({
+                ioSocket: io.connect('http://localhost:9000')
+            });
+        }
     }
+
 
     function AppConfig($urlRouterProvider, $httpProvider) {
         $httpProvider.interceptors.push('tokenInterceptor');
