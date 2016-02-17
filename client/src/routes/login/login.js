@@ -34,12 +34,10 @@
                 authService.isLogged = true;
                 authService.user = res.data.user.username; //userrole admin oder student
 
-                //authService.userRole = res.data.user.type;
-                // bei den rollen unterscheiden z.b.
                 $localStorage.token = res.data.token;
                 $localStorage.user = res.data.user.username; // to fetch the user details on refresh
-                //      $localStorage.userRole = res.data.user.type; // to fetch the user details on refresh
-                $localStorage.userRole = "admin"; // to fetch the user details on refresh
+                      $localStorage.userRole = res.data.user.type; // to fetch the user details on refresh
+               // $localStorage.userRole = "admin"; // to fetch the user details on refresh
 
                 $rootScope.userRole = $localStorage.userRole;
                 //$rootScope.notLogged = 'false';
@@ -47,7 +45,15 @@
 
                 console.log("User " + authService.user + " eingeloggt");
                 console.log("Role " + authService.userRole + " eingeloggt");
-                $state.go('quiz');
+
+                //Rollenunterscheidung
+                //Student - Startseite
+                if($localStorage.userRole === 'student') {
+                    $state.go('quiz');
+                    // Admin - Startseite
+                }else if($localStorage.userRole === 'admin') {
+                    $state.go('quizList');
+                }
             }, function (err) {
                 console.log(err);
             });

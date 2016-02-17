@@ -76,10 +76,10 @@
                 str = str.substring(0, str.indexOf("."));
 
 
-                console.log("Minuten:");
+                /*console.log("Minuten:");
                 console.log(min);
                 console.log("Sekunden:");
-                console.log(sek);
+                 console.log(sek);*/
                 quiz.TiSum = str + " Minuten " + sek + " Sekunden ";
 
 

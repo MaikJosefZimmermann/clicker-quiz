@@ -21,7 +21,7 @@
             });
     }
 
-    function startCtrl($stateParams, $http, $state) {                      // our controller for this view
+    function startCtrl($stateParams, $http, $state, $timeout) {                      // our controller for this view
         var vm = this;
         vm._id = 0;
 
@@ -42,13 +42,13 @@
         });
 
         function getQuestion() {
-
             if (vm._id < quizData.length) {
                 vm.quizData = quizData[vm._id];
+                countDown(vm.quizData);
             } else {
-                alert('Das Quiz ist zuende' + $state.go('quiz'));
+                alert('Das Quiz ist zuende');
+                $state.go('quiz');
             }
-
 
         }
 
@@ -56,18 +56,42 @@
             console.log('nexQ');
             vm._id++;
             getQuestion();
-        };
+        }
+
 
         function checkAnswer() {
             console.log('CHECK');
             //TODO richtige Antwort finden
-
-        };
+        }
 
         vm.answerButton = function () {
             checkAnswer();
             getNextQuestion();
+        };
 
+        function countDown(question) {
+            var time = question.time;
+            var count = function () {
+                if (time === 0) {
+                    getNextQuestion();
+                } else {
+                    vm.countDown = time;
+                    var min = time / 60;
+                    var sek = time % 60;
+                    var str = min.toString();
+                    str = str.substring(0, str.indexOf("."));
+                    vm.countDown = str + " Minuten " + sek + " Sekunden ";
+                    time--;
+                    $timeout(count, 1000);
+
+                }
+            };
+            count();
+        }
+
+        function stopCount() {
+            $timeout.cancel();
+            console.log("keine ahnung wie ich count zurücksetze");
         }
 
 
