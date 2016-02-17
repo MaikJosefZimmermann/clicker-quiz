@@ -30,6 +30,5 @@
     "socket.io-client": {
       "main": "socket.io.js"
     }
-    }
   }
 }
