@@ -28,9 +28,8 @@
       }
     },
     "socket.io-client": {
-      "main": [
-        "socket.io.js"
-      ]
+      "main": "socket.io.js"
+    }
     }
   }
 }
