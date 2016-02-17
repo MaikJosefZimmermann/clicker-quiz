@@ -17,6 +17,7 @@
 
     function quizListCtrl($state, $http) {                      // our controller for this view
         var vm = this;
+        timeSum(vm.quizes);
 
         $http({                                                     // get all users from node server
             method: 'GET',
@@ -43,10 +44,11 @@
         };
 
         function timeSum(quizes) {
-            var total = 0;
+
 
 
             angular.forEach(quizes, function (quiz) {
+                var total = 0;
                 for (var i = 0; i < quiz.questions.length; i++) {
                     total = total + quiz.questions[i].time;
 
@@ -58,10 +60,6 @@
                 str = str.substring(0, str.indexOf("."));
 
 
-                console.log("Minuten:");
-                console.log(min);
-                console.log("Sekunden:");
-                console.log(sek);
                 quiz.TiSum = str + " Minuten " + sek + " Sekunden ";
 
 

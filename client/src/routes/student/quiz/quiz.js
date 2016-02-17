@@ -60,10 +60,11 @@
         }
 
         function timeSum(quizes) {
-            var total = 0;
+
 
 
             angular.forEach(quizes, function (quiz) {
+                var total = 0;
                 for (var i = 0; i < quiz.questions.length; i++) {
                     total = total + quiz.questions[i].time;
 

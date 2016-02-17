@@ -19,6 +19,7 @@ var QuizSchema = new Schema({
         selected: Boolean
     }],
     genre: String,
+    used: Boolean,
 
 
 });

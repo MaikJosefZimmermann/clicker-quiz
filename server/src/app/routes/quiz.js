@@ -18,6 +18,7 @@ router.route('/')
         quiz.qname = req.body.qname;
         quiz.questions = req.body.questions;
         quiz.key = req.body.key;
+        quiz.used = req.body.used;
 
 
         quiz.save(function (err) {
@@ -67,6 +68,7 @@ router.route('/:quizId')
             quiz.qname = req.body.qname;
             quiz.questions = req.body.questions;
             quiz.key = req.body.key;
+            quiz.used = req.body.used;
 
             quiz.save(function (err) {
                 if (err) {
