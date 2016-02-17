@@ -35,7 +35,7 @@
     function AppRun($rootScope, authService, $state, $localStorage) {
         authService.check();
 
-
+        $rootScope.logout = authService.logout;
         //stateChangeStart & check wird beim routen wechsel getriggert
         //start ladebalken
         //nicht eingeloggte user abfangen
@@ -54,9 +54,10 @@
         //user roll checken, admin auf adminseite, student auf studentenseite
         $rootScope.$on('$stateChangeSuccess', function (event, nextRoute) {
             if (authService.isLogged === true && nextRoute.name === 'login') {
+                $rootScope.userRole = $localStorage.userRole;
                 console.log("eingeloggt");
                 event.preventDefault();
-                $state.go('quiz');
+                $state.go('login');
                 //TODO Unterscheidung ob Prof oder Student
                 // wenn user eingeloggt
             }else if (authService.isLogged == true) {
@@ -66,7 +67,6 @@
             }
         });
     }
-
 
     function AppConfig($urlRouterProvider, $httpProvider) {
         $httpProvider.interceptors.push('tokenInterceptor');
