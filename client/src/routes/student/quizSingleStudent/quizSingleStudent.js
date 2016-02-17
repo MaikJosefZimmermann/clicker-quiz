@@ -21,9 +21,16 @@
             });
     }
 
-    function startCtrl($stateParams, $http, $state, $timeout) {                      // our controller for this view
+    function startCtrl($stateParams, $http, $state, $timeout, socket) {                      // our controller for this view
         var vm = this;
         vm._id = 0;
+
+        socket.emit('requestRooms');
+
+        socket.on('printRooms', function (rooms) {
+            // vm.rooms = rooms;
+            console.log(rooms);
+        });
 
         vm.quizSingleStudent = true;
         console.log($stateParams);

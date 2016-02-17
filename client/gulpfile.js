@@ -226,6 +226,8 @@ gulp.task('browserSync', function () {
             baseDir: 'build-output',
             directory: false,
             middleware: proxyMiddleware('/api', {target: proxyUrl})
+
+
         }
     })
 });
