@@ -19,6 +19,7 @@
         var vm = this;
         timeSum(vm.quizes);
 
+
         $http({                                                     // get all users from node server
             method: 'GET',
             url: '/api/quizes'

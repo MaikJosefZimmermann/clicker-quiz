@@ -17,6 +17,7 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+
 server.listen(port, function () {
     console.log('Server is running at port 9000');
 });
@@ -24,12 +25,17 @@ app.post('/api/auth', auth.login);
 app.post('/api/logout', auth.logout);
 /*Anfrage wird erst bearbeitet wenn request bearbeitet wird
  * anschließend gehts zur api*/
-//app.use([require('./app/middlewares/validateRequest')]);
+app.use([require('./app/middlewares/validateRequest')]);
 //TODO hier kommen alle anwendungsrouten rein
 app.use('/api/quizes', require('./app/routes/quiz.js'));
 app.use('/api/users', require('./app/routes/user.js'));
 app.use('/api/questions', require('./app/routes/question.js'));
+
+
 console.log('Magic happens on port ' + port);
+
+// Socket.io Funktionen
+
 function getRooms() {
     return [
         'IT-Advanced',
@@ -40,8 +46,9 @@ function dice() {
     return (Math.random());
 }
 io.on('connection', function (socket) {
-    console.log("connection!!");
+    console.log("Socket.io connection done");
     socket.on('requestRooms', function () {
+        console.log("room request");
         socket.emit('printRooms', getRooms());
     });
     socket.on('doDice', function (room) {
@@ -64,7 +71,7 @@ io.on('connection', function (socket) {
         }
     });
     socket.on('disconnect', function () {
-        console.log('User disconnected from room');
+        console.log('Socket.io connection disconnect');
     })
 });
 /*
