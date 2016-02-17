@@ -67,18 +67,29 @@ function dice() {
 }
 io.on('connection', function (socket) {
     console.log("Socket.io connection done");
+    socket.on('answer', function (answer) {
+        console.log(answer);
+        var question = "NEUE FRAGE";
+        sendQuestion(question);
+    })
     socket.on('requestQuiz', function (quizId) {
 
         getQuiz(quizId, function (currentQuiz) {
             console.log("Objekt vor dem senden:");
             console.log(currentQuiz);
             sendQuiz(currentQuiz);
+            var quizdata = currentQuiz.questions
         });
         function sendQuiz(currentQuiz) {
             socket.emit('printQuiz', currentQuiz);
         };
 
     });
+
+    function sendQuestion(question) {
+        socket.emit('printQuestion', question);
+    };
+
     socket.on('doDice', function (room) {
         if (socket.adapter.rooms[room]) {
             console.log('es wird gewürfelt');

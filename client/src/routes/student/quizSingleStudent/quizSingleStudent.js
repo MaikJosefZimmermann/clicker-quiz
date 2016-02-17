@@ -36,7 +36,16 @@
             // vm.rooms = rooms;
             vm.quiz = quiz;
             quizData = vm.quiz.questions;
-            getQuestion();
+            // getQuestion();
+
+        });
+
+        socket.on('printQuestion', function (question) {
+            // console.log(quiz);
+            // vm.rooms = rooms;
+            vm.question = question;
+            //quizData = vm.quiz.questions;
+            //getQuestion();
 
         });
 
@@ -71,9 +80,9 @@
             //TODO richtige Antwort finden
         }
 
-        vm.answerButton = function () {
-            checkAnswer();
-            getNextQuestion();
+        vm.answerButton = function (answer) {
+            console.log(answer);
+            socket.emit('answer', answer);
         };
 
         function countDown(question) {
