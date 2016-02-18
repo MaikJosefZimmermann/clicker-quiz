@@ -71,10 +71,12 @@ io.on('connection', function (socket) {
     var quizData;
     var counter;
     var question;
+
     console.log("Socket.io connection done");
 
     socket.on('answer', function (answer) {
         console.log(answer);
+
         counter++;
         getQuestion();
 
@@ -98,42 +100,52 @@ io.on('connection', function (socket) {
     function getQuestion() {
         if (counter < quizData.length) {
             question = quizData[counter];
-            sendQuestion(question);
             countDown(question.time);
+            sendQuestion(question);
+
             counter++;
         } else {
-
+            console.log("Quiz fertig");
+            countDown(0);
         }
 
     }
 
+    var currentTime;
+    var tid;
     function countDown(time) {
-        console.log("COUNTER");
+        abortTimer();
+        // time = 20;
+        currentTime = time;
 
-        //   time = 5;
+        tid = setTimeout(decrease, 1000);
+
         // set timeout
-        var tid = setTimeout(decrease, 1000);
+
 
         function decrease() {
-            if (time == 0) {
-                socket.emit('printTime', time);
-                getQuestion();
+            if (currentTime == 0) {
+
+                socket.emit('printTime', currentTime);
                 abortTimer();
+                getQuestion();
                 console.log("STOP");
             } else {
-                socket.emit('printTime', time);
-                time--;
-                tid = setTimeout(decrease, 1000);
+                socket.emit('printTime', currentTime);
+                socket.emit('endQuiz');
+                currentTime--;
 
+
+                tid = setTimeout(decrease, 1000);
             }
 
-            console.log(time);
+            console.log(currentTime);
 
             // do some stuff...
             // repeat myself
         }
-
         function abortTimer() { // to be called when you want to stop the timer
+            console.log("timer stop");
             clearTimeout(tid);
         }
 
@@ -143,6 +155,7 @@ io.on('connection', function (socket) {
     function sendQuestion(question) {
         // console.log(question);
         socket.emit('printQuestion', question);
+        socket.emit('printTime', question.time);
     }
 
     socket.on('doDice', function (room) {

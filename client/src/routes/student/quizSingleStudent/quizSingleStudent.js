@@ -40,6 +40,10 @@
 
         });
 
+        socket.emit('endQuiz', function () {
+
+        });
+
         socket.on('printTime', function (time) {
             console.log(time);
             var min = time / 60;
