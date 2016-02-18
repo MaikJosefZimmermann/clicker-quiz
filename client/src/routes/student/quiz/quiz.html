@@ -39,9 +39,10 @@
                                 style="margin-left: 5px;"><i class="fa fa-question-circle"></i> {{q.question.length}} Fragen</span>  
                         <span style="margin-left: 5px;"><i class="fa fa-clock-o"></i> Dauer: {{q.quiz.timelimit}}</span>   
                         <span style="float: right; margin-right: 5px;"><a ng-click="goQSingle(q._id)">modify</a></span>  
-                        <button>  <span style="float: right; margin-right: 5px;"><a                                     ng-click="goQSingle(quiz._id)">Teilnehmen</a></span>  
+                        <button>  <span style="float: right; margin-right: 5px;"><a ng-click="goQSingle(quiz._id)">Teilnehmen</a></span>  
                         </button>
-                            <span style="float: right; margin-right: 5px;"><a                                 ng-click="goQSingle(quiz._id)">view</a></span> 
+                            <span
+                                style="float: right; margin-right: 5px;"><a  ng-click="goQSingle(quiz._id)">view</a></span> 
                         <span  style="float: right; margin-right: 5px;">Startet in: <i class="fa fa-calendar-o"></i>
                         {{getDate(q.quiz.start)}}</span>  
                     </div>

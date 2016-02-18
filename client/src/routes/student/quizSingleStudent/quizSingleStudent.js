@@ -28,14 +28,21 @@
         console.log("startCtrl");
         vm.quizSingleStudent = true;
 
+        socket.emit('joinQuiz', $stateParams.id);
         socket.emit('requestQuiz', $stateParams.id);
+
+
 
         socket.on('printQuiz', function (quiz) {
             vm.quiz = quiz;
             quizData = vm.quiz.questions;
-
-
         });
+
+
+        function join(room) {
+            console.log(room);
+            socket.emit('joinRoom', room);
+        }
 
         socket.on('endQuiz', function () {
             console.log("END");
