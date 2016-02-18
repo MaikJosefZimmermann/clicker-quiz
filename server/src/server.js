@@ -82,15 +82,6 @@ io.on('connection', function (socket) {
     socket.on('answer', function (answer) {
         saveAnswer(answer);
 
-        if (result == answer) {
-            console.log("richtig");
-            socket.emit('result', result = true);
-
-        } else {
-            console.log("falsch");
-            socket.emit('result', result = false);
-        }
-
 
         getQuestion();
 
@@ -112,7 +103,14 @@ io.on('connection', function (socket) {
 
     });
     function saveAnswer(answer) {
+        if (result == answer) {
+            console.log("richtig");
+            socket.emit('result', result = true);
 
+        } else {
+            console.log("falsch");
+            socket.emit('result', result = false);
+        }
     }
     function getQuestion() {
         if (counter < quizData.questions.length) {
@@ -165,6 +163,7 @@ io.on('connection', function (socket) {
             if (currentTime == 0 || timerStop == true) {
 
                 socket.emit('printTime', currentTime);
+                saveAnswer(null);
                 abortTimer();
                 getQuestion();
                 console.log("STOP");

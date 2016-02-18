@@ -32,7 +32,7 @@
         $scope.goQuiz = function (id) {
 
             //Todo Alert hinzufügen für die Besätigung
-            $state.go('preQuiz', {id: id});
+            $state.go('quizSingleStudent', {id: id});
 
         }
 
