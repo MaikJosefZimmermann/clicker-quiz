@@ -39,6 +39,11 @@
             });
         };
 
+        vm.goScoreSingle = function (id) {                           // scope function which calls a single state
+            $state.go('scoreSingle', {id: id});
+            console.log("scoreSingle")
+        };
+
 
         vm.goQSingle = function (id) {                           // scope function which calls a single state
             $state.go('qedit', {id: id});
