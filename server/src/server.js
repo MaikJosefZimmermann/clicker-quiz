@@ -71,13 +71,14 @@ io.on('connection', function (socket) {
     var quizData;
     var counter;
     var question;
+    var timerStop = false;
 
     console.log("Socket.io connection done");
 
     socket.on('answer', function (answer) {
         console.log(answer);
 
-        counter++;
+
         getQuestion();
 
     });
@@ -99,14 +100,19 @@ io.on('connection', function (socket) {
 
     function getQuestion() {
         if (counter < quizData.length) {
+            console.log("counter");
+            console.log(counter);
             question = quizData[counter];
             countDown(question.time);
             sendQuestion(question);
-
             counter++;
         } else {
-            console.log("Quiz fertig");
-            countDown(0);
+            if (counter == quizData.length) {
+                console.log("Quiz fertig");
+                socket.emit('endQuiz');
+                timerStop = true;
+                //countDown(0);
+            }
         }
 
     }
@@ -114,6 +120,7 @@ io.on('connection', function (socket) {
     var currentTime;
     var tid;
     function countDown(time) {
+        timerStop = false;
         abortTimer();
         // time = 20;
         currentTime = time;
@@ -124,7 +131,7 @@ io.on('connection', function (socket) {
 
 
         function decrease() {
-            if (currentTime == 0) {
+            if (currentTime == 0 || timerStop == true) {
 
                 socket.emit('printTime', currentTime);
                 abortTimer();
@@ -132,7 +139,6 @@ io.on('connection', function (socket) {
                 console.log("STOP");
             } else {
                 socket.emit('printTime', currentTime);
-                socket.emit('endQuiz');
                 currentTime--;
 
 
