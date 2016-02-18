@@ -16,6 +16,7 @@
             'app.display',
             'app.scoreList',
             'app.scoreSingle',
+            'app.preQuiz',
             // 'app.questionList',
             // 'app.questionSingle',
             'app.login',
