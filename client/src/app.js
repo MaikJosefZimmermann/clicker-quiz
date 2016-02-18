@@ -14,6 +14,8 @@
 
             /* Routes: */
             'app.display',
+            'app.scoreList',
+            'app.scoreSingle',
             // 'app.questionList',
             // 'app.questionSingle',
             'app.login',
