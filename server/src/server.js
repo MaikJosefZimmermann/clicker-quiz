@@ -86,8 +86,10 @@ io.on('connection', function (socket) {
         console.log(answer);
         if (result == answer) {
             console.log("richtig");
+            socket.emit('result', result = true);
         } else {
             console.log("falsch");
+            socket.emit('result', result = false);
         }
 
 
