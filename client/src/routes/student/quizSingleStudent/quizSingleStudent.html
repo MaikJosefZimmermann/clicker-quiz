@@ -6,19 +6,12 @@
         <div>
             <h2> Frage {{vm.question.question}}</h2>
             <md-card>
-                <section layout="row" layout-sm="column" layout-align=" start center" layout-wrap>
-                    <md-button ng-click="vm.answerButton(vm.question.answer1)" name="answer" class="md-raised">
-                        {{vm.question.answer1}}
+                <section layout="row" layout-sm="column" ng-repeat="answer in vm.question.answers"
+                         layout-align=" start center" layout-wrap>
+                    <md-button ng-click="vm.answerButton(answer)" name="answer" class="md-raised">
+                        {{answer}}
                     </md-button>
-                    <md-button ng-click="vm.answerButton(vm.question.answer2)" class="md-raised">
-                        {{vm.question.answer2}}
-                    </md-button>
-                    <md-button ng-click="vm.answerButton(vm.question.answer3)" class="md-raised">
-                        {{vm.question.answer3}}
-                    </md-button>
-                    <md-button ng-click="vm.answerButton(vm.question.answer4)" class="md-raised">
-                        {{vm.question.answer4}}
-                    </md-button>
+
                 </section>
             </md-card>
             <div>{{vm.time}}</div>

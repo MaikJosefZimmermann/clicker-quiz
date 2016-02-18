@@ -30,54 +30,35 @@
 
         socket.emit('requestQuiz', $stateParams.id);
 
-
         socket.on('printQuiz', function (quiz) {
-            console.log(quiz);
-            // vm.rooms = rooms;
             vm.quiz = quiz;
             quizData = vm.quiz.questions;
-            // getQuestion();
+
 
         });
 
-        socket.emit('endQuiz', function () {
-
+        socket.on('endQuiz', function () {
+            console.log("END");
+            $state.go('quiz');
         });
 
         socket.on('printTime', function (time) {
-            console.log(time);
+
             var min = time / 60;
             var sek = time % 60;
             var str = min.toString();
             str = str.substring(0, str.indexOf("."));
-            //  vm.countDown = str + " Minuten " + sek + " Sekunden ";
             vm.time = str + " Minuten " + sek + " Sekunden ";
 
 
         });
 
         socket.on('printQuestion', function (question) {
-            // console.log(quiz);
-            // vm.rooms = rooms;
+
             vm.question = question;
-            //quizData = vm.quiz.questions;
 
 
         });
-
-
-        //  console.log($stateParams);
-
-
-        //TODO Anworten zufällig rausgeben
-
-
-
-
-        function checkAnswer() {
-            console.log('CHECK');
-            //TODO richtige Antwort finden
-        }
 
         vm.answerButton = function (answer) {
             console.log(answer);
