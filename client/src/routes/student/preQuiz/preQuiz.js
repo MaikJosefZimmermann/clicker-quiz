@@ -21,6 +21,14 @@
     }
 
     function preQuizCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
+        var vm = this;
+        console.log("warteraum");
+        console.log($stateParams.id);
+        socket.emit('joinQuiz', $stateParams.id);
 
+        socket.on('joinedQuiz', function (quiz) {
+            console.log('You just joined quiz ' + quiz);
+
+        });
     }
 })();

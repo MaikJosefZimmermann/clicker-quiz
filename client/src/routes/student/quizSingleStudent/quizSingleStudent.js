@@ -31,10 +31,7 @@
         socket.emit('joinQuiz', $stateParams.id);
         socket.emit('requestQuiz', $stateParams.id);
 
-        socket.on('joinedQuiz', function (quiz) {
-            console.log('You just joined quiz ' + quiz);
 
-        });
 
         socket.on('printQuiz', function (quiz) {
             vm.quiz = quiz;
