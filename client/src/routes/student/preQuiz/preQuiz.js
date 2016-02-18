@@ -28,7 +28,9 @@
 
         socket.on('joinedQuiz', function (quiz) {
             console.log('You just joined quiz ' + quiz);
-
+        });
+        socket.on('startQuiz', function () {
+            $state.go('quizSingleStudent', {id: id});
         });
     }
 })();

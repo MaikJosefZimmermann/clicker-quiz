@@ -204,6 +204,7 @@ io.on('connection', function (socket) {
     });
     socket.on('joinQuiz', function (quizId) {
         console.log('User will ins Quiz' + quizId);
+        startQuiz();
         getQuiz(quizId, function (currentQuiz) {
             console.log("current Quiz:");
             console.log(currentQuiz);
@@ -219,7 +220,9 @@ io.on('connection', function (socket) {
         function sendQuiz(currentQuiz) {
             socket.emit('printQuiz', currentQuiz);
         };
-
+        function startQuiz() {
+            socket.emit('startQuiz');
+        };
 
     });
     socket.on('disconnect', function () {
