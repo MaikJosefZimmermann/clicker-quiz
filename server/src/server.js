@@ -60,6 +60,12 @@ function getQuiz(quizId, callback) {
 
 }
 
+function shuffle(array) {
+
+    for (var j, x, i = array.length; i; j = Math.floor(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
+    return array;
+}
+
 
 
 
@@ -72,11 +78,17 @@ io.on('connection', function (socket) {
     var counter;
     var question;
     var timerStop = false;
+    var result;
 
     console.log("Socket.io connection done");
 
     socket.on('answer', function (answer) {
         console.log(answer);
+        if (result == answer) {
+            console.log("richtig");
+        } else {
+            console.log("falsch");
+        }
 
 
         getQuestion();
@@ -88,7 +100,8 @@ io.on('connection', function (socket) {
 
             counter = 0;
             sendQuiz(currentQuiz);
-            quizData = currentQuiz.questions;
+            quizData = currentQuiz;
+            shuffle(quizData.questions);
             getQuestion();
 
         });
@@ -97,17 +110,34 @@ io.on('connection', function (socket) {
         };
 
     });
+    function saveAnswer() {
 
+    }
     function getQuestion() {
-        if (counter < quizData.length) {
-            console.log("counter");
-            console.log(counter);
-            question = quizData[counter];
+        if (counter < quizData.questions.length) {
+            question = quizData.questions[counter];
+            result = question.answer1;
+
+            var answers = [question.answer1, question.answer2, question.answer3, question.answer4];
+            shuffle(answers);
+            var temp = shuffle(answers);
+
+            if (temp) {
+
+                question.answers = temp;
+            }
+
+            var currentQuestion = {
+                question: question.question,
+                answers: answers,
+                points: question.points,
+                time: question.time
+            };
             countDown(question.time);
-            sendQuestion(question);
+            sendQuestion(currentQuestion);
             counter++;
         } else {
-            if (counter == quizData.length) {
+            if (counter == quizData.questions.length) {
                 console.log("Quiz fertig");
                 socket.emit('endQuiz');
                 timerStop = true;
@@ -151,7 +181,6 @@ io.on('connection', function (socket) {
             // repeat myself
         }
         function abortTimer() { // to be called when you want to stop the timer
-            console.log("timer stop");
             clearTimeout(tid);
         }
 
@@ -159,7 +188,7 @@ io.on('connection', function (socket) {
 
 
     function sendQuestion(question) {
-        // console.log(question);
+
         socket.emit('printQuestion', question);
         socket.emit('printTime', question.time);
     }
