@@ -4,18 +4,24 @@
 
         <h1>{{vm.quiz.qname}} Quiz</h1>
         <div>
-            <h2> Frage {{vm.question}}</h2>
+            <h2> Frage {{vm.question.question}}</h2>
             <md-card>
                 <section layout="row" layout-sm="column" layout-align=" start center" layout-wrap>
-                    <md-button ng-click="vm.answerButton(vm.quizData.answer1)" name="answer" class="md-raised">
-                        {{vm.quizData.answer1}}
+                    <md-button ng-click="vm.answerButton(vm.question.answer1)" name="answer" class="md-raised">
+                        {{vm.question.answer1}}
                     </md-button>
-                    <md-button ng-click="vm.answerButton()" class="md-raised">{{vm.quizData.answer2}}</md-button>
-                    <md-button ng-click="vm.answerButton()" class="md-raised">{{vm.quizData.answer3}}</md-button>
-                    <md-button ng-click="vm.answerButton()" class="md-raised">{{vm.quizData.answer4}}</md-button>
+                    <md-button ng-click="vm.answerButton(vm.question.answer2)" class="md-raised">
+                        {{vm.question.answer2}}
+                    </md-button>
+                    <md-button ng-click="vm.answerButton(vm.question.answer3)" class="md-raised">
+                        {{vm.question.answer3}}
+                    </md-button>
+                    <md-button ng-click="vm.answerButton(vm.question.answer4)" class="md-raised">
+                        {{vm.question.answer4}}
+                    </md-button>
                 </section>
             </md-card>
-            <div>{{vm.countDown}}</div>
+            <div>{{vm.time}}</div>
         </div>
     </div>
 </md-content>
