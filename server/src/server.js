@@ -67,9 +67,6 @@ function shuffle(array) {
 }
 
 
-
-
-
 function dice() {
     return (Math.random());
 }
@@ -83,10 +80,12 @@ io.on('connection', function (socket) {
     console.log("Socket.io connection done");
 
     socket.on('answer', function (answer) {
-        console.log(answer);
+        saveAnswer(answer);
+
         if (result == answer) {
             console.log("richtig");
             socket.emit('result', result = true);
+
         } else {
             console.log("falsch");
             socket.emit('result', result = false);
@@ -112,7 +111,7 @@ io.on('connection', function (socket) {
         };
 
     });
-    function saveAnswer() {
+    function saveAnswer(answer) {
 
     }
     function getQuestion() {
@@ -203,16 +202,25 @@ io.on('connection', function (socket) {
             console.log('User nicht im Raum');
         }
     });
-    socket.on('joinRoom', function (room) {
-        console.log('User will in den Raum' + room);
-        if (getRooms().indexOf(room) > -1) {
-            socket.join(room);
-            console.log('User ist im Raum' + room);
-            socket.emit('joinedRoom', room);
-        }
-        else {
-            console.log('error: Raum gibt es nicht');
-        }
+    socket.on('joinQuiz', function (quizId) {
+        console.log('User will ins Quiz' + quizId);
+        getQuiz(quizId, function (currentQuiz) {
+            console.log("current Quiz:");
+            console.log(currentQuiz);
+            if (currentQuiz) {
+                socket.join(quizId);
+                console.log('User ist im Quiz' + quizId);
+                socket.emit('joinedQuiz', quizId);
+            } else {
+                console.log('error: Quiz gibt es nicht');
+            }
+
+        });
+        function sendQuiz(currentQuiz) {
+            socket.emit('printQuiz', currentQuiz);
+        };
+
+
     });
     socket.on('disconnect', function () {
         console.log('Socket.io connection disconnect');
