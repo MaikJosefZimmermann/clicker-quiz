@@ -40,12 +40,28 @@
 
         });
 
+        socket.emit('endQuiz', function () {
+
+        });
+
+        socket.on('printTime', function (time) {
+            console.log(time);
+            var min = time / 60;
+            var sek = time % 60;
+            var str = min.toString();
+            str = str.substring(0, str.indexOf("."));
+            //  vm.countDown = str + " Minuten " + sek + " Sekunden ";
+            vm.time = str + " Minuten " + sek + " Sekunden ";
+
+
+        });
+
         socket.on('printQuestion', function (question) {
             // console.log(quiz);
             // vm.rooms = rooms;
             vm.question = question;
             //quizData = vm.quiz.questions;
-            //getQuestion();
+
 
         });
 
@@ -57,23 +73,6 @@
 
 
 
-        function getQuestion() {
-            if (vm._id < quizData.length) {
-                vm.quizData = quizData[vm._id];
-                countDown(vm.quizData);
-            } else {
-
-            }
-
-        }
-
-        function getNextQuestion() {
-
-            console.log('nexQ');
-            vm._id++;
-            //getQuestion();
-        }
-
 
         function checkAnswer() {
             console.log('CHECK');
@@ -84,31 +83,6 @@
             console.log(answer);
             socket.emit('answer', answer);
         };
-
-        function countDown(question) {
-            var time = question.time;
-            var count = function () {
-                if (time === 0) {
-                    getNextQuestion();
-                } else {
-                    vm.countDown = time;
-                    var min = time / 60;
-                    var sek = time % 60;
-                    var str = min.toString();
-                    str = str.substring(0, str.indexOf("."));
-                    vm.countDown = str + " Minuten " + sek + " Sekunden ";
-                    time--;
-                    $timeout(count, 1000);
-
-                }
-            };
-            count();
-        }
-
-        function stopCount() {
-            $timeout.cancel();
-            console.log("keine ahnung wie ich count zurücksetze");
-        }
 
 
     }
