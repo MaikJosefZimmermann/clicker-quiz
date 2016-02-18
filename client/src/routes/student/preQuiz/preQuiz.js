@@ -14,7 +14,7 @@
         // inject $stateProvider into config object
         $stateProvider
             .state('preQuiz', {                                        // declare list view
-                url: '/preQuiz/',                                       // set url
+                url: '/preQuiz/:id',                                       // set url
                 templateUrl: 'routes/student/preQuiz/preQuiz.html',           // defines the HTML template
                 controller: 'preQuizCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
@@ -22,6 +22,7 @@
 
     function preQuizCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
         var vm = this;
+        vm.id = $stateParams.id
         console.log("warteraum");
         console.log($stateParams.id);
         socket.emit('joinQuiz', $stateParams.id);
@@ -32,5 +33,12 @@
         socket.on('startQuiz', function () {
             $state.go('quizSingleStudent', {id: id});
         });
+
+        vm.goQuiz = function (id) {
+            console.log("test")
+            //Todo Alert hinzufügen für die Besätigung
+            $state.go('quizSingleStudent', {id: id});
+
+        }
     }
 })();
