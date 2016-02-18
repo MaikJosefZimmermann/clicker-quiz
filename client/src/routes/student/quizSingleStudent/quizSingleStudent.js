@@ -56,9 +56,20 @@
         socket.on('printQuestion', function (question) {
 
             vm.question = question;
+        });
+
+        socket.on('result', function (result) {
+
+            if (result == true) {
+                vm.result = "RICHTIG";
+            } else {
+                vm.result = "FALSCH";
+            }
 
 
         });
+
+
 
         vm.answerButton = function (answer) {
             console.log(answer);
