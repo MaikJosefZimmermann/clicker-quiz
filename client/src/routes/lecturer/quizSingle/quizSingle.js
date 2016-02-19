@@ -30,8 +30,23 @@
     }
 
 
-    function qEditCtrl($stateParams, $http, $state, $mdDialog) {
+    function qEditCtrl($stateParams, $http, $state, $mdDialog, $scope) {
         var vm = this;
+
+        $scope.myDate = new Date();
+        console.log($scope.myDate);
+
+        vm.timeHour = '';
+        vm.timeMin = '';
+        vm.hours = ('00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 ' +
+        '19 20 21 22' +
+        ' 23').split(' ').map(function(hour) { return {abbrev: hour};
+            });
+
+        vm.mins = ('00 05 10 15 20 25 30 35 40 45 50 ' +
+        '55').split(' ').map(function(min) { return {abbrev: min};
+        });
+
 
         vm.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
@@ -169,6 +184,20 @@
         var vm = this;
         vm.selected = [];
         vm.new = true;
+
+        $scope.myDate = new Date();
+        console.log($scope.myDate);
+
+        vm.timeHour = '';
+        vm.timeMin = '';
+        vm.hours = ('00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 ' +
+        '19 20 21 22' +
+        ' 23').split(' ').map(function(hour) { return {abbrev: hour};
+        });
+
+        vm.mins = ('00 05 10 15 20 25 30 35 40 45 50 ' +
+        '55').split(' ').map(function(min) { return {abbrev: min};
+        });
 
         $http({                                                     // get all users from node server
             method: 'GET',
