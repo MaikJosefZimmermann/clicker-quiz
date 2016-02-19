@@ -75,7 +75,7 @@
 
     function socket(socketFactory) {
         return socketFactory({
-            ioSocket: io.connect('52.35.34.22')
+            ioSocket: io.connect('http://localhost:9000')
         });
     }
 
