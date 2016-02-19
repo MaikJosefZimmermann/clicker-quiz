@@ -22,22 +22,19 @@
 
     function preQuizCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
         var vm = this;
-        vm.id = $stateParams.id
+        vm.id = $stateParams.id;
         console.log("warteraum");
-        console.log($stateParams.id);
         socket.emit('joinQuiz', $stateParams.id);
-
         socket.on('joinedQuiz', function (quiz) {
+            vm.quiz = quiz;
             console.log('You just joined quiz ' + quiz);
         });
-        socket.on('startQuiz', function () {
+        socket.on('startQuiz', function (id) {
             $state.go('quizSingleStudent', {id: id});
         });
 
         vm.goQuiz = function (id) {
-            console.log("test")
-            //Todo Alert hinzufügen für die Besätigung
-            $state.go('quizSingleStudent', {id: id});
+            socket.emit('start', id);
 
         }
     }

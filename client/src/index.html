@@ -23,10 +23,9 @@
     <md-toolbar class="toolbar" ng-if="$root.userRole === 'student'">
         <div class="md-toolbar-tools">
             <a ui-sref="quiz">Clicker-05</a>
-            <md-button class="md-raised" ui-sref="quizListLecturer">Quizübersicht</md-button>
-            <md-button class="md-raised" ui-sref="list">Userverwaltung</md-button>
+            <md-button class="md-raised" ui-sref="quiz">Quizübersicht</md-button>
             <md-button class="md-raised" ui-sref="quizList">Quizverwaltung</md-button>
-            <md-button class="md-raised" ui-sref="questionList">Fragenverwaltung </md-button>
+
             <span flex=""> </span>
             <label> {{ $root.user }}</label>
             <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>

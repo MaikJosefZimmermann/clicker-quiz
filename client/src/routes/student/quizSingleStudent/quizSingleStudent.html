@@ -7,8 +7,8 @@
             <h2> Frage {{vm.question.question}}</h2>
             <md-card>
                 <section layout="row" layout-sm="column" ng-repeat="answer in vm.question.answers"
-                         layout-align=" start center" layout-wrap>
-                    <md-button ng-click="vm.answerButton(answer)" name="answer" class="md-raised">
+                         layout-align="center" layout-wrap>
+                    <md-button class="answerButtons" ng-click="vm.answerButton(answer)" name="answer" class="md-raised">
                         {{answer}}
                     </md-button>
 
