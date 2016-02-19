@@ -66,16 +66,14 @@ function shuffle(array) {
     return array;
 }
 
-
-function dice() {
-    return (Math.random());
-}
 io.on('connection', function (socket) {
     var quizData;
     var counter;
     var question;
     var timerStop = false;
     var result;
+    var currentTime;
+    var tid;
 
     console.log("Socket.io connection done");
 
@@ -84,6 +82,10 @@ io.on('connection', function (socket) {
 
 
         getQuestion();
+
+    });
+    socket.on('start', function (id) {
+        startQuiz(id);
 
     });
     socket.on('requestQuiz', function (quizId) {
@@ -146,8 +148,13 @@ io.on('connection', function (socket) {
 
     }
 
-    var currentTime;
-    var tid;
+    function sendQuiz(currentQuiz) {
+        socket.emit('printQuiz', currentQuiz);
+    };
+    function startQuiz(quizId) {
+        socket.emit('startQuiz', quizId);
+    };
+
     function countDown(time) {
         timerStop = false;
         abortTimer();
@@ -193,35 +200,21 @@ io.on('connection', function (socket) {
         socket.emit('printTime', question.time);
     }
 
-    socket.on('doDice', function (room) {
-        if (socket.adapter.rooms[room]) {
-            console.log('es wird gewürfelt');
-            io.to(room).emit('diceResults', dice());
-        } else {
-            console.log('User nicht im Raum');
-        }
-    });
     socket.on('joinQuiz', function (quizId) {
         console.log('User will ins Quiz' + quizId);
-        startQuiz();
         getQuiz(quizId, function (currentQuiz) {
             console.log("current Quiz:");
             console.log(currentQuiz);
             if (currentQuiz) {
                 socket.join(quizId);
                 console.log('User ist im Quiz' + quizId);
-                socket.emit('joinedQuiz', quizId);
+                socket.emit('joinedQuiz', currentQuiz.qname);
             } else {
                 console.log('error: Quiz gibt es nicht');
             }
 
         });
-        function sendQuiz(currentQuiz) {
-            socket.emit('printQuiz', currentQuiz);
-        };
-        function startQuiz() {
-            socket.emit('startQuiz');
-        };
+
 
     });
     socket.on('disconnect', function () {
