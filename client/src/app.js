@@ -67,7 +67,7 @@
             }else if (authService.isLogged == true) {
                 //abfragen der UserRolle
                 $rootScope.userRole = $localStorage.userRole;
-                $rootScope.user = $localStorage.user;
+                $rootScope.username = $localStorage.username;
             }
         });
 
