@@ -31,11 +31,15 @@
         function submit() {
             $http.post('/api/auth', vm.user).then(function (res) {
                 // success
+                console.log("response");
+                console.log(res);
                 authService.isLogged = true;
                 authService.user = res.data.user.username; //userrole admin oder student
 
                 $localStorage.token = res.data.token;
-                $localStorage.user = res.data.user.username; // to fetch the user details on refresh
+                $localStorage.user = res.data.user.username;
+                $localStorage.username = res.data.user.fullname;
+
                       $localStorage.userRole = res.data.user.type; // to fetch the user details on refresh
                // $localStorage.userRole = "admin"; // to fetch the user details on refresh
 

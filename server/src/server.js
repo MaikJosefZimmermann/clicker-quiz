@@ -200,8 +200,9 @@ io.on('connection', function (socket) {
         socket.emit('printTime', question.time);
     }
 
-    socket.on('joinQuiz', function (quizId) {
+    socket.on('joinQuiz', function (quizId, currentUser) {
         console.log('User will ins Quiz' + quizId);
+        console.log("user: " + currentUser);
         getQuiz(quizId, function (currentQuiz) {
             console.log("current Quiz:");
             console.log(currentQuiz);

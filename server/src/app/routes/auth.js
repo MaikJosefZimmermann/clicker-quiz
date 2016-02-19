@@ -42,8 +42,14 @@ var auth = {
                 if (response.statusCode === 200) {
                     //res.status(204);
                     var user = JSON.parse(response.body);
+                    console.log(response.body);
 
-                    res.json(genToken({username: username, type: user.employeetype[0], mail: user.mail[0]}));
+                    res.json(genToken({
+                        username: username,
+                        fullname: user.cn[0],
+                        type: user.employeetype[0],
+                        mail: user.mail[0]
+                    }));
                 } else {
                     // something went wrong | be safe - kill request.
                     res.status(500);
