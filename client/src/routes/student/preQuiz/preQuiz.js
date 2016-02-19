@@ -20,11 +20,12 @@
             });
     }
 
-    function preQuizCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
+    function preQuizCtrl($stateParams, $localStorage, $state, $timeout, socket) {// our controller for this view
         var vm = this;
         vm.id = $stateParams.id;
+        console.log($localStorage.user);
         console.log("warteraum");
-        socket.emit('joinQuiz', $stateParams.id);
+        socket.emit('joinQuiz', $stateParams.id, $localStorage.user);
         socket.on('joinedQuiz', function (quiz) {
             vm.quiz = quiz;
             console.log('You just joined quiz ' + quiz);
