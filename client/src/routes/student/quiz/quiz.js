@@ -25,18 +25,34 @@
             url: '/api/quizes'
         }).then(function successCallback(response) {
             vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
-            console.log(vm.quizes);
             timeSum(vm.quizes);
         });
 
         $scope.goQuiz = function (id) {
+            vm.passwort
+            vm.loginerr = false
+            console.log(vm.passwort);
+            angular.forEach(vm.quizes, function (quiz) {
+                if (quiz._id == id) {
+                    console.log("quizid")
+                    console.log(quiz.key)
+                    if (quiz.key === vm.passwort) {
+                        console.log("correkt")
+                        $state.go('preQuiz', {id: id});
+                    } else {
+                        vm.loginerr = true
+                    }
+
+
+                }
+            })
 
             //Todo Alert hinzufügen für die Besätigung
-            $state.go('preQuiz', {id: id});
+            //
 
         }
 
-        var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
+        /* var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
         var q0 = 'frage1', q1 = 'frage2';
 
 
@@ -57,7 +73,7 @@
             console.log('test1');
 
             vm.question = q1;
-        }
+         }*/
 
         function timeSum(quizes) {
 
