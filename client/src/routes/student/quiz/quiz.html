@@ -9,12 +9,19 @@
                                 <md-card-title-text>  <p class="md-headline">Quiz: {{quiz.qname}}</p> <span 
                                     class="md-subhead">Dozenz</span>  
                                 </md-card-title-text>
-                                    
                             </md-card-title>
                                 
                             <md-card-content>  
                                 <p>Anzahl der Fragen: {{quiz.questions.length}}</p>  
                                 <p>Dauer: {{quiz.TiSum}} </p>  
+                                <md-input-container ng-if="quiz.key">
+                                    <label>Einschreibeschlüssel</label>
+                                    <input ng-model="vm.passwort" name="passwort" required type="password">
+                                    <p ng-if="quiz.key" ng-show="vm.loginerr" style="color: red">
+                                        Falsches Passwort
+                                    </p>
+                                </md-input-container>
+                                 
                             </md-card-content>
                                 
                             <md-card-actions layout="row" layout-align="space-between center">   <p>Startet in:
