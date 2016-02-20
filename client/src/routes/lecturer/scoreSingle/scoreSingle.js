@@ -15,13 +15,21 @@
         // inject $stateProvider into config object
         $stateProvider
             .state('scoreSingle', {                                        // declare list view
-                url: '/scoreSingle',                                       // set url
+                url: '/scoreSingle/:id',                                       // set url
                 templateUrl: 'routes/lecturer/scoreSingle/scoreSingle.html',           // defines the HTML template
                 controller: 'scoreSingleCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
     function scoreSingleCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
+        var vm = this;
+        $http({                                                 // http get requst to our api passing the id. this will load a specific user object
+            method: 'GET',
+            url: '/api/quizes/' + $stateParams.id
+        }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
+            vm.quiz = response.data;                               // load the response data to the scope.user obj
+            console.log(vm.quiz)
+        });
 
     }
 })();

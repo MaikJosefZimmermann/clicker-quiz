@@ -16,7 +16,7 @@
             <p>Dauer: {{quiz.TiSum}} </p>
 
             <md-button class="md-raised md-primary" ng-if="!quiz.used" ng-click="">Starten</md-button>
-            <md-button class="md-raised md-primary" ng-if="!quiz.used" ng-click="vm.goScoreSingle()">Auswertung
+            <md-button class="md-raised md-primary" ng-if="!quiz.used" ng-click="vm.goScoreSingle(quiz._id)">Auswertung
             </md-button>
             <md-button class="md-raised md-primary" ng-click="vm.goQSingle(quiz._id)">Bearbeiten</md-button>
 

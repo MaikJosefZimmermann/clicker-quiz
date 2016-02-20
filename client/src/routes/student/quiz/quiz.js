@@ -47,8 +47,6 @@
                 }
             })
 
-            //Todo Alert hinzufügen für die Besätigung
-            //
 
         }
 
