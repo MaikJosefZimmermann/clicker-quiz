@@ -75,7 +75,8 @@
 
     function socket(socketFactory) {
         return socketFactory({
-            ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com')
+            // 404 Error  ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com')
+            ioSocket: io.connect('http://localhost:9000')
         });
     }
 
