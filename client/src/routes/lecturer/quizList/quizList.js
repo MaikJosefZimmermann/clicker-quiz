@@ -41,7 +41,7 @@
 
         vm.goScoreSingle = function (id) {                           // scope function which calls a single state
             $state.go('scoreSingle', {id: id});
-            console.log("scoreSingle")
+            console.log("scoreSingle " + id)
         };
 
 
