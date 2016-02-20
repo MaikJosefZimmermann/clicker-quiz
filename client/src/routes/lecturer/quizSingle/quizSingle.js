@@ -30,14 +30,14 @@
     }
 
 
-    function qEditCtrl($stateParams, $http, $state, $mdDialog, $scope) {
+    function qEditCtrl($stateParams, $http, $state, $mdDialog) {
         var vm = this;
 
-        $scope.myDate = new Date();
-        console.log($scope.myDate);
+        //$scope.myDate = new Date();
+        //console.log($scope.myDate);
 
-        vm.timeHour = '';
-        vm.timeMin = '';
+        //vm.quiz.timeHour = '';
+        //vm.quiz.timeMin = '';
         vm.hours = ('00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 ' +
         '19 20 21 22' +
         ' 23').split(' ').map(function(hour) { return {abbrev: hour};
@@ -104,7 +104,10 @@
             var data = {
                 qname: vm.quiz.qname,
                 questions: ergebnis,
-                key: vm.quiz.key
+                key: vm.quiz.key,
+                myDate: vm.quiz.myDate,
+                timeHour: vm.quiz.timeHour,
+                timeMin: vm.quiz.timeMin
             };
 
 
@@ -185,11 +188,9 @@
         vm.selected = [];
         vm.new = true;
 
-        $scope.myDate = new Date();
-        console.log($scope.myDate);
+        //$scope.myDate = new Date();
+        //console.log($scope.myDate);
 
-        vm.timeHour = '';
-        vm.timeMin = '';
         vm.hours = ('00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 ' +
         '19 20 21 22' +
         ' 23').split(' ').map(function(hour) { return {abbrev: hour};
@@ -261,8 +262,12 @@
             });
 
             var data = {
-                qname: vm.qname,
-                questions: ergebnis
+                qname: vm.quiz.qname,
+                questions: ergebnis,
+                key: vm.quiz.key,
+                myDate: vm.quiz.myDate,
+                timeHour: vm.quiz.timeHour,
+                timeMin: vm.quiz.timeMin
             };
 
 

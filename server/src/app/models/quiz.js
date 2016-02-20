@@ -6,6 +6,9 @@ var QuizSchema = new Schema({
 
     qname: String,
     key: String,
+    myDate: Date,
+    timeHour: Number,
+    timeMin: Number,
     questions: [{
         question: String,
         answer1: String,
@@ -16,7 +19,7 @@ var QuizSchema = new Schema({
         time: Number,
         subject: String,
         tags: String,
-        selected: Boolean
+        selected: Boolean,
     }],
     genre: String,
     used: Boolean,
