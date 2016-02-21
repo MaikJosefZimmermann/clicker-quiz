@@ -34,7 +34,7 @@ var QuizSchema = new Schema({
         points: Number,
         time: Date,
         //
-        used: Boolean
+        delete: Boolean
     }],
 
     genre: String,
