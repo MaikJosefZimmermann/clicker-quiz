@@ -42,7 +42,7 @@ var auth = {
                 if (response.statusCode === 200) {
                     //res.status(204);
                     var user = JSON.parse(response.body);
-                    console.log(response.body);
+
 
                     res.json(genToken({
                         username: username,

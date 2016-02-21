@@ -25,13 +25,19 @@
         vm.id = $stateParams.id;
         console.log($localStorage.user);
         console.log("warteraum");
-        socket.emit('joinQuiz', $stateParams.id, $localStorage.user);
+        socket.emit('joinQuiz', $stateParams.id, $localStorage);
         socket.on('joinedQuiz', function (quiz) {
             vm.quiz = quiz;
             console.log('You just joined quiz ' + quiz);
+
+            console.log("Meine socketID " + socket.id);
         });
         socket.on('startQuiz', function (id) {
             $state.go('quizSingleStudent', {id: id});
+        });
+        socket.on('message', function (m) {
+            console.log("in der message");
+            console.log(m);
         });
 
         vm.goQuiz = function (id) {
