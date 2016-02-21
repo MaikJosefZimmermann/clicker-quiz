@@ -38,32 +38,6 @@ console.log('Magic happens on port ' + port);
 var Quiz = require('./app/models/quiz');
 // Socket.io Funktionen
 
-var WebSocketServer = require('ws').Server;
-var wss = new WebSocketServer({port: 8000});
-
-wss.on('connection', function connection(ws) {
-    ws.on('message', function incoming(message) {
-        //     console.log('received: %s', message);
-    });
-    ws.send('something');
-});
-
-/**
- * Setup proxy
- * @type {*|exports|module.exports}
- */
-var httpProxy = require('http-proxy');
-var http = require('http');
-var proxy = new httpProxy.createProxyServer({
-    target: {
-        host: 'localhost',
-        port: 8000
-    }
-});
-
-
-
-
 function getQuiz(quizId, callback) {
 
 
