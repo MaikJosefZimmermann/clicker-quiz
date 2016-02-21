@@ -17,7 +17,7 @@
     }
 
 
-    function QuizCtrl($scope, $http, $state) {// our controller for this view
+    function QuizCtrl($scope, $http, $state, socket) {// our controller for this view
         var vm = this;
         vm.quizes;
         $http({                                                     // get all users from node server
@@ -29,52 +29,43 @@
         });
 
         $scope.goQuiz = function (id) {
-            vm.passwort
-            vm.loginerr = false
-            console.log(vm.passwort);
-            angular.forEach(vm.quizes, function (quiz) {
-                if (quiz._id == id) {
-                    console.log("quizid")
-                    console.log(quiz.key)
-                    if (quiz.key === vm.passwort) {
-                        console.log("correkt")
-                        $state.go('preQuiz', {id: id});
-                    } else {
-                        vm.loginerr = true
-                    }
 
+            var password = vm.passwort;
+            socket.emit('checkQuizPassword', id, password);
+            socket.on('waitingRoom', function (id) {
+                $state.go('preQuiz', {id: id});
+            });
+            socket.on('passwordFalse', function () {
+                vm.loginerr = true;
+                console.log("Falsches Passwort");
+            });
 
-                }
-            })
-
-
-        }
+        };
 
         /* var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
-        var q0 = 'frage1', q1 = 'frage2';
+         var q0 = 'frage1', q1 = 'frage2';
 
 
-        vm.question = q0;
+         vm.question = q0;
 
-        vm.answers = [
-            {'id': 0, answer: a0},
-            {'id': 1, answer: a1},
-            {'id': 2, answer: a2},
-            {'id': 3, answer: a3}
+         vm.answers = [
+         {'id': 0, answer: a0},
+         {'id': 1, answer: a1},
+         {'id': 2, answer: a2},
+         {'id': 3, answer: a3}
 
-        ];
+         ];
 
-        vm.ant = ant;
+         vm.ant = ant;
 
-        function ant() {
+         function ant() {
 
-            console.log('test1');
+         console.log('test1');
 
-            vm.question = q1;
+         vm.question = q1;
          }*/
 
         function timeSum(quizes) {
-
 
 
             angular.forEach(quizes, function (quiz) {
@@ -87,14 +78,14 @@
                 var sek = total % 60;
 
                 var str = min.toString();
-                str = str.substring(0, str.indexOf("."));
+                str = str.substring(0, str.indexOf('.'));
 
 
                 /*console.log("Minuten:");
-                console.log(min);
-                console.log("Sekunden:");
+                 console.log(min);
+                 console.log("Sekunden:");
                  console.log(sek);*/
-                quiz.TiSum = str + " Minuten " + sek + " Sekunden ";
+                quiz.TiSum = str + ' Minuten ' + sek + ' Sekunden ';
 
 
             });
