@@ -16,7 +16,7 @@
                 </md-input-container>
                 <md-input-container flex="">
                     <label>Passwort</label>
-                    <input ng-model="vm.user.password" type="password">
+                    <input ng-keypress="vm.submitt($event)" ng-model="vm.user.password" type="password">
                 </md-input-container>
             </div>
 
