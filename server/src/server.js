@@ -159,9 +159,9 @@ io.on('connection', function (socket) {
     socket.on('checkQuizPassword', function (id, password) {
         var vm = this;
         vm.loginerr = false;
-
+        console.log(password)
         getQuiz(id, function (currentQuiz) {
-            if (currentQuiz.key == password) {
+            if (currentQuiz.key == password || currentQuiz.key === '') {
                 console.log("correkt");
                 socket.emit('waitingRoom', currentQuiz.id);
             } else {
