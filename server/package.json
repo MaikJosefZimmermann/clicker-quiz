@@ -19,6 +19,7 @@
     "gulp-jshint": "^2.0.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-remember": "^0.3.0",
+    "http-proxy": "^1.13.2",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
     "jsonwebtoken": "^5.5.4",

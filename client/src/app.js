@@ -13,7 +13,7 @@
 
 
             /* Routes: */
-            'app.display',
+            //'app.display',
             'app.scoreList',
             'app.scoreSingle',
             'app.preQuiz',
@@ -36,7 +36,7 @@
         .run(AppRun)
         .service('socket', socket);
 
-    function AppRun($rootScope, authService, $state, $localStorage, socket) {
+    function AppRun($rootScope, authService, $state, $localStorage) {
         authService.check();
 
         $rootScope.logout = authService.logout;
@@ -73,10 +73,13 @@
 
     }
 
+
     function socket(socketFactory) {
         return socketFactory({
             // 404 Error  ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com')
-            ioSocket: io.connect('http://localhost:9000')
+            ioSocket: io.connect('http://localhost:9000', {
+                path: '/socket.io'
+            })
         });
     }
 

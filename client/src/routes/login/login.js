@@ -27,6 +27,12 @@
         };
         $rootScope.notLogged = 'notLogged';
         vm.submit = submit;
+        vm.submitt = function ($event) {
+
+            if ($event.which === 13) {
+                submit();
+            }
+        };
 
         function submit() {
             $http.post('/api/auth', vm.user).then(function (res) {
