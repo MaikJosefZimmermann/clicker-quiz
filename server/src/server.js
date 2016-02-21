@@ -38,6 +38,31 @@ console.log('Magic happens on port ' + port);
 var Quiz = require('./app/models/quiz');
 // Socket.io Funktionen
 
+var WebSocketServer = require('ws').Server;
+var wss = new WebSocketServer({port: 8000});
+
+wss.on('connection', function connection(ws) {
+    ws.on('message', function incoming(message) {
+        console.log('received: %s', message);
+    });
+    ws.send('something');
+});
+
+/**
+ * Setup proxy
+ * @type {*|exports|module.exports}
+ */
+var httpProxy = require('http-proxy');
+var http = require('http');
+var proxy = new httpProxy.createProxyServer({
+    target: {
+        host: 'localhost',
+        port: 8000
+    }
+});
+
+
+
 
 function getQuiz(quizId, callback) {
 
@@ -224,7 +249,21 @@ io.on('connection', function (socket) {
             console.log(currentQuiz);
             if (currentQuiz) {
                 socket.join(quizId);
-                console.log('User ist im Quiz' + quizId);
+                var rooms = io.sockets.adapter.rooms;
+                console.log("alle räume: ");
+                console.log(rooms);
+                var clientNumber = io.sockets.adapter.rooms[quizId];
+
+                console.log("clientNumber im quiz: ");
+                console.log(clientNumber);
+                console.log("eigene ID: ");
+                console.log(socket.id);
+                console.log("aktuelle quizID: ");
+                console.log(quizId);
+                console.log("übereinstimmung mit 56c0b3a21f392f262721d26a")
+
+
+                console.log('User ist im Quiz ' + quizId);
                 socket.emit('joinedQuiz', currentQuiz.qname);
             } else {
                 console.log('error: Quiz gibt es nicht');
