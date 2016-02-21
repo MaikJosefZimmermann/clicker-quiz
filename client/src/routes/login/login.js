@@ -60,6 +60,7 @@
                 }
             }, function (err) {
                 console.log(err);
+                alert("Error: " + err.statusText);
             });
 
         }
