@@ -155,6 +155,22 @@ io.on('connection', function (socket) {
         socket.emit('startQuiz', quizId);
     };
 
+
+    socket.on('checkQuizPassword', function (id, password) {
+        var vm = this;
+        vm.loginerr = false;
+
+        getQuiz(id, function (currentQuiz) {
+            if (currentQuiz.key == password) {
+                console.log("correkt");
+                socket.emit('waitingRoom', currentQuiz.id);
+            } else {
+                socket.emit('passwordFalse');
+            }
+        })
+
+    });
+
     function countDown(time) {
         timerStop = false;
         abortTimer();
