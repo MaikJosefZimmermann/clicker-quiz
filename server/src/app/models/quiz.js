@@ -21,16 +21,22 @@ var QuizSchema = new Schema({
         tags: String,
         selected: Boolean,
     }],
-    members: [{
-        user: [{
-            question: String,
-            answer: String,
-            result: Boolean,
-            points: Number,
-            time: Date,
-            used: Boolean
-        }]
+
+
+    user: [{
+        id: String,
+        fullName: String,
+        socketId: String,
+        question: String,
+        answer: String,
+        result: Boolean,
+        // redundant?
+        points: Number,
+        time: Date,
+        //
+        used: Boolean
     }],
+
     genre: String,
     used: Boolean,
 

@@ -43,7 +43,7 @@ var wss = new WebSocketServer({port: 8000});
 
 wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message) {
-        console.log('received: %s', message);
+        //     console.log('received: %s', message);
     });
     ws.send('something');
 });
@@ -100,6 +100,7 @@ io.on('connection', function (socket) {
     var currentTime;
     var tid;
 
+
     console.log("Socket.io connection done");
 
     socket.on('answer', function (answer) {
@@ -114,6 +115,7 @@ io.on('connection', function (socket) {
 
     });
     socket.on('requestQuiz', function (quizId) {
+
 
         getQuiz(quizId, function (currentQuiz) {
 
@@ -173,19 +175,26 @@ io.on('connection', function (socket) {
 
     }
 
-    function sendQuiz(currentQuiz) {
-        socket.emit('printQuiz', currentQuiz);
-    };
+
     function startQuiz(quizId) {
         socket.emit('startQuiz', quizId);
+
     };
 
 
     socket.on('checkQuizPassword', function (id, password) {
         var vm = this;
         vm.loginerr = false;
-        console.log(password)
+        console.log(password);
         getQuiz(id, function (currentQuiz) {
+            var quizzz = new Quiz;
+            console.log("QQQQQQQQQQQQQQQQQ:");
+            console.log(quizzz);
+            quizzz.qname = currentQuiz.qname;
+            quizzz.questions = currentQuiz.questions;
+
+            console.log("QQQ befüllt:");
+            console.log(quizzz);
             if (currentQuiz.key == password || currentQuiz.key === '') {
                 console.log("correkt");
                 socket.emit('waitingRoom', currentQuiz.id);
@@ -243,10 +252,10 @@ io.on('connection', function (socket) {
 
     socket.on('joinQuiz', function (quizId, currentUser) {
         console.log('User will ins Quiz' + quizId);
-        console.log("user: " + currentUser);
+        console.log("user: ");
+        console.log(currentUser);
         getQuiz(quizId, function (currentQuiz) {
-            console.log("current Quiz:");
-            console.log(currentQuiz);
+
             if (currentQuiz) {
                 socket.join(quizId);
                 var rooms = io.sockets.adapter.rooms;
@@ -265,6 +274,7 @@ io.on('connection', function (socket) {
 
                 console.log('User ist im Quiz ' + quizId);
                 socket.emit('joinedQuiz', currentQuiz.qname);
+                socket.to(quizId).emit('message', 'Willkommen im Quiz');
             } else {
                 console.log('error: Quiz gibt es nicht');
             }
