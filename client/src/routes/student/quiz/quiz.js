@@ -37,6 +37,7 @@
             });
             socket.on('passwordFalse', function () {
                 vm.loginerr = true;
+                console.log("Falsches Passwort");
             });
 
         };
