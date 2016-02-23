@@ -36,6 +36,7 @@ console.log('Magic happens on port ' + port);
 
 
 var Quiz = require('./app/models/quiz');
+
 // Socket.io Funktionen
 
 function getQuiz(quizId, callback) {
@@ -72,9 +73,64 @@ io.on('connection', function (socket) {
     var result;
     var currentTime;
     var tid;
+    var currentQuiz = new Quiz;
+
 
 
     console.log("Socket.io connection done");
+
+
+    socket.on('joinQuiz', function (quiz, currentUser) {
+
+        currentQuiz = quiz;
+        // console.log("QQQQQQQQQQQQQQQQQ:");
+        //console.log(currentQuiz);
+        //console.log(currentUser);
+
+        //console.log("QQQ befüllt:");
+        // console.log(currentQuiz);
+
+        if (currentQuiz.key == quiz.password) {
+            console.log("in der IF");
+            socket.join(quiz._id);
+            var rooms = io.sockets.adapter.rooms;
+            console.log("alle räume: ");
+            console.log(rooms);
+            // var clientNumber = io.sockets.adapter.rooms[quizId];
+            //  console.log("ClientNumbers from currentRoom");
+            //  console.log(clientNumber);
+
+
+            console.log("eigene socketID: ");
+            console.log(socket.id);
+            console.log('User ist im Quiz ' + quiz._id);
+            // User in Warteraum schicken
+            socket.emit('waitingRoom', currentQuiz.qname);
+
+            //socket.emit('joinedQuiz', currentQuiz.qname);
+
+
+        } else {
+
+            socket.emit('passwordFalse');
+        }
+
+        socket.on('ttt', function () {
+            console.log("TTTTTT");
+            io.to(quiz._id).emit('message');
+            // socket.to(quiz._id).emit('message');
+
+
+        });
+
+        socket.on('requestQuestion', function () {
+            getQuestion();
+
+
+        });
+
+
+    });
 
     socket.on('answer', function (answer, quiz) {
         console.log(quiz);
@@ -89,8 +145,6 @@ io.on('connection', function (socket) {
     });
     socket.on('start', function (id) {
         startQuiz(id);
-
-
     });
 
 
@@ -106,11 +160,7 @@ io.on('connection', function (socket) {
     });
 
 
-    socket.on('requestQuiz', function (quizId) {
-
-
-        getQuiz(quizId, function (currentQuiz) {
-
+    socket.on('requestQuiz', function () {
             counter = 0;
             sendQuiz(currentQuiz);
             quizData = currentQuiz;
@@ -119,10 +169,10 @@ io.on('connection', function (socket) {
 
         });
         function sendQuiz(currentQuiz) {
-            socket.emit('printQuiz', currentQuiz);
+            //   socket.emit('printQuiz', currentQuiz);
         };
 
-    });
+
     function saveAnswer(answer) {
 
         if (result == answer) {
@@ -135,8 +185,8 @@ io.on('connection', function (socket) {
         }
     }
     function getQuestion() {
-        if (counter < quizData.questions.length) {
-            question = quizData.questions[counter];
+        if (counter < currentQuiz.questions.length) {
+            var question = currentQuiz.questions[counter];
             result = question.answer1;
 
             var answers = [question.answer1, question.answer2, question.answer3, question.answer4];
@@ -158,7 +208,7 @@ io.on('connection', function (socket) {
             sendQuestion(currentQuestion);
             counter++;
         } else {
-            if (counter == quizData.questions.length) {
+            if (counter == currentQuiz.questions.length) {
                 console.log("Quiz fertig");
                 socket.emit('endQuiz');
                 timerStop = true;
@@ -173,66 +223,6 @@ io.on('connection', function (socket) {
         socket.emit('startQuiz', quizId);
 
     };
-
-
-    socket.on('joinQuiz', function (quizz, currentUser) {
-
-
-        getQuiz(quizz._id, function (quiz) {
-            var currentQuiz = new Quiz;
-            // console.log("QQQQQQQQQQQQQQQQQ:");
-            //console.log(currentQuiz);
-            //console.log(currentUser);
-            currentQuiz.qname = quiz.qname;
-            currentQuiz.questions = quiz.questions;
-            //console.log("QQQ befüllt:");
-            // console.log(currentQuiz);
-            console.log("password");
-            console.log(quizz.password);
-            console.log("richtiges pw");
-            console.log(quiz.key);
-
-            if (quiz.key == quizz.password) {
-                console.log("in der IF");
-                socket.join(quiz._id);
-                var rooms = io.sockets.adapter.rooms;
-                console.log("alle räume: ");
-                console.log(rooms);
-                // var clientNumber = io.sockets.adapter.rooms[quizId];
-                //  console.log("ClientNumbers from currentRoom");
-                //  console.log(clientNumber);
-
-
-                console.log("eigene socketID: ");
-                console.log(socket.id);
-                console.log('User ist im Quiz ' + quiz._id);
-                // User in Warteraum schicken
-                socket.emit('waitingRoom', currentQuiz.qname);
-
-                //socket.emit('joinedQuiz', currentQuiz.qname);
-
-
-
-            } else {
-
-                socket.emit('passwordFalse');
-            }
-
-            socket.on('ttt', function () {
-                console.log("TTTTTT");
-                io.to(quiz._id).emit('message');
-                // socket.to(quiz._id).emit('message');
-
-
-            });
-
-        });
-
-
-
-
-    });
-
 
     function sendQuestion(question) {
 

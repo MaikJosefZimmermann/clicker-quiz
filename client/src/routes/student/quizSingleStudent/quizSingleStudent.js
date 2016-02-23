@@ -27,9 +27,7 @@
         vm._id = 0;
 
         vm.quizSingleStudent = true;
-
-
-        socket.emit('requestQuiz', $stateParams.id);
+        socket.emit('requestQuiz');
 
 
 
