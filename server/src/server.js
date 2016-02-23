@@ -10,7 +10,7 @@ var express = require('express'),
     io = require('socket.io')(server);
 mongoose.connect('mongodb://localhost:27018/quiz');
 var corsOptions = {
-    "origin": "",
+    "origin": "http://localhost:3000",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     credentials: true
