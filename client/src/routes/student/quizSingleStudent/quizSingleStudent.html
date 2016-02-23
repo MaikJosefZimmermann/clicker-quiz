@@ -8,7 +8,8 @@
             <md-card>
                 <section layout="row" layout-sm="column" ng-repeat="answer in vm.question.answers"
                          layout-align="center" layout-wrap>
-                    <md-button class="answerButtons" ng-click="vm.answerButton(answer)" name="answer" class="md-raised">
+                    <md-button class="answerButtons" ng-click="vm.answerButton(answer, vm.quiz)" name="answer"
+                               class="md-raised">
                         {{answer}}
                     </md-button>
 

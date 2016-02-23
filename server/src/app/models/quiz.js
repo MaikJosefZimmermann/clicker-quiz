@@ -19,7 +19,7 @@ var QuizSchema = new Schema({
         time: Number,
         subject: String,
         tags: String,
-        selected: Boolean,
+        selected: Boolean
     }],
 
 
