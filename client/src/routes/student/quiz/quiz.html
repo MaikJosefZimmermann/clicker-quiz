@@ -16,7 +16,7 @@
                                 <p>Dauer: {{quiz.TiSum}} </p>  
                                 <md-input-container ng-if="quiz.key">
                                     <label>Einschreibeschlüssel</label>
-                                    <input ng-model="vm.passwort" name="passwort" required type="password">
+                                    <input ng-model="quiz.password" name="passwort" required type="password">
                                     <p ng-if="quiz.key" ng-show="vm.loginerr" style="color: red">
                                         Falsches Passwort
                                     </p>
@@ -26,7 +26,7 @@
                                 
                             <md-card-actions layout="row" layout-align="space-between center">   <p>Startet in:
                                 {{getDate(q.quiz.start)}}</p>  
-                                <md-button class="md-raised md-primary"   ng-click="goQuiz(quiz._id)"
+                                <md-button class="md-raised md-primary"   ng-click="vm.goQuiz(quiz)"
                                            style="background-color: #3EB2AC">
                                     Beitreten  
                                 </md-button>
@@ -39,43 +39,13 @@
                             
                     </div>
                             
-                    <div ng-repeat="q in quizes"   
-                         style="background-color: #f5f5f5;   border: 1px solid #B5B5B5; padding: 7px;">  <span 
-                        style="font-weight: bold;">{{q.qname}}</span>  <span  style="margin-left: 5px;">Bearbeitet: <i
-                                class="fa fa-calendar-o"></i> {{getDate(q.quiz.update_date)}}</span>   <span
-                                style="margin-left: 5px;"><i class="fa fa-question-circle"></i> {{q.question.length}} Fragen</span>  
-                        <span style="margin-left: 5px;"><i class="fa fa-clock-o"></i> Dauer: {{q.quiz.timelimit}}</span>   
-                        <span style="float: right; margin-right: 5px;"><a ng-click="goQSingle(q._id)">modify</a></span>  
-                        <button>  <span style="float: right; margin-right: 5px;"><a ng-click="goQSingle(quiz._id)">Teilnehmen</a></span>  
-                        </button>
-                            <span
-                                style="float: right; margin-right: 5px;"><a  ng-click="goQSingle(quiz._id)">view</a></span> 
-                        <span  style="float: right; margin-right: 5px;">Startet in: <i class="fa fa-calendar-o"></i>
-                        {{getDate(q.quiz.start)}}</span>  
-                    </div>
+
                          
                 </md-content>
                     
             </div>
                   
-            <md-subheader class="md-no-sticky" ng-if="new">  quiz </md-subheader>
-                 
-            <md-content flex layout-padding>    
-                <div layout="" layout-sm="column">    <label style="text-align:center"  >{{ Ctrl.question }}</label>    
-                </div>
-                     
-                <div layout="" layout-sm="column">                     <!--Antwort Button generieren-->   
-                    <button ng-model="Ctrl.answers"   ng-repeat="a in Ctrl.answers"   ng-click="Ctrl.ant()">{{ a.answer 
-                        }}  
-                    </button>
-                        
-                    <!--<button ng-model="Ctrl.answers"   ng-click="Ctrl.ant()">test </button>-->
-                        
-                </div>
-                     
-                <div class="md-list-item-text" ng-repeat="quiz in quizes">  <h3>{{quiz.qname}}</h3></div>
-                      
-            </md-content>
+
                 
         </div>
              

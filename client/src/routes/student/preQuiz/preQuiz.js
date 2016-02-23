@@ -14,35 +14,35 @@
         // inject $stateProvider into config object
         $stateProvider
             .state('preQuiz', {                                        // declare list view
-                url: '/preQuiz/:id',                                       // set url
+                url: '/preQuiz/:qname',                                       // set url
                 templateUrl: 'routes/student/preQuiz/preQuiz.html',           // defines the HTML template
                 controller: 'preQuizCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
-    function preQuizCtrl($stateParams, $localStorage, $state, $timeout, socket) {// our controller for this view
+    function preQuizCtrl($stateParams, $localStorage, $state, socket) {// our controller for this view
         var vm = this;
-        vm.id = $stateParams.id;
-        console.log($localStorage.user);
-        console.log("warteraum");
-        socket.emit('joinQuiz', $stateParams.id, $localStorage);
-        socket.on('joinedQuiz', function (quiz) {
-            vm.quiz = quiz;
-            console.log('You just joined quiz ' + quiz);
+        vm.qname = $stateParams.qname;
 
-            console.log("Meine socketID " + socket.id);
-        });
+        //   vm.quiz = $stateParams.currentQuiz;
+
+        // socket.emit('joinQuiz', $stateParams.id, $localStorage);
+
         socket.on('startQuiz', function (id) {
             $state.go('quizSingleStudent', {id: id});
         });
-        socket.on('message', function (m) {
-            console.log("in der message");
-            console.log(m);
+        socket.on('message', function () {
+            console.log("BROADCAST an den Raum");
+
         });
 
         vm.goQuiz = function (id) {
             socket.emit('start', id);
 
+        }
+
+        vm.test = function () {
+            socket.emit('ttt');
         }
     }
 })();

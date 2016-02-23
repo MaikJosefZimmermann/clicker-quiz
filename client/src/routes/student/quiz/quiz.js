@@ -17,23 +17,21 @@
     }
 
 
-    function QuizCtrl($scope, $http, $state, socket) {// our controller for this view
+    function QuizCtrl($state, socket, $localStorage) {// our controller for this view
         var vm = this;
-        vm.quizes;
-        $http({                                                     // get all users from node server
-            method: 'GET',
-            url: '/api/quizes'
-        }).then(function successCallback(response) {
-            vm.quizes = response.data;                           // (async) when receive the response load the data into $scope.users
-            timeSum(vm.quizes);
+
+        socket.emit('getQuizzes');
+        socket.on('printQuizzes', function (quizzes) {
+            vm.quizes = quizzes;
         });
 
-        $scope.goQuiz = function (id) {
 
-            var password = vm.passwort;
-            socket.emit('checkQuizPassword', id, password);
-            socket.on('waitingRoom', function (id) {
-                $state.go('preQuiz', {id: id});
+        vm.goQuiz = function (quiz) {
+            socket.emit('joinQuiz', quiz, $localStorage);
+            socket.on('waitingRoom', function (qname) {
+
+
+                $state.go('preQuiz', {qname: qname});
             });
             socket.on('passwordFalse', function () {
                 vm.loginerr = true;
@@ -42,70 +40,5 @@
 
         };
 
-        /* var a0 = 'antwort1', a1 = 'antwort2', a2 = 'antwort3', a3 = 'antwort4';
-         var q0 = 'frage1', q1 = 'frage2';
-
-
-         vm.question = q0;
-
-         vm.answers = [
-         {'id': 0, answer: a0},
-         {'id': 1, answer: a1},
-         {'id': 2, answer: a2},
-         {'id': 3, answer: a3}
-
-         ];
-
-         vm.ant = ant;
-
-         function ant() {
-
-         console.log('test1');
-
-         vm.question = q1;
-         }*/
-
-        function timeSum(quizes) {
-
-
-            angular.forEach(quizes, function (quiz) {
-                var total = 0;
-                for (var i = 0; i < quiz.questions.length; i++) {
-                    total = total + quiz.questions[i].time;
-
-                }
-                var min = total / 60;
-                var sek = total % 60;
-
-                var str = min.toString();
-                str = str.substring(0, str.indexOf('.'));
-
-
-                /*console.log("Minuten:");
-                 console.log(min);
-                 console.log("Sekunden:");
-                 console.log(sek);*/
-                quiz.TiSum = str + ' Minuten ' + sek + ' Sekunden ';
-
-
-            });
-        }
-
-        /*$scope.answer = function (btn) {
-
-
-         $scope.frage = btn;
-         if (btn == '0') {
-         $scope.frage = 'a=0';
-         }
-         if (btn == '1') {
-         $scope.frage = 'a=1';
-         }
-
-         if (a == '2') {
-         $scope.frage = 'ok';
-         }
-
-         }*/
     }
 })();

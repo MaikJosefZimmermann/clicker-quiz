@@ -21,15 +21,13 @@
             });
     }
 
-    function startCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
+    function startCtrl($stateParams, $state, $timeout, socket) {// our controller for this view
         var vm = this;
         var quizData;
         vm._id = 0;
-        console.log("startCtrl");
-        vm.quizSingleStudent = true;
 
-        socket.emit('joinQuiz', $stateParams.id);
-        socket.emit('requestQuiz', $stateParams.id);
+        vm.quizSingleStudent = true;
+        socket.emit('requestQuiz');
 
 
 
@@ -38,11 +36,6 @@
             quizData = vm.quiz.questions;
         });
 
-
-        function join(room) {
-            console.log(room);
-            socket.emit('joinRoom', room);
-        }
 
         socket.on('endQuiz', function () {
             console.log("END");
@@ -77,10 +70,9 @@
         });
 
 
-
-        vm.answerButton = function (answer) {
+        vm.answerButton = function (answer, quiz) {
             console.log(answer);
-            socket.emit('answer', answer);
+            socket.emit('answer', answer, quiz);
         };
 
 
