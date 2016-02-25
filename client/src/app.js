@@ -78,8 +78,8 @@
     function socket(socketFactory, $localStorage) {
         return socketFactory({
             // Amazon Server  ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com:9000')
-            ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com:9000', {
-                path: '/socket.io',
+            ioSocket: io.connect('', {
+                path: '/socket.io'
 
             })
         });
