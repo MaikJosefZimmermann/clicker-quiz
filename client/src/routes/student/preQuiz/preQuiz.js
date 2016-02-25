@@ -29,6 +29,7 @@
         // socket.emit('joinQuiz', $stateParams.id, $localStorage);
 
         socket.on('startQuiz', function (id) {
+            console.log("START");
             $state.go('quizSingleStudent', {id: id});
         });
         socket.on('message', function () {
