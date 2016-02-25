@@ -28,19 +28,21 @@
         </div>
         <!--TODO datetimepicker einfügen -->
         <div layout="" layout-sm="column">
-        <h4> Startzeitpunkt festlegen</h4>
-            <md-datepicker ng-model="vm.quiz.myDate" md-placeholder="Enter date"></md-datepicker>
-                <md-select flex="5" ng-model="vm.quiz.timeHour">
-                    <md-option ng-repeat="hour in vm.hours" value="{{hour.abbrev}}">
-                        {{hour.abbrev}}
-                    </md-option>
-                </md-select>
+            <h4> Startzeitpunkt festlegen</h4>
+            <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+            <span flex="5"></span>
+            <md-select ng-model="vm.quiz.timeHour" flex="5">
+                <md-option ng-repeat="hour in vm.hours" value="{{hour.abbrev}}">
+                    {{hour.abbrev}}
+                </md-option>
+            </md-select>
             <md-select ng-model="vm.quiz.timeMin" flex="5">
                 <md-option ng-repeat="min in vm.mins" value="{{min.abbrev}}">
                     {{min.abbrev}}
                 </md-option>
             </md-select>
-            </div>
+        </div>
+
 
         <div layout="" layout-sm="column">
                 <md-input-container flex="">

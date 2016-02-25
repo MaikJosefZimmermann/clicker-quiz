@@ -30,7 +30,7 @@
     }
 
 
-    function qEditCtrl($stateParams, $http, $state, $mdDialog) {
+    function qEditCtrl($stateParams, $http, $state, $mdDialog, $scope) {
         var vm = this;
 
         //$scope.myDate = new Date();
@@ -39,8 +39,8 @@
         //vm.quiz.timeHour = '';
         //vm.quiz.timeMin = '';
         vm.hours = ('00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 ' +
-        '19 20 21 22' +
-        ' 23').split(' ').map(function(hour) { return {abbrev: hour};
+        '19 20 21 22 ' +
+        '23').split(' ').map(function(hour) { return {abbrev: hour};
             });
 
         vm.mins = ('00 05 10 15 20 25 30 35 40 45 50 ' +
@@ -105,7 +105,7 @@
                 qname: vm.quiz.qname,
                 questions: ergebnis,
                 key: vm.quiz.key,
-                myDate: vm.quiz.myDate,
+                myDate: $scope.myDate,
                 timeHour: vm.quiz.timeHour,
                 timeMin: vm.quiz.timeMin
             };
@@ -182,7 +182,7 @@
 
 
 // var vm;
-    function qAddCtrl($http, $mdDialog) {
+    function qAddCtrl($http, $mdDialog, $scope) {
 
         var vm = this;
         vm.selected = [];
@@ -265,7 +265,7 @@
                 qname: vm.quiz.qname,
                 questions: ergebnis,
                 key: vm.quiz.key,
-                myDate: vm.quiz.myDate,
+                myDate: $scope.myDate,
                 timeHour: vm.quiz.timeHour,
                 timeMin: vm.quiz.timeMin
             };
