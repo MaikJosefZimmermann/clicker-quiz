@@ -127,6 +127,7 @@ io.on('connection', function (socket) {
 
     });
     socket.on('start', function (id) {
+        console.log("START");
         socket.emit('startQuiz', id);
     });
 
@@ -202,18 +203,6 @@ io.on('connection', function (socket) {
         }
     });
 
-
-
-    function startQuiz(quizId) {
-        //
-
-    }
-
-    function sendQuestion(question) {
-
-        //   socket.emit('printQuestion', question);
-        //  socket.emit('printTime', question.time);
-    }
 
     socket.on('countDown', function (question) {
         console.log(socket.id);
