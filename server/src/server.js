@@ -34,7 +34,15 @@ app.use('/api/questions', require('./app/routes/question.js'));
 
 console.log('Magic happens on port ' + port);
 
-
+io.use(function (socket, next) {
+    console.log("Query: ", socket.handshake.query);
+    // return the result of next() to accept the connection.
+    if (socket.handshake.query.foo == "bar") {
+        return next();
+    }
+    // call next() with an Error if you need to reject the connection.
+    next(new Error('Authentication error'));
+});
 var Quiz = require('./app/models/quiz');
 
 // Socket.io Funktionen
@@ -66,6 +74,7 @@ function shuffle(array) {
 }
 
 io.on('connection', function (socket) {
+
     var quizData;
     var counter;
     var question;
@@ -153,7 +162,7 @@ io.on('connection', function (socket) {
             if (err) {
                 res.send(err);
             }
-            console.log(quizes);
+            //   console.log(quizes);
             socket.emit('printQuizzes', quizes);
         });
 

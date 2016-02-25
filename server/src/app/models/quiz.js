@@ -38,7 +38,7 @@ var QuizSchema = new Schema({
     }],
 
     genre: String,
-    used: Boolean,
+    used: Boolean
 
 
 });
