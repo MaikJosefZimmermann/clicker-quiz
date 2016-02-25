@@ -1,0 +1,26 @@
+<div>
+    <md-subheader class="md-no-sticky">
+        <h1 style="text-align: center">Auswertung von {{vm.quiz.qname}} Quiz </h1></md-subheader>
+
+
+    <md-list-item class="md-3-line md-long-text">
+
+        <div class="" layout-align="center center">
+            <p>Anzahl der Fragen: {{quiz.qname}}</p>
+            <p>Anzahl der richtigen Antworten:  </p>
+            <p>Anzahl der falschen Antworten:  </p>
+            <p>erreichte Punktzahl: </p>
+            <p>Durchführungsdatum:</p>
+        </div>
+
+    </md-list-item>
+
+    <md-list-item class="md-5-line md-long-text" ng-repet="quiz in vm.quizes| filter:searchBox">
+
+
+    </md-list-item>
+
+</div>
+
+
+</div>

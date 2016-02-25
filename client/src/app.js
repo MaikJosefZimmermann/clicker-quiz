@@ -29,6 +29,7 @@
             'app.quizListLecturer',
             'app.quizList',
             'app.quizSingleStudent',
+            'app.scoreStudent',
             'ngStorage'
 
         ])

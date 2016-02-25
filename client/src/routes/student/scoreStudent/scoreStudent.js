@@ -1,27 +1,27 @@
 /**
- * Created by maikzimmermann on 18.02.16.
+ * Created by maikzimmermann on 11.02.16.
  */
 
 (function () {
     'use strict';
 
     angular
-        .module('app.scoreSingle', [])                                     // creates new module
+        .module('app.scoreStudent', [])                                     // creates new module
         .config(config)                                             // config function for our module app.list
-        .controller('scoreSingleCtrl', scoreSingleCtrl);                          // bind ListCtrl to module
+        .controller('scoreStudentCtrl', scoreStudentCtrl);                          // bind ListCtrl to module
 
 
     function config($stateProvider) {
         // inject $stateProvider into config object
         $stateProvider
-            .state('scoreSingle', {                                        // declare list view
-                url: '/scoreSingle/:id',                                       // set url
-                templateUrl: 'routes/student/scoreSingle/scoreSingle.html',           // defines the HTML template
-                controller: 'scoreSingleCtrl as vm'                              // this view shall use the ListCtrl previously declared.
+            .state('scoreStudent', {                                        // declare list view
+                url: '/scoreStudent/:id',                                       // set url
+                templateUrl: 'routes/student/scoreStudent/scoreStudent.html',           // defines the HTML template
+                controller: 'scoreStudentCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
-    function scoreSingleCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
+    function scoreStudentCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
         var vm = this;
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
