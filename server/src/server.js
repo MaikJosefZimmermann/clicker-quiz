@@ -15,7 +15,7 @@ var corsOptions = {
     "preflightContinue": false,
     credentials: true
 };
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 server.listen(port, function () {
