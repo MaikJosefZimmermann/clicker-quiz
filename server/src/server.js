@@ -56,8 +56,9 @@ function shuffle(array) {
 io.on('connection', function (socket) {
 
     var quizData;
-    var counter;
+    var counter = 0;
     var timerStop = false;
+    var correct;
     var result;
     var currentTime;
     var tid;
@@ -126,7 +127,7 @@ io.on('connection', function (socket) {
 
     });
     socket.on('start', function (id) {
-        startQuiz(id);
+        socket.emit('startQuiz', id);
     });
 
 
@@ -143,21 +144,20 @@ io.on('connection', function (socket) {
 
 
     socket.on('requestQuiz', function () {
+        console.log(socket.id);
             counter = 0;
-            sendQuiz(currentQuiz);
+        socket.emit('printQuiz', currentQuiz);
             quizData = currentQuiz;
             shuffle(quizData.questions);
 
 
         });
-        function sendQuiz(currentQuiz) {
-            //   socket.emit('printQuiz', currentQuiz);
-        };
+
 
 
     function saveAnswer(answer) {
 
-        if (result == answer) {
+        if (correct == answer) {
             console.log("richtig");
             socket.emit('result', result = true);
 
@@ -168,9 +168,10 @@ io.on('connection', function (socket) {
     }
 
     socket.on('nextQuestion', function () {
+        console.log(socket.id);
         if (counter < currentQuiz.questions.length) {
             var question = currentQuiz.questions[counter];
-            result = question.answer1;
+            correct = question.answer1;
 
             var answers = [question.answer1, question.answer2, question.answer3, question.answer4];
             shuffle(answers);
@@ -188,7 +189,8 @@ io.on('connection', function (socket) {
                 time: question.time
             };
 
-            sendQuestion(currentQuestion);
+            socket.emit('printQuestion', currentQuestion);
+            //socket.emit('printTime', question.time);
             counter++;
         } else {
             if (counter == currentQuiz.questions.length) {
@@ -203,7 +205,7 @@ io.on('connection', function (socket) {
 
 
     function startQuiz(quizId) {
-        //  socket.emit('startQuiz', quizId);
+        //
 
     }
 
@@ -214,6 +216,7 @@ io.on('connection', function (socket) {
     }
 
     socket.on('countDown', function (question) {
+        console.log(socket.id);
 
 
         timerStop = false;
