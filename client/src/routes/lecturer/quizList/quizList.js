@@ -15,7 +15,7 @@
             });
     }
 
-    function quizListCtrl($state, $http) {                      // our controller for this view
+    function quizListCtrl($state, $http, socket) {                      // our controller for this view
         var vm = this;
         timeSum(vm.quizes);
 
@@ -40,6 +40,7 @@
         };
 
         vm.goScoreSingle = function (id) {                           // scope function which calls a single state
+            socket.emit('requestLecturerResult', id);
             $state.go('scoreSingle', {id: id});
             console.log("scoreSingle " + id)
         };
