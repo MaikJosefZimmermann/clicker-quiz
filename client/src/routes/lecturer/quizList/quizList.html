@@ -14,7 +14,7 @@
             <h3>Quizname: {{quiz.qname}}</h3>
             <p>Anzahl der Fragen: {{quiz.questions.length}} </p>
             <p>Dauer: {{quiz.TiSum}} </p>
-            <p>Startzeitpunkt: {{quiz.myDate | date: "dd-MM-yyyy"}} </p>
+            <p>Startzeitpunkt: {{quiz.myDate | date: "dd.MM.yyyy HH:mm"}} Uhr </p>
 
             <md-button class="md-raised md-primary" ng-if="!quiz.used" ng-click="">Starten</md-button>
             <md-button class="md-raised md-primary" ng-if="!quiz.used" ng-click="vm.goScoreSingle(quiz._id)">Auswertung

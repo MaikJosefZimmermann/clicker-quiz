@@ -24,8 +24,8 @@
                                  
                             </md-card-content>
                                 
-                            <md-card-actions layout="row" layout-align="space-between center">   <p>Startet in:
-                                {{getDate(q.quiz.start)}}</p>  
+                            <md-card-actions layout="row" layout-align="space-between center">  
+                                <p>Startzeitpunkt: {{quiz.myDate | date: "dd.MM.yyyy HH:mm"}} Uhr </p>
                                 <md-button class="md-raised md-primary"   ng-click="vm.goQuiz(quiz)"
                                            style="background-color: #3EB2AC">
                                     Beitreten  

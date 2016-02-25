@@ -21,8 +21,6 @@ router.route('/')
         quiz.time = req.body.time;
         quiz.used = req.body.used;
         quiz.myDate = req.body.myDate;
-        quiz.timeHour = req.body.timeHour;
-        quiz.timeMin = req.body.timeMin;
         quiz.user = req.body.user;
 
 
@@ -77,8 +75,6 @@ router.route('/:quizId')
             quiz.time = req.body.time;
             quiz.used = req.body.used;
             quiz.myDate = req.body.myDate;
-            quiz.timeHour = req.body.timeHour;
-            quiz.timeMin = req.body.timeMin;
             quiz.user = req.body.user;
 
             quiz.save(function (err) {
