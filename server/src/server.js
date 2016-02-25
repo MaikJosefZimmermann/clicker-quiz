@@ -42,7 +42,8 @@ io.use(function (socket, next) {
 });
 
 
-var Quiz = require('./app/models/quiz');
+var Quiz = require('./app/models/quiz'),
+    Answer = require('./app/models/answer');
 
 // Socket.io Funktionen
 
@@ -63,7 +64,7 @@ io.on('connection', function (socket) {
     var currentTime;
     var tid;
     var currentQuiz = new Quiz;
-
+    var answ;
 
 
     console.log("Socket.io connection done");
@@ -79,7 +80,7 @@ io.on('connection', function (socket) {
         //console.log("QQQ befüllt:");
         // console.log(currentQuiz);
 
-        if (currentQuiz.key == quiz.password) {
+        if (currentQuiz.key === quiz.password) {
             console.log("in der IF");
             socket.join(quiz._id);
             var rooms = io.sockets.adapter.rooms;
@@ -115,12 +116,15 @@ io.on('connection', function (socket) {
 
     });
 
-    socket.on('answer', function (answer, quiz) {
-        console.log(quiz);
-        //  saveAnswer(answer);
-        // console.log(answer);
-        // console.log("question");
-        // console.log(question);
+    socket.on('answer', function (answer, question, user) {
+
+        console.log("NEUNEUNEU");
+        console.log(answer);
+        console.log(question);
+        console.log("CurrenQuiz");
+        console.log(currentQuiz);
+
+        saveAnswer(answer, question, user);
 
 
 
@@ -155,18 +159,83 @@ io.on('connection', function (socket) {
         });
 
 
+    function saveAnswer(ans, ques, user) {
+        console.log("ANSWER");
+        console.log(ans);
+        console.log("FRAGE Question.question");
+        console.log(ques);
+        var questionName = ques.question,
+            questionPoints;
 
-    function saveAnswer(answer) {
-
-        if (correct == answer) {
+        if (result === ans) {
             console.log("richtig");
             socket.emit('result', result = true);
-
+            questionPoints = ques.points;
         } else {
             console.log("falsch");
             socket.emit('result', result = false);
+            questionPoints = 0;
         }
+
+        var a = new Answer({
+            question: questionName,
+            answer: ans,
+            result: result,
+            userId: String,
+            kurzel: user,
+            quizId: currentQuiz._id,
+            points: questionPoints,
+            delete: Boolean
+            //time: Date
+        });
+
+        //Answer.update(a);
+        console.log("DAAAAAAATAA");
+
+        answ = a;
+
+        a.save(function (err, a) {
+            console.log("SAVEEEEEE");
+            if (err) return console.error(err);
+            console.dir(a);
+        });
+        console.log("ANSWEEEERER");
+        //console.log(Answer)
+        return answ;
     }
+
+    socket.on('requestLecturerResult', function (id) {
+        console.log("im Socket requestLecturerResult");
+        /*Answer.find({ quizId: id }, function(err, answers) {
+         if (err) return console.error(err);
+         console.log("!!!!!!!!!!!");
+         console.dir(answers);
+         return answers
+         });*/
+        Answer.aggregate([
+            {
+                $match: {
+                    quizId: id,
+                    kurzel: "mz059"
+                }
+            },
+            {
+                $group: {
+                    _id: "quizId",
+                    sumPoints: {$sum: "$points"}
+                }
+            }
+        ], function (err, result) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log("RESULT");
+            console.log(result);
+            socket.emit('UserSumPoints', result);
+        });
+
+    });
 
     socket.on('nextQuestion', function () {
         console.log(socket.id);
@@ -194,7 +263,7 @@ io.on('connection', function (socket) {
             //socket.emit('printTime', question.time);
             counter++;
         } else {
-            if (counter == currentQuiz.questions.length) {
+            if (counter === currentQuiz.questions.length) {
                 console.log("Quiz fertig");
                 socket.emit('endQuiz');
                 timerStop = true;
@@ -219,7 +288,7 @@ io.on('connection', function (socket) {
 
 
         function decrease() {
-            if (currentTime == 0 || timerStop == true) {
+            if (currentTime === 0 || timerStop === true) {
 
                 socket.emit('printTime', currentTime);
                 saveAnswer(null);

@@ -21,7 +21,7 @@
             });
     }
 
-    function startCtrl($stateParams, $state, $timeout, socket) {// our controller for this view
+    function startCtrl($stateParams, $state, $timeout, socket, $localStorage) {// our controller for this view
         var vm = this;
         var quizData;
         vm._id = 0;
@@ -71,9 +71,11 @@
         });
 
 
-        vm.answerButton = function (answer, quiz) {
+        vm.answerButton = function (answer, question) {
+            var user = $localStorage.user;
             console.log(answer);
-            socket.emit('answer', answer, quiz);
+            console.log(user);
+            socket.emit('answer', answer, question, user);
             socket.emit('nextQuestion');
         };
 

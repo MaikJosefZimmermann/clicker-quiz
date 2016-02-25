@@ -31,5 +31,12 @@
             console.log(vm.quiz)
         });
 
+        socket.on('UserSumPoints', function (result) {
+            console.log("UserSumPoints");
+            console.log(result);
+            vm.result = result;
+
+        });
+
     }
 })();
