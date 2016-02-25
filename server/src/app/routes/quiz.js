@@ -40,6 +40,7 @@ router.route('/')
 
     .get(function (req, res) {
         Quiz.find(function (err, quizes) {
+            console.log("quizes: "+quizes);
             if (err) {
                 res.send(err);
             }

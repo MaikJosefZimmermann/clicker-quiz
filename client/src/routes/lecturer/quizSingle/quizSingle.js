@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.quizSingle', ['ngMaterial'])                   // creates new module
+        .module('app.quizSingle', ['ngMaterial', 'ngMaterialDatePicker','mdPickers'])                   // creates new module
         .config(config)                             // config function for our module app.single
         .controller('qEditCtrl', qEditCtrl)           // bind EditCtrl to module
         .controller('qAddCtrl', qAddCtrl)
@@ -30,9 +30,10 @@
     }
 
 
-    function qEditCtrl($stateParams, $http, $state, $mdDialog, $scope) {
+    function qEditCtrl($stateParams, $http, $state, $mdDialog) {
         var vm = this;
 
+        //vm.quiz.startingTime = "";
         //$scope.myDate = new Date();
         //console.log($scope.myDate);
 
@@ -46,6 +47,7 @@
         vm.mins = ('00 05 10 15 20 25 30 35 40 45 50 ' +
         '55').split(' ').map(function(min) { return {abbrev: min};
         });
+
 
 
         vm.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
@@ -64,6 +66,9 @@
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             vm.quiz = response.data;                               // load the response data to the scope.user obj
+
+            vm.quiz.dateTime = new Date(vm.quiz.myDate);
+            console.log(vm.quiz.myDate)
 
         });
         var currentQuestion = [];
@@ -105,11 +110,10 @@
                 qname: vm.quiz.qname,
                 questions: ergebnis,
                 key: vm.quiz.key,
-                myDate: $scope.myDate,
+                myDate: vm.quiz.dateTime,
                 timeHour: vm.quiz.timeHour,
                 timeMin: vm.quiz.timeMin
             };
-
 
             console.log(data);
             // for new users we only need the save function
@@ -265,7 +269,7 @@
                 qname: vm.quiz.qname,
                 questions: ergebnis,
                 key: vm.quiz.key,
-                myDate: $scope.myDate,
+                myDate: vm.quiz.dateTime,
                 timeHour: vm.quiz.timeHour,
                 timeMin: vm.quiz.timeMin
             };
