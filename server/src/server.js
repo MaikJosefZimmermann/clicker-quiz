@@ -35,38 +35,18 @@ app.use('/api/questions', require('./app/routes/question.js'));
 console.log('Magic happens on port ' + port);
 
 io.use(function (socket, next) {
-    console.log("Query: ", socket.handshake.query);
-    // return the result of next() to accept the connection.
-    if (socket.handshake.query.foo == "bar") {
-        return next();
-    }
-    // call next() with an Error if you need to reject the connection.
-    next(new Error('Authentication error'));
+    var handshake = socket.handshake;
+    console.log(handshake.query);
+    console.log(handshake.extra);
+    next();
 });
+
+
 var Quiz = require('./app/models/quiz');
 
 // Socket.io Funktionen
 
-function getQuiz(quizId, callback) {
-
-
-    Quiz.findById(quizId, function (err, quiz) {
-
-        if (err) {
-            return err;
-        }
-
-    }).then(function successCallback(response) {
-        if (response) {
-
-            callback(response);
-
-        }
-
-    });
-
-}
-
+// Fragen / Antworten mischen
 function shuffle(array) {
 
     for (var j, x, i = array.length; i; j = Math.floor(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
@@ -77,7 +57,6 @@ io.on('connection', function (socket) {
 
     var quizData;
     var counter;
-    var question;
     var timerStop = false;
     var result;
     var currentTime;
@@ -132,12 +111,6 @@ io.on('connection', function (socket) {
 
         });
 
-        socket.on('requestQuestion', function () {
-            getQuestion();
-
-
-        });
-
 
     });
 
@@ -149,7 +122,7 @@ io.on('connection', function (socket) {
         // console.log(question);
 
 
-        getQuestion();
+
 
     });
     socket.on('start', function (id) {
@@ -174,7 +147,7 @@ io.on('connection', function (socket) {
             sendQuiz(currentQuiz);
             quizData = currentQuiz;
             shuffle(quizData.questions);
-            getQuestion();
+
 
         });
         function sendQuiz(currentQuiz) {
@@ -193,7 +166,8 @@ io.on('connection', function (socket) {
             socket.emit('result', result = false);
         }
     }
-    function getQuestion() {
+
+    socket.on('nextQuestion', function () {
         if (counter < currentQuiz.questions.length) {
             var question = currentQuiz.questions[counter];
             result = question.answer1;
@@ -213,7 +187,7 @@ io.on('connection', function (socket) {
                 points: question.points,
                 time: question.time
             };
-            countDown(question.time);
+
             sendQuestion(currentQuestion);
             counter++;
         } else {
@@ -224,27 +198,28 @@ io.on('connection', function (socket) {
                 //countDown(0);
             }
         }
+    });
 
-    }
 
 
     function startQuiz(quizId) {
-        socket.emit('startQuiz', quizId);
+        //  socket.emit('startQuiz', quizId);
 
-    };
+    }
 
     function sendQuestion(question) {
 
-        socket.emit('printQuestion', question);
-        socket.emit('printTime', question.time);
+        //   socket.emit('printQuestion', question);
+        //  socket.emit('printTime', question.time);
     }
 
+    socket.on('countDown', function (question) {
 
-    function countDown(time) {
+
         timerStop = false;
         abortTimer();
         // time = 20;
-        currentTime = time;
+        currentTime = question.time;
 
         tid = setTimeout(decrease, 1000);
 
@@ -257,7 +232,6 @@ io.on('connection', function (socket) {
                 socket.emit('printTime', currentTime);
                 saveAnswer(null);
                 abortTimer();
-                getQuestion();
                 console.log("STOP");
             } else {
                 socket.emit('printTime', currentTime);
@@ -265,18 +239,20 @@ io.on('connection', function (socket) {
 
 
                 tid = setTimeout(decrease, 1000);
-            }
+        }
 
             console.log(currentTime);
 
             // do some stuff...
             // repeat myself
-        }
+    }
+
         function abortTimer() { // to be called when you want to stop the timer
             clearTimeout(tid);
         }
 
-    }
+    });
+
     socket.on('disconnect', function () {
         console.log('Socket.io connection disconnect');
     })

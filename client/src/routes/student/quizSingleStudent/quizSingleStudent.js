@@ -28,6 +28,7 @@
 
         vm.quizSingleStudent = true;
         socket.emit('requestQuiz');
+        socket.emit('nextQuestion');
 
 
 
@@ -54,8 +55,8 @@
         });
 
         socket.on('printQuestion', function (question) {
-
             vm.question = question;
+            socket.emit('countDown', question);
         });
 
         socket.on('result', function (result) {
@@ -73,6 +74,7 @@
         vm.answerButton = function (answer, quiz) {
             console.log(answer);
             socket.emit('answer', answer, quiz);
+            socket.emit('nextQuestion');
         };
 
 

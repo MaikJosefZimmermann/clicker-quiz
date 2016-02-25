@@ -36,9 +36,9 @@
         .run(AppRun)
         .service('socket', socket);
 
-    function AppRun($rootScope, authService, $state, $localStorage) {
+    function AppRun($rootScope, authService, $state, $localStorage, socket) {
         authService.check();
-
+        socket.emit('auth', $localStorage);
         $rootScope.logout = authService.logout;
         //stateChangeStart & check wird beim routen wechsel getriggert
         //start ladebalken
@@ -79,7 +79,7 @@
             // Amazon Server  ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com:9000')
             ioSocket: io.connect('http://localhost:9000', {
                 path: '/socket.io',
-                query: "foo=bar"
+
             })
         });
     }
