@@ -1,16 +1,16 @@
 <div>
     <md-subheader class="md-no-sticky">
-        <h1 style="text-align: center">Auswertung von {{vm.quizQuestionsLength.qname}} Quiz </h1></md-subheader>
+        <h1 style="text-align: center">Auswertung von {{vm.quizResult.qname}} Quiz </h1></md-subheader>
 
 
     <md-list-item class="md-3-line md-long-text">
 
         <div class="" layout-align="center center">
-            <p>Anzahl der Fragen: {{vm.quizQuestionsLength.questions.length}}</p>
+            <p>Anzahl der Fragen: {{vm.quizResult.questions.length}}</p>
             <p>Anzahl der richtigen Antworten: {{vm.correctQuestions}}</p>
             <p>Anzahl der falschen Antworten: {{vm.falseQuestions}}</p>
             <p>erreichte Punktzahl: {{vm.UserReachedPoints}}</p>
-            <p>Durchführungsdatum: {{vm.quizQuestionsLength.myDate}}</p>
+            <p>Durchführungsdatum: {{vm.quizResult.myDate}}</p>
         </div>
 
     </md-list-item>

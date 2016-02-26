@@ -36,10 +36,10 @@
             console.log(result);
             vm.UserReachedPoints = result;
         });
-        socket.on('quizQuestionsLength', function (quizQuestionsLength) {
-            console.log("quizQuestionsLength");
-            console.log(quizQuestionsLength);
-            vm.quizQuestionsLength = quizQuestionsLength;
+        socket.on('quizResult', function (quizResult) {
+            console.log("quizResult");
+            console.log(quizResult);
+            vm.quizResult = quizResult;
         });
 
         socket.on('correctQuestions', function (result) {
