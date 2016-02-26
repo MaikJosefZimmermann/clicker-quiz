@@ -167,7 +167,7 @@ io.on('connection', function (socket) {
         var questionName = ques.question,
             questionPoints;
 
-        if (result === ans) {
+        if (correct === ans) {
             console.log("richtig");
             socket.emit('result', result = true);
             questionPoints = ques.points;

@@ -46,7 +46,8 @@
         socket.on('printTime', function (time) {
 
             if (time == 0) {
-                socket.emit('nextQuestion');
+                socket.emit('answer', null, vm.question, $localStorage.user);
+                //  socket.emit('nextQuestion');
             }
 
             var min = time / 60;
