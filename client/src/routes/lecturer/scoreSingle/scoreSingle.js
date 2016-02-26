@@ -16,7 +16,7 @@
         $stateProvider
             .state('scoreSingle', {                                        // declare list view
                 url: '/scoreSingle/:id',                                       // set url
-                templateUrl: 'routes/student/scoreSingle/scoreSingle.html',           // defines the HTML template
+                templateUrl: 'routes/lecturer/scoreSingle/scoreSingle.html',           // defines the HTML template
                 controller: 'scoreSingleCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
     }
