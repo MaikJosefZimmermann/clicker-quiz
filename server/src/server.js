@@ -260,7 +260,7 @@ io.on('connection', function (socket) {
             };
 
             socket.emit('printQuestion', currentQuestion);
-            //socket.emit('printTime', question.time);
+            socket.emit('printTime', question.time);
             counter++;
         } else {
             if (counter === currentQuiz.questions.length) {

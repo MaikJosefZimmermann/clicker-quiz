@@ -45,6 +45,10 @@
 
         socket.on('printTime', function (time) {
 
+            if (time == 0) {
+                socket.emit('nextQuestion');
+            }
+
             var min = time / 60;
             var sek = time % 60;
             var str = min.toString();
@@ -60,6 +64,8 @@
         });
 
         socket.on('result', function (result) {
+            console.log("im RESULT");
+            socket.emit('nextQuestion');
 
             if (result == true) {
                 vm.result = "RICHTIG";
