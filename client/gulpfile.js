@@ -238,7 +238,7 @@ gulp.task('browserSync', function () {
  *---------------------*/
 
 var mainChain = ['less', 'html', 'js:custom', 'js:vendor', 'moveAssets', 'copy', 'watch'];
-var deployChain = ['imgMin'];
+var deployChain = ['critical', 'imgMin'];
 
 gulp.task('default', function () {
     runSequence('set:dev',
