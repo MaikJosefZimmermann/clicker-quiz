@@ -29,12 +29,13 @@
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             vm.quiz = response.data;                               // load the response data to the scope.user obj
             console.log(vm.quiz)
+            socket.emit('requestLecturerResults', $stateParams.id);
         });
 
-        socket.on('UserReachedPoints', function (result) {
-            console.log("UserReachedPoints");
+        socket.on('maxPoints', function (result) {
+            console.log("maxPoints");
             console.log(result);
-            vm.UserReachedPoints = result;
+            vm.maxPoints = result;
 
         });
 
