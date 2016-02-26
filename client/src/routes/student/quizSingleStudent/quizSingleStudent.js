@@ -55,8 +55,6 @@
             var str = min.toString();
             str = str.substring(0, str.indexOf("."));
             vm.time = str + " Minuten " + sek + " Sekunden ";
-
-
         });
 
         socket.on('printQuestion', function (question) {

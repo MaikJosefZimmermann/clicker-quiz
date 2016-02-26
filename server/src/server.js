@@ -375,6 +375,7 @@ io.on('connection', function (socket) {
 
         // set timeout
 
+        socket.emit('printTimeQuiz', currentTime);
 
         function decrease() {
             if (currentTime === 0) {
@@ -426,12 +427,12 @@ io.on('connection', function (socket) {
             }
             if (timerStop === true) {
                 socket.emit('startQuiz', id);
-                socket.emit('printTime', currentTime);
+                socket.emit('printTimeQuiz', currentTime);
                 //  saveAnswer(null);
                 abortTimer();
                 console.log("STOP");
             } else {
-                socket.emit('printTime', currentTime);
+                socket.emit('printTimeQuiz', currentTime);
                 currentTime--;
 
 
