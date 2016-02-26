@@ -7,7 +7,7 @@ var express = require('express'),
     port = process.env.PORT || 9000,
     auth = require('./app/routes/auth'),
     server = require('http').createServer(app),
-    io = require('socket.io')(server);
+    io = require('socket.io').listen(server);
 mongoose.connect('mongodb://localhost:27018/quiz');
 var corsOptions = {
     "origin": "http://localhost:3000",
