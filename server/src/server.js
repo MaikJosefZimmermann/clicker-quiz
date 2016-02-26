@@ -295,10 +295,9 @@ io.on('connection', function (socket) {
         });
 
         //Anzahl der Fragen im Quiz
-        var quizQuestionsLength = currentQuiz;
-        console.log("vm.quizQuestionsLength");
-        console.log(quizData);
-        socket.emit('quizQuestionsLength', quizQuestionsLength);
+        var quiz = currentQuiz;
+        console.log("vm.quiz");
+        socket.emit('quizResult', quiz);
 
 
     });
