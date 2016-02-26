@@ -118,14 +118,14 @@ io.on('connection', function (socket) {
 
     socket.on('answer', function (answer, question, user) {
 
-        console.log("NEUNEUNEU");
-        console.log(answer);
-        console.log(question);
-        console.log("CurrenQuiz");
-        console.log(currentQuiz);
+        //  console.log("NEUNEUNEU");
+        // console.log(answer);
+        //  console.log(question);
+        // console.log("CurrenQuiz");
+        // console.log(currentQuiz);
 
         saveAnswer(answer, question, user);
-
+        nextQuestion();
 
 
 
@@ -238,6 +238,9 @@ io.on('connection', function (socket) {
     });
 
     socket.on('nextQuestion', function () {
+        nextQuestion();
+    });
+    function nextQuestion() {
         console.log(counter);
         console.log(socket.id);
         if (counter < currentQuiz.questions.length) {
@@ -246,12 +249,7 @@ io.on('connection', function (socket) {
 
             var answers = [question.answer1, question.answer2, question.answer3, question.answer4];
             shuffle(answers);
-            var temp = shuffle(answers);
-
-            if (temp) {
-
-                question.answers = temp;
-            }
+            question.answers = shuffle(answers);
 
             var currentQuestion = {
                 question: question.question,
@@ -259,7 +257,7 @@ io.on('connection', function (socket) {
                 points: question.points,
                 time: question.time
             };
-
+            countdown(question);
             socket.emit('printQuestion', currentQuestion);
             socket.emit('printTime', question.time);
             counter++;
@@ -271,10 +269,9 @@ io.on('connection', function (socket) {
                 //countDown(0);
             }
         }
-    });
+    }
 
-
-    socket.on('countDown', function (question) {
+    function countdown(question) {
         console.log(socket.id);
 
         timerStop = false;
@@ -288,7 +285,10 @@ io.on('connection', function (socket) {
 
 
         function decrease() {
-            if (currentTime === 0 || timerStop === true) {
+            if (currentTime === 0) {
+                nextQuestion();
+            }
+            if (timerStop === true) {
 
                 socket.emit('printTime', currentTime);
                 //  saveAnswer(null);
@@ -312,7 +312,7 @@ io.on('connection', function (socket) {
             clearTimeout(tid);
         }
 
-    });
+    }
 
     socket.on('disconnect', function () {
         console.log('Socket.io connection disconnect');
