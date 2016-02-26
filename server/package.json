@@ -23,6 +23,7 @@
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
     "jsonwebtoken": "^5.5.4",
+    "moment": "^2.11.2",
     "mongoose": "^4.1.11",
     "morgan": "^1.6.1",
     "request": "^2.65.0",
