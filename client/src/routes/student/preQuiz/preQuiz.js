@@ -37,6 +37,18 @@
 
         });
 
+        socket.on('printTimeQuiz', function (time) {
+
+            console.log("du arsch zeit: "+time);
+
+            var min = time / 60;
+            var sek = time % 60;
+            var str = min.toString();
+            str = str.substring(0, str.indexOf("."));
+            vm.timeQuiz = str + " Minuten " + sek + " Sekunden ";
+
+        });
+
         vm.goQuiz = function (id) {
             socket.emit('start', id);
 

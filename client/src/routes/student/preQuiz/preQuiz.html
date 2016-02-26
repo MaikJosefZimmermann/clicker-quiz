@@ -3,6 +3,8 @@
         <h1 style="text-align: center">Warte Raum für das Quiz: {{vm.qname}}</h1>
     </md-subheader>
     <div layout-align="center center">
+        <p> Das Quiz startet in: {{ vm.timeQuiz }}</p>
+        <p> ...sie werden automatisch weitergeleitet!</p>
         <md-button class="md-raised md-primary"   ng-click="vm.goQuiz(vm.id)"
                    style="background-color: #3EB2AC">
             Zum Quiz  
@@ -12,6 +14,5 @@
             Broadcast test
         </md-button>
     </div>
-
 
 </div>
