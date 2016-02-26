@@ -296,7 +296,20 @@ io.on('connection', function (socket) {
         //---------------Dozent------------------//
         //---------------------------------------//
 
+
+
+        //Anzahl der Fragen im Quiz
+        var quiz = currentQuiz;
+        console.log("vm.quiz");
+        socket.emit('quizResult', quiz);
+
+
+    });
+
+    socket.on('requestLecturerResults', function (quizId) {
+        console.log("im Socket requestLecturerResults");
         //Summe der maximal erreichbaren Punkte in einem Quiz
+
         Answer.aggregate([
             {
                 $match: {
@@ -318,13 +331,6 @@ io.on('connection', function (socket) {
             console.log(result);
             socket.emit('maxPoints', result);
         });
-
-        //Anzahl der Fragen im Quiz
-        var quiz = currentQuiz;
-        console.log("vm.quiz");
-        socket.emit('quizResult', quiz);
-
-
     });
 
     socket.on('nextQuestion', function () {
