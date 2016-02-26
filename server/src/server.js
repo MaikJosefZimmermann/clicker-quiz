@@ -57,7 +57,7 @@ function shuffle(array) {
 io.on('connection', function (socket) {
 
     var quizData;
-    var counter = 0;
+    var counter;
     var timerStop = false;
     var correct;
     var result;
@@ -238,6 +238,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('nextQuestion', function () {
+        console.log(counter);
         console.log(socket.id);
         if (counter < currentQuiz.questions.length) {
             var question = currentQuiz.questions[counter];
@@ -291,7 +292,7 @@ io.on('connection', function (socket) {
             if (currentTime === 0 || timerStop === true) {
 
                 socket.emit('printTime', currentTime);
-                saveAnswer(null);
+                //  saveAnswer(null);
                 abortTimer();
                 console.log("STOP");
             } else {

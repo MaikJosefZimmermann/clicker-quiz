@@ -65,7 +65,7 @@
 
         socket.on('result', function (result) {
             console.log("im RESULT");
-            socket.emit('nextQuestion');
+            // socket.emit('nextQuestion');
 
             if (result == true) {
                 vm.result = "RICHTIG";
