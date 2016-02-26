@@ -257,7 +257,7 @@ io.on('connection', function (socket) {
                 points: question.points,
                 time: question.time
             };
-            countdown(question);
+            countdown(question.time);
             socket.emit('printQuestion', currentQuestion);
             socket.emit('printTime', question.time);
             counter++;
@@ -271,13 +271,13 @@ io.on('connection', function (socket) {
         }
     }
 
-    function countdown(question) {
+    function countdown(time) {
         console.log(socket.id);
 
         timerStop = false;
         abortTimer();
         // time = 20;
-        currentTime = question.time;
+        currentTime = time;
 
         tid = setTimeout(decrease, 1000);
 
