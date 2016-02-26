@@ -94,8 +94,7 @@
                 questions: ergebnis,
                 key: vm.quiz.key,
                 myDate: vm.quiz.dateTime,
-                timeHour: vm.quiz.timeHour,
-                timeMin: vm.quiz.timeMin
+                verifiedStart: vm.quiz.verifiedStart
             };
 
             console.log(data);
@@ -166,11 +165,12 @@
 
 
 // var vm;
-    function qAddCtrl($http, $mdDialog, $scope) {
+    function qAddCtrl($http, $mdDialog) {
 
         var vm = this;
         vm.selected = [];
         vm.new = true;
+        vm.visible = false;
 
 
         $http({                                                     // get all users from node server
@@ -239,8 +239,7 @@
                 questions: ergebnis,
                 key: vm.quiz.key,
                 myDate: vm.quiz.dateTime,
-                timeHour: vm.quiz.timeHour,
-                timeMin: vm.quiz.timeMin
+                verifiedStart: vm.quiz.verifiedStart
             };
 
 

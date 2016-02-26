@@ -1,0 +1,111 @@
+.m0 {
+  margin: 0; }
+
+.block {
+  display: block; }
+
+.grey-600 {
+  color: #757575; }
+
+.c-pointer {
+  cursor: pointer; }
+
+.ta-center {
+  text-align: center; }
+
+.ta-left {
+  text-align: left; }
+
+.ta-right {
+  text-align: right; }
+
+.datepicker {
+  position: relative;
+  z-index: 100;
+  min-height: 320px;
+  min-width: 320px;
+  width: auto;
+  height: auto; }
+  .datepicker .mob {
+    height: 24px; }
+  .datepicker .dayofweek {
+    background-color: #00796B;
+    line-height: 2.3em;
+    font-size: 1.3em;
+    color: #fff; }
+  .datepicker .picked {
+    min-width: 320px;
+    width: 300px;
+    max-height: 320px;
+    height: 320px;
+    min-height: 220px;
+    background-color: #009688; }
+    .datepicker .picked span {
+      display: block;
+      color: #E1E1E1; }
+      .datepicker .picked span.day i.dt {
+        font-size: 7.1em; }
+      .datepicker .picked span.month {
+        margin-top: -10px;
+        font-size: 1.8em;
+        margin-bottom: 5px; }
+      .datepicker .picked span.year {
+        color: #54B8AF;
+        font-size: 2em; }
+    .datepicker .picked .save-mobile {
+      margin: 12px auto;
+      height: 40px;
+      width: 215px;
+      color: white; }
+  .datepicker .date-pick {
+    min-height: 320px;
+    min-width: 320px; }
+    .datepicker .date-pick .next-month, .datepicker .date-pick .prev-month {
+      padding-top: 10px; }
+    .datepicker .date-pick .month-pick {
+      margin-left: 12px;
+      text-align: center;
+      line-height: 2.3em;
+      font-size: 1.3em; }
+      .datepicker .date-pick .month-pick .year-pick {
+        width: 65px;
+        border: none;
+        margin-left: 3px; }
+    .datepicker .date-pick .day-pick {
+      margin: 0 auto;
+      min-height: 270px;
+      min-width: 270px;
+      max-width: 270px; }
+      .datepicker .date-pick .day-pick .md-button.day-btn {
+        min-width: 0;
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        margin: 0; }
+        .datepicker .date-pick .day-pick .md-button.day-btn:hover {
+          color: #DDE4E4;
+          background-color: #00BAA9; }
+        .datepicker .date-pick .day-pick .md-button.day-btn.disabled {
+          visibility: hidden; }
+        .datepicker .date-pick .day-pick .md-button.day-btn.active {
+          color: #DDE4E4;
+          background-color: #009688; }
+          .datepicker .date-pick .day-pick .md-button.day-btn.active:hover {
+            color: #DDE4E4;
+            background-color: #00BAA9; }
+      .datepicker .date-pick .day-pick .week-btn {
+        color: #616161;
+        min-width: 0;
+        width: 37px;
+        height: 37px;
+        margin: 0; }
+        .datepicker .date-pick .day-pick .week-btn:hover {
+          background-color: white; }
+  .datepicker .md-buttons {
+    position: fixed;
+    bottom: 0;
+    right: 0; }
+    .datepicker .md-buttons .abort {
+      margin: 0 2px 2px 1px; }
+    .datepicker .md-buttons .confirm {
+      margin: 0 1px 2px 0px; }

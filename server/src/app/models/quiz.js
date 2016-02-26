@@ -7,7 +7,7 @@ var QuizSchema = new Schema({
     qname: String,
     key: String,
     myDate: Date,
-    validateStart: Boolean,
+    verifiedStart: Boolean,
     questions: [{
         question: String,
         answer1: String,

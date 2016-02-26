@@ -35,6 +35,10 @@
                 <label>Uhrzeit</label>
                 <input type="time" mdp-time-picker ng-model="vm.quiz.dateTime" />
             </md-input-container>
+
+            <md-checkbox ng-model="vm.visible" aria-label="Checkbox 1">
+                <p> Sichtbar für Studenten: {{ vm.visible }}</p>
+            </md-checkbox>
         </div>
 
         <div layout="" layout-sm="column">

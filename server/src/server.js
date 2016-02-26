@@ -7,8 +7,7 @@ var express = require('express'),
     port = process.env.PORT || 9000,
     auth = require('./app/routes/auth'),
     server = require('http').createServer(app),
-    io = require('socket.io').listen(server);
-//io = ('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com');
+    io = require('socket.io')(server);
 mongoose.connect('mongodb://localhost:27018/quiz');
 var corsOptions = {
     "origin": "http://localhost:3000",
@@ -191,8 +190,7 @@ io.on('connection', function (socket) {
         console.log("FRAGE Question.question");
         console.log(ques);
         var questionName = ques.question,
-            questionPoints,
-            qPoints = ques.points;
+            questionPoints;
 
         if (correct === ans) {
             console.log("richtig");
@@ -210,7 +208,6 @@ io.on('connection', function (socket) {
             result: result,
             userId: String,
             kurzel: user,
-            qPoints: qPoints,
             quizId: currentQuiz._id,
             points: questionPoints,
             delete: Boolean
@@ -232,7 +229,7 @@ io.on('connection', function (socket) {
         return answ;
     }
 
-    socket.on('requestResult', function () {
+    socket.on('requestLecturerResult', function (id) {
         console.log("im Socket requestLecturerResult");
         /*Answer.find({ quizId: id }, function(err, answers) {
          if (err) return console.error(err);
@@ -313,13 +310,14 @@ io.on('connection', function (socket) {
         Answer.aggregate([
             {
                 $match: {
-                    quizId: quizId
+                    quizId: id,
+                    kurzel: "cr078"
                 }
             },
             {
                 $group: {
                     _id: "quizId",
-                    maxPoints: {$sum: "$qPoints"}
+                    sumPoints: {$sum: "$points"}
                 }
             }
         ], function (err, result) {
@@ -327,10 +325,11 @@ io.on('connection', function (socket) {
                 console.log(err);
                 return;
             }
-            console.log("MaxPoints");
+            console.log("RESULT");
             console.log(result);
-            socket.emit('maxPoints', result);
+            socket.emit('UserSumPoints', result);
         });
+
     });
 
     socket.on('nextQuestion', function () {
@@ -360,11 +359,9 @@ io.on('connection', function (socket) {
         } else {
             if (counter === currentQuiz.questions.length) {
                 console.log("Quiz fertig");
-                console.log(currentQuiz._id)
                 socket.emit('endQuiz');
                 timerStop = true;
                 //countDown(0);
-
             }
         }
     }
@@ -381,7 +378,6 @@ io.on('connection', function (socket) {
 
         // set timeout
 
-        socket.emit('printTimeQuiz', currentTime);
 
         function decrease() {
             if (currentTime === 0) {
@@ -425,6 +421,7 @@ io.on('connection', function (socket) {
 
         // set timeout
 
+        socket.emit('printTimeQuiz', currentTime);
 
         function decrease() {
             if (currentTime === 0) {
