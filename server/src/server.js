@@ -81,24 +81,46 @@ io.on('connection', function (socket) {
         //console.log("QQQ befüllt:");
         // console.log(currentQuiz);
 
+        var moment = require('moment');
+        var quizTime = moment(new Date(quiz.myDate));
+        var currentTime = moment();
+        //Differenz bis zum QuizStart
+        var diffTime =  quizTime.diff(currentTime, 'seconds');
+        var now = moment().toDate(); var calendar = moment().calendar();
+        console.log("Quiz Date: " + quizTime);
+        console.log("Date Now: " + currentTime);
+        console.log('differenz: ' + diffTime);
+        console.log('now: ' + now);
+        console.log('calendar: ' + calendar);
+
+
+
         if (currentQuiz.key === quiz.password) {
-            console.log("in der IF");
-            socket.join(quiz._id);
-            var rooms = io.sockets.adapter.rooms;
-            console.log("alle räume: ");
-            console.log(rooms);
-            // var clientNumber = io.sockets.adapter.rooms[quizId];
-            //  console.log("ClientNumbers from currentRoom");
-            //  console.log(clientNumber);
+
+            if (diffTime <=300) {
+
+                console.log("in der IF");
+                socket.join(quiz._id);
+                var rooms = io.sockets.adapter.rooms;
+                console.log("alle räume: ");
+                console.log(rooms);
+                // var clientNumber = io.sockets.adapter.rooms[quizId];
+                //  console.log("ClientNumbers from currentRoom");
+                //  console.log(clientNumber);
 
 
-            console.log("eigene socketID: ");
-            console.log(socket.id);
-            console.log('User ist im Quiz ' + quiz._id);
-            // User in Warteraum schicken
-            socket.emit('waitingRoom', currentQuiz.qname);
+                console.log("eigene socketID: ");
+                console.log(socket.id);
+                console.log('User ist im Quiz ' + quiz._id);
+                // User in Warteraum schicken
+                socket.emit('waitingRoom', currentQuiz.qname);
 
-            //socket.emit('joinedQuiz', currentQuiz.qname);
+                //socket.emit('joinedQuiz', currentQuiz.qname);
+
+
+            }else {
+                console.log("muss noch warten")
+            }
 
 
         } else {

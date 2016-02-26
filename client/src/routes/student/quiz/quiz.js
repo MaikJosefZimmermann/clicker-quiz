@@ -38,7 +38,6 @@
             socket.emit('joinQuiz', quiz, $localStorage);
             socket.on('waitingRoom', function (qname) {
 
-
                 $state.go('preQuiz', {qname: qname});
             });
             socket.on('passwordFalse', function () {
