@@ -40,14 +40,14 @@
 
         socket.on('endQuiz', function () {
             console.log("END");
-            $state.go('quiz');
+            $state.go('scoreStudent');
         });
 
         socket.on('printTime', function (time) {
 
             if (time == 0) {
                 socket.emit('answer', null, vm.question, $localStorage.user);
-                //  socket.emit('nextQuestion');
+                // socket.emit('nextQuestion');
             }
 
             var min = time / 60;
@@ -61,7 +61,7 @@
 
         socket.on('printQuestion', function (question) {
             vm.question = question;
-            socket.emit('countDown', question);
+
         });
 
         socket.on('result', function (result) {
@@ -83,7 +83,7 @@
             console.log(answer);
             console.log(user);
             socket.emit('answer', answer, question, user);
-            socket.emit('nextQuestion');
+
         };
 
 
