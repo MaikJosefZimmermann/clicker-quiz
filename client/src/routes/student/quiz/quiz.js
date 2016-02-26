@@ -17,7 +17,7 @@
     }
 
 
-    function QuizCtrl($state, socket, $localStorage) {// our controller for this view
+    function QuizCtrl($http, $state, socket, $localStorage) {// our controller for this view
         var vm = this;
         $http({                                                     // get all users from node server
             method: 'GET',
