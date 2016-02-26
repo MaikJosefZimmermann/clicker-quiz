@@ -13,6 +13,7 @@ var AnswerSchema = new Schema({
     userId: String,
     kurzel: String,
     quizId: String,
+    qPoints: Number,
     points: Number,
     delete: Boolean,
     time: Date

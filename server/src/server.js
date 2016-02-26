@@ -166,7 +166,8 @@ io.on('connection', function (socket) {
         console.log("FRAGE Question.question");
         console.log(ques);
         var questionName = ques.question,
-            questionPoints;
+            questionPoints,
+            qPoints = ques.points;
 
         if (correct === ans) {
             console.log("richtig");
@@ -184,6 +185,7 @@ io.on('connection', function (socket) {
             result: result,
             userId: String,
             kurzel: user,
+            qPoints: qPoints,
             quizId: currentQuiz._id,
             points: questionPoints,
             delete: Boolean
@@ -205,7 +207,7 @@ io.on('connection', function (socket) {
         return answ;
     }
 
-    socket.on('requestLecturerResult', function (id) {
+    socket.on('requestResult', function () {
         console.log("im Socket requestLecturerResult");
         /*Answer.find({ quizId: id }, function(err, answers) {
          if (err) return console.error(err);
@@ -213,17 +215,25 @@ io.on('connection', function (socket) {
          console.dir(answers);
          return answers
          });*/
+        var quizId = currentQuiz._id;
+        console.log(quizId);
+
+        //---------------------------------------//
+        //---------------Student-----------------//
+        //---------------------------------------//
+
+        //Summe der erreichten Punkte des Studenten
         Answer.aggregate([
             {
                 $match: {
-                    quizId: id,
+                    quizId: quizId,
                     kurzel: "mz059"
                 }
             },
             {
                 $group: {
                     _id: "quizId",
-                    sumPoints: {$sum: "$points"}
+                    sumPoints: {$sum: "$points"},
                 }
             }
         ], function (err, result) {
@@ -231,10 +241,65 @@ io.on('connection', function (socket) {
                 console.log(err);
                 return;
             }
-            console.log("RESULT");
-            console.log(result);
-            socket.emit('UserSumPoints', result);
+            result = result[0].sumPoints;
+            socket.emit('UserReachedPoints', result);
         });
+
+        //alle richtigen Antworten des Studenten
+        Answer.find({"quizId": quizId, "kurzel": "mz059", "result": "true"},
+            function (err, result) {
+                if (err) {
+                    return console.error(err);
+                    return;
+                }
+                result = result.length;
+                socket.emit('correctQuestions', result);
+            });
+
+        //alle falschen Antworten des Studenten
+        Answer.find({"quizId": quizId, "kurzel": "mz059", "result": "false"},
+            function (err, result) {
+                if (err) {
+                    return console.error(err);
+                    return;
+                }
+                result = result.length;
+                socket.emit('falseQuestions', result);
+            });
+
+        //---------------------------------------//
+        //---------------Dozent------------------//
+        //---------------------------------------//
+
+        //Summe der maximal erreichbaren Punkte in einem Quiz
+        Answer.aggregate([
+            {
+                $match: {
+                    quizId: quizId
+                }
+            },
+            {
+                $group: {
+                    _id: "quizId",
+                    maxPoints: {$sum: "$qPoints"}
+                }
+            }
+        ], function (err, result) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log("MaxPoints");
+            console.log(result);
+            socket.emit('maxPoints', result);
+        });
+
+        //Anzahl der Fragen im Quiz
+        var quizQuestionsLength = currentQuiz;
+        console.log("vm.quizQuestionsLength");
+        console.log(quizData);
+        socket.emit('quizQuestionsLength', quizQuestionsLength);
+
 
     });
 
@@ -265,9 +330,11 @@ io.on('connection', function (socket) {
         } else {
             if (counter === currentQuiz.questions.length) {
                 console.log("Quiz fertig");
+                console.log(currentQuiz._id)
                 socket.emit('endQuiz');
                 timerStop = true;
                 //countDown(0);
+
             }
         }
     }
