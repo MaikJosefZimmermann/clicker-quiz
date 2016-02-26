@@ -31,10 +31,10 @@
             console.log(vm.quiz)
         });
 
-        socket.on('UserSumPoints', function (result) {
-            console.log("UserSumPoints");
+        socket.on('UserReachedPoints', function (result) {
+            console.log("UserReachedPoints");
             console.log(result);
-            vm.result = result;
+            vm.UserReachedPoints = result;
 
         });
 
