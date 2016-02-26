@@ -277,7 +277,6 @@ io.on('connection', function (socket) {
     socket.on('countDown', function (question) {
         console.log(socket.id);
 
-
         timerStop = false;
         abortTimer();
         // time = 20;

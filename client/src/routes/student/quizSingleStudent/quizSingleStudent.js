@@ -40,7 +40,7 @@
 
         socket.on('endQuiz', function () {
             console.log("END");
-            $state.go('quiz');
+            $state.go('scoreStudent');
         });
 
         socket.on('printTime', function (time) {
