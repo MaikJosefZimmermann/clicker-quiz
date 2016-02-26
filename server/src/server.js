@@ -7,8 +7,8 @@ var express = require('express'),
     port = process.env.PORT || 9000,
     auth = require('./app/routes/auth'),
     server = require('http').createServer(app),
-//io = require('socket.io').listen(server);
-    io = ('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com');
+    io = require('socket.io').listen(server);
+//io = ('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com');
 mongoose.connect('mongodb://localhost:27018/quiz');
 var corsOptions = {
     "origin": "http://localhost:3000",
