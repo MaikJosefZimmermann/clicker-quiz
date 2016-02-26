@@ -91,19 +91,19 @@ io.on('connection', function (socket) {
         console.log("Date Now: " + currentTime);
         console.log('differenz: ' + diffTime);
         console.log('now: ' + now);
-        console.log('calendar: ' + calendar);
 
 
 
         if (currentQuiz.key === quiz.password) {
 
-            if (diffTime <=300) {
+            if (diffTime <=300 && diffTime >=0) {
 
                 console.log("in der IF");
                 socket.join(quiz._id);
                 var rooms = io.sockets.adapter.rooms;
                 console.log("alle räume: ");
                 console.log(rooms);
+                countdownQuiz(diffTime);
                 // var clientNumber = io.sockets.adapter.rooms[quizId];
                 //  console.log("ClientNumbers from currentRoom");
                 //  console.log(clientNumber);
@@ -119,7 +119,10 @@ io.on('connection', function (socket) {
 
 
             }else {
-                console.log("muss noch warten")
+                if (diffTime < 0) {
+                    console.log("Startzeitpunkt verpasst")
+                }
+                console.log("Anmeldung nicht möglich")
             }
 
 
@@ -396,6 +399,50 @@ io.on('connection', function (socket) {
             // do some stuff...
             // repeat myself
     }
+
+        function abortTimer() { // to be called when you want to stop the timer
+            clearTimeout(tid);
+        }
+
+    }
+
+    function countdownQuiz(time, id) {
+        console.log(socket.id);
+
+        timerStop = false;
+        abortTimer();
+        // time = 20;
+        currentTime = time;
+
+        tid = setTimeout(decrease, 1000);
+
+        // set timeout
+
+
+        function decrease() {
+            if (currentTime === 0) {
+                timerStop = true;
+
+            }
+            if (timerStop === true) {
+                socket.emit('startQuiz', id);
+                socket.emit('printTime', currentTime);
+                //  saveAnswer(null);
+                abortTimer();
+                console.log("STOP");
+            } else {
+                socket.emit('printTime', currentTime);
+                currentTime--;
+
+
+                tid = setTimeout(decrease, 1000);
+            }
+
+            console.log(currentTime);
+
+            // do some stuff...
+            // repeat myself
+        }
 
         function abortTimer() { // to be called when you want to stop the timer
             clearTimeout(tid);
