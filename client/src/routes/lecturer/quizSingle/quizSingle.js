@@ -94,7 +94,7 @@
                 questions: ergebnis,
                 key: vm.quiz.key,
                 myDate: vm.quiz.dateTime,
-                verifiedStart: vm.quiz.verifiedStart
+                verifiedStart: vm.verifiedStart
             };
 
             console.log(data);
@@ -170,7 +170,7 @@
         var vm = this;
         vm.selected = [];
         vm.new = true;
-        vm.visible = true;
+        vm.verifiedStart = false;
 
 
         $http({                                                     // get all users from node server
@@ -239,7 +239,7 @@
                 questions: ergebnis,
                 key: vm.quiz.key,
                 myDate: vm.quiz.dateTime,
-                verifiedStart: vm.quiz.verifiedStart
+                verifiedStart: vm.verifiedStart
             };
 
 
