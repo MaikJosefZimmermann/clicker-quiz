@@ -170,7 +170,7 @@
         var vm = this;
         vm.selected = [];
         vm.new = true;
-        vm.visible = false;
+        vm.visible = true;
 
 
         $http({                                                     // get all users from node server
