@@ -95,11 +95,13 @@ io.on('connection', function (socket) {
         console.log('differenz: ' + diffTime);
         console.log('now: ' + now);
         var verifiedStart = quiz.verifiedStart;
+        var quizStart;
 
 
-
+        // Einschreibeschlüssel und eigener Schlüssel gleich?
         if (currentQuiz.key === quiz.password) {
 
+            // Zeit bis zum Quizbeginn < 5 Min
             if (diffTime <=300 && diffTime >=0) {
 
                 console.log("in der IF");
@@ -111,8 +113,6 @@ io.on('connection', function (socket) {
                 // var clientNumber = io.sockets.adapter.rooms[quizId];
                 //  console.log("ClientNumbers from currentRoom");
                 //  console.log(clientNumber);
-
-
                 console.log("eigene socketID: ");
                 console.log(socket.id);
                 console.log('User ist im Quiz ' + quiz._id);
@@ -121,13 +121,14 @@ io.on('connection', function (socket) {
 
                 //socket.emit('joinedQuiz', currentQuiz.qname);
 
-
+            //  Wenn Quiz kein Startzeitpunkt hat
             }else if(verifiedStart == true) {
                 console.log("in der IF");
                 socket.join(quiz._id);
                 var rooms = io.sockets.adapter.rooms;
                 console.log("alle räume: ");
                 console.log(rooms);
+                adhocStart(quizStart);
 
                 console.log("eigene socketID: ");
                 console.log(socket.id);
@@ -384,6 +385,10 @@ io.on('connection', function (socket) {
         }
     }
 
+    /**
+     * Countdown im Quiz für Frage
+     * @param time
+     */
     function countdown(time) {
         console.log(socket.id);
 
@@ -427,6 +432,11 @@ io.on('connection', function (socket) {
 
     }
 
+    /**
+     * Countdown Quizbeginn im Warteraum
+     * @param time
+     * @param id
+     */
     function countdownQuiz(time, id) {
         console.log(socket.id);
 
@@ -472,6 +482,26 @@ io.on('connection', function (socket) {
 
     }
 
+
+    /**
+     * Quiz Start Adhoc
+     * @param id
+     * TODO startfunktion adhoc
+     */
+    function adhocStart(quizStart, id) {
+        console.log(socket.id);
+
+        if (quizStart == true) {
+            // socket um quiz zu starten
+            socket.emit('startQuiz', id);
+            console.log("quiz startet")
+        }else {
+            console.log("quiz kann nicht gestartet werden")
+        }
+        // socket um Zeit zu zeigen
+        //socket.emit('printTimeQuiz', currentTime);
+
+    }
     socket.on('disconnect', function () {
         console.log('Socket.io connection disconnect');
     })

@@ -29,6 +29,12 @@
 
         });
 
+        vm.quizStart = function (id) {
+            //TODO Startfunktion adhoc
+            quiz.quizStart = true;
+            console.log(vm.quizes);
+        };
+
         vm.delete = function (id) {                           // declare a scope function ( which is also accessible from html template)
 
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id

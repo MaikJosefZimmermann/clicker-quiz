@@ -1,8 +1,9 @@
 <div class="content" id="home">
     <md-subheader class="md-no-sticky">
-        <h1 style="text-align: center">Warte Raum für das Quiz: {{vm.qname}}</h1>
+        <h1 style="text-align: center">Warteraum für das Quiz: {{vm.qname}}</h1>
     </md-subheader>
     <div layout-align="center center">
+        <!--TODO adhoc Start -->
         <p> Das Quiz startet in: {{ vm.timeQuiz }}</p>
         <p> ...sie werden automatisch weitergeleitet!</p>
         <md-button class="md-raised md-primary"   ng-click="vm.goQuiz(vm.id)"

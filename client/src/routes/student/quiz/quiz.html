@@ -25,7 +25,7 @@
                             </md-card-content>
                                 
                             <md-card-actions layout="row" layout-align="space-between center">  
-                                <p ng-if="quiz.verifiedStart === false">Startzeitpunkt: {{quiz.myDate | date: "dd.MM.yyyy HH:mm"}} Uhr </p>
+                                <p ng-if="!quiz.verifiedStart">Startzeitpunkt: {{quiz.myDate | date: "dd.MM.yyyy HH:mm"}} Uhr </p>
                                 <p ng-if="quiz.verifiedStart"> Quiz wird vom Dozenten gestartet </p>
                                 <md-button class="md-raised md-primary"   ng-click="vm.goQuiz(quiz)"
                                            style="background-color: #3EB2AC">

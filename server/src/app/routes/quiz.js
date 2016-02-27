@@ -23,6 +23,7 @@ router.route('/')
         quiz.myDate = req.body.myDate;
         quiz.user = req.body.user;
         quiz.verifiedStart = req.body.verifiedStart;
+        quiz.quizStart = req.body.quizStart;
 
 
         quiz.save(function (err) {
@@ -78,6 +79,7 @@ router.route('/:quizId')
             quiz.myDate = req.body.myDate;
             quiz.user = req.body.user;
             quiz.verifiedStart = req.body.verifiedStart;
+            quiz.quizStart = req.body.quizStart;
 
             quiz.save(function (err) {
                 if (err) {

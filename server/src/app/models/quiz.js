@@ -8,6 +8,7 @@ var QuizSchema = new Schema({
     key: String,
     myDate: Date,
     verifiedStart: Boolean,
+    quizStart: Boolean,
     questions: [{
         question: String,
         answer1: String,
