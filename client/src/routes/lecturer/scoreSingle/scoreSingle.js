@@ -28,7 +28,7 @@
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             vm.quiz = response.data;                               // load the response data to the scope.user obj
-            console.log(vm.quiz)
+            console.log(vm.quiz);
             socket.emit('requestLecturerResults', $stateParams.id);
         });
 
@@ -38,6 +38,12 @@
             vm.maxPoints = result;
 
         });
+        /*socket.on('users', function (result) {
+         console.log("users");
+         console.log(result);
+         vm.users = result;
+
+         });*/
 
     }
 })();

@@ -28,9 +28,9 @@
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             vm.quiz = response.data;                               // load the response data to the scope.user obj
-            socket.emit('requestResult');
+            socket.emit('requestStudentResult');
         });
-
+        console.log("scoreStudentCtrlscoreStudentCtrl");
         socket.on('UserReachedPoints', function (result) {
             console.log("UserReachedPoints");
             console.log(result);
