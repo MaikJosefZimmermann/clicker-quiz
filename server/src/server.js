@@ -408,6 +408,11 @@ io.on('connection', function (socket) {
         }
     }
 
+    socket.on('test', function(quizStart, id) {
+       adhocStart(quizStart);
+        console.log("im socket on test")
+    });
+
     /**
      * Countdown im Quiz für Frage
      * @param time
@@ -512,14 +517,15 @@ io.on('connection', function (socket) {
      * TODO startfunktion adhoc
      */
     function adhocStart(quizStart, id) {
+        console.log("quizstart in function adhoc: "+quizStart);
         console.log(socket.id);
 
         if (quizStart == true) {
             // socket um quiz zu starten
             socket.emit('startQuiz', id);
-            console.log("quiz startet")
+            console.log("quiz startet");
         }else {
-            console.log("quiz kann nicht gestartet werden")
+            console.log("quiz kann nicht gestartet werden");
         }
         // socket um Zeit zu zeigen
         //socket.emit('printTimeQuiz', currentTime);

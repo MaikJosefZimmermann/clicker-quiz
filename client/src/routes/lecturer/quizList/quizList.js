@@ -19,7 +19,6 @@
         var vm = this;
         timeSum(vm.quizes);
 
-
         $http({                                                     // get all users from node server
             method: 'GET',
             url: '/api/quizes'
@@ -29,10 +28,12 @@
 
         });
 
-        vm.quizStart = function (id) {
+        vm.quizStart = function (quizStart, id) {
             //TODO Startfunktion adhoc
-            quiz.quizStart = true;
-            console.log(vm.quizes);
+            console.log("vor klick: "+quizStart)
+            quizStart = true;
+            console.log("quizStart: "+quizStart);
+            socket.emit('test', quizStart, id)
         };
 
         vm.delete = function (id) {                           // declare a scope function ( which is also accessible from html template)

@@ -172,6 +172,7 @@
         vm.selected = [];
         vm.new = true;
         vm.verifiedStart = false;
+        vm.quizStart = false;
 
 
         $http({                                                     // get all users from node server
@@ -240,7 +241,8 @@
                 questions: ergebnis,
                 key: vm.quiz.key,
                 myDate: vm.quiz.dateTime,
-                verifiedStart: vm.verifiedStart
+                verifiedStart: vm.verifiedStart,
+                quizStart: vm.quizStart
             };
 
 
