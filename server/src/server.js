@@ -94,6 +94,7 @@ io.on('connection', function (socket) {
         console.log("Date Now: " + currentTime);
         console.log('differenz: ' + diffTime);
         console.log('now: ' + now);
+        var verifiedStart = quiz.verifiedStart;
 
 
 
@@ -121,7 +122,20 @@ io.on('connection', function (socket) {
                 //socket.emit('joinedQuiz', currentQuiz.qname);
 
 
-            }else {
+            }else if(verifiedStart == true) {
+                console.log("in der IF");
+                socket.join(quiz._id);
+                var rooms = io.sockets.adapter.rooms;
+                console.log("alle räume: ");
+                console.log(rooms);
+
+                console.log("eigene socketID: ");
+                console.log(socket.id);
+                console.log('User ist im Quiz ' + quiz._id);
+                // User in Warteraum schicken
+                socket.emit('waitingRoom', currentQuiz.qname);
+
+            } else {
                 if (diffTime < 0) {
                     console.log("Startzeitpunkt verpasst")
                 }
