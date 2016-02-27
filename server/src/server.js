@@ -56,16 +56,20 @@ function shuffle(array) {
 
 io.on('connection', function (socket) {
 
-    var quizData;
-    var counter;
-    var timerStop = false;
-    var correct;
-    var result;
-    var currentTime;
-    var tid;
-    var currentQuiz = new Quiz;
-    var answ;
+    var quizData,
+        counter,
+        timerStop = false,
+        correct,
+        result,
+        currentTime,
+        tid,
+        currentQuiz = new Quiz,
+        answ,
+        currentUser;
 
+    socket.on('auth', function (user) {
+        currentUser = user;
+    });
 
     console.log("Socket.io connection done");
 
