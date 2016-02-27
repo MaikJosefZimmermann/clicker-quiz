@@ -49,9 +49,10 @@
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
             vm.quiz = response.data;                               // load the response data to the scope.user obj
-
             vm.quiz.dateTime = new Date(vm.quiz.myDate);
             console.log(vm.quiz.myDate)
+            vm.verifiedStart= vm.quiz.verifiedStart;
+            console.log(vm.quiz)
 
         });
         var currentQuestion = [];
