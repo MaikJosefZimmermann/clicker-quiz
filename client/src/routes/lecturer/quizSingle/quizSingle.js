@@ -48,10 +48,13 @@
             method: 'GET',
             url: '/api/quizes/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
-            vm.quiz = response.data;                               // load the response data to the scope.user obj
-            vm.quiz.dateTime = new Date(vm.quiz.myDate);
-            console.log(vm.quiz.myDate)
+            vm.quiz = response.data;
             vm.verifiedStart= vm.quiz.verifiedStart;
+
+            if (vm.verifiedStart == false) {
+                vm.quiz.dateTime = new Date(vm.quiz.myDate);
+            }
+
             console.log(vm.quiz)
 
         });
@@ -89,6 +92,11 @@
                 }
 
             });
+
+
+            if(vm.verifiedStart == true) {
+                vm.quiz.dateTime = undefined;
+            }
 
             var data = {
                 qname: vm.quiz.qname,
@@ -235,6 +243,10 @@
                 }
 
             });
+
+            if (vm.verifiedStart == true) {
+                vm.quiz.dateTime = undefined;
+            }
 
             var data = {
                 qname: vm.quiz.qname,
