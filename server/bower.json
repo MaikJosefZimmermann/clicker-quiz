@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Can Kattw <ck115@hdm-stuttgart.de>"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.11.2"
+  }
+}
