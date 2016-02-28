@@ -15,6 +15,7 @@ var corsOptions = {
     "preflightContinue": false,
     credentials: true
 };
+var socketioJwt = require("socketio-jwt");
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
@@ -34,12 +35,10 @@ app.use('/api/questions', require('./app/routes/question.js'));
 
 console.log('Magic happens on port ' + port);
 
-io.use(function (socket, next) {
-    var handshake = socket.handshake;
-    console.log(handshake.query);
-    console.log(handshake.extra);
-    next();
-});
+io.use(socketioJwt.authorize({
+    secret: 'acff95d7cb2dasdb22bd90e90c01',
+    handshake: true
+}));
 
 
 var Quiz = require('./app/models/quiz'),
@@ -54,7 +53,18 @@ function shuffle(array) {
     return array;
 }
 
+io.sockets
+    .on('connection', socketioJwt.authorize({
+        secret: 'acff95d7cb2dasdb22bd90e90c01',
+        timeout: 15000 // 15 seconds to send the authentication message
+    })).on('authenticated', function (socket) {
+    //this socket is authenticated, we are good to handle more events from it.
+    console.log('hello! ' + socket.decoded_token.name);
+});
+
 io.on('connection', function (socket) {
+    console.log("socket TOKEN");
+    console.log(socket.decoded_token);
 
     var quizData,
         counter,
@@ -274,7 +284,7 @@ io.on('connection', function (socket) {
             {
                 $group: {
                     _id: "quizId",
-                    sumPoints: {$sum: "$points"},
+                    sumPoints: {$sum: "$points"}
                 }
             }
         ], function (err, result) {
