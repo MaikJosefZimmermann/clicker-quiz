@@ -17,7 +17,8 @@ var corsOptions = {
     "preflightContinue": false,
     credentials: true
 };
-var socketioJwt = require("socketio-jwt");
+
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
@@ -36,11 +37,6 @@ app.use('/api/questions', require('./app/routes/question.js'));
 
 
 console.log('Magic happens on port ' + port);
-
-io.use(socketioJwt.authorize({
-    secret: 'acff95d7cb2dasdb22bd90e90c01',
-    handshake: true
-}));
 
 
 var Quiz = require('./app/models/quiz'),
