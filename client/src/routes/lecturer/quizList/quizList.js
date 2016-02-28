@@ -42,8 +42,9 @@
             });
         };
 
-        vm.goScoreSingle = function (id) {                           // scope function which calls a single state
-            socket.emit('requestLecturerResult', id);
+        vm.goScoreSingle = function (id, quiz) {                           // scope function which calls a single state
+            console.log("QUIZZZZmööp")
+            console.log(quiz);
             $state.go('scoreSingle', {id: id});
             console.log("scoreSingle " + id)
         };

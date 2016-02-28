@@ -229,7 +229,7 @@ io.on('connection', function (socket) {
     //---------------Student-----------------//
     //---------------------------------------//
     socket.on('requestStudentResult', function (id) {
-        console.log("im Socket requestLecturerResult");
+        console.log("im Socket requestStudentResult");
         /*Answer.find({ quizId: id }, function(err, answers) {
          if (err) return console.error(err);
          console.log("!!!!!!!!!!!");
@@ -294,21 +294,25 @@ io.on('connection', function (socket) {
     //---------------------------------------//
     //---------------Dozent------------------//
     //---------------------------------------//
-    socket.on('requestLecturerResults', function (quizId) {
-        console.log("im Socket requestLecturerResults");
-        var id = quizId;
+    socket.on('requestLecturerResults', function (quiz) {
+        console.log("im Socket requestLecturerResults!!!!");
+        var id = quiz._id
+        console.log(id);
+
+
         //Summe der maximal erreichbaren Punkte in einem Quiz
-        Answer.aggregate([
+        Quiz.aggregate([
             {
                 $match: {
-                    quizId: id
-
+                    //_id: ObjectId("id"),
+                    qname: quiz.qname
                 }
             },
+            { $unwind: "$questions" },
             {
                 $group: {
-                    _id: "quizId",
-                    maxPoints: {$sum: "$points"}
+                    _id: "$_id",
+                    maxPoints: {$sum: "$questions.points"}
                 }
             }
         ], function (err, result) {
@@ -318,6 +322,7 @@ io.on('connection', function (socket) {
             }
             console.log("RESULT");
             console.log(result);
+            result = result[0].maxPoints;
             socket.emit('maxPoints', result);
         });
 
