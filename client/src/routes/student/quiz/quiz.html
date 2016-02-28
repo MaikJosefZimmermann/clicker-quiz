@@ -17,7 +17,7 @@
                                 <md-input-container ng-if="quiz.key">
                                     <label>Einschreibeschlüssel</label>
                                     <input ng-model="quiz.password" name="passwort" required type="password">
-                                    <p ng-if="quiz.key" ng-show="vm.loginerr" style="color: red">
+                                    <p ng-if="quiz.key" ng-show="quiz.loginerr" style="color: red">
                                         Falsches Passwort
                                     </p>
                                 </md-input-container>
