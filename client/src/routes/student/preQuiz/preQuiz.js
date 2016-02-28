@@ -20,7 +20,7 @@
             });
     }
 
-    function preQuizCtrl($stateParams, $localStorage, $state, socket) {// our controller for this view
+    function preQuizCtrl($stateParams, $state, socket) {// our controller for this view
         var vm = this;
         vm.qname = $stateParams.qname;
 

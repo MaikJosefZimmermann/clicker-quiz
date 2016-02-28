@@ -17,16 +17,9 @@
     }
 
 
-    function QuizCtrl($http, $state, socket, $localStorage) {// our controller for this view
+    function QuizCtrl($http, $state, socket) {// our controller for this view
         var vm = this;
-        $http({                                                     // get all users from node server
-            method: 'GET',
-            url: '/api/quizes'
-        }).then(function successCallback(response) {
-            vm.quizes = response.data;// (async) when receive the response load the data into $scope.users
-            // timeSum(vm.quizes);
 
-        });
 
         socket.emit('getQuizzes');
         socket.on('printQuizzes', function (quizzes) {
@@ -35,7 +28,7 @@
 
 
         vm.goQuiz = function (quiz) {
-            socket.emit('joinQuiz', quiz, $localStorage);
+            socket.emit('joinQuiz', quiz);
             socket.on('waitingRoom', function (qname) {
 
                 $state.go('preQuiz', {qname: qname});

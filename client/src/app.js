@@ -39,7 +39,6 @@
 
     function AppRun($rootScope, authService, $state, $localStorage, socket) {
         authService.check();
-        socket.emit('auth', $localStorage);
         $rootScope.logout = authService.logout;
         //stateChangeStart & check wird beim routen wechsel getriggert
         //start ladebalken
