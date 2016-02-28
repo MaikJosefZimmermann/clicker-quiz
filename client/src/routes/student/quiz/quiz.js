@@ -34,7 +34,7 @@
                 $state.go('preQuiz', {qname: qname});
             });
             socket.on('passwordFalse', function () {
-                vm.loginerr = true;
+                quiz.loginerr = true;
                 console.log("Falsches Passwort");
             });
 
