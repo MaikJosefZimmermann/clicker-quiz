@@ -16,12 +16,14 @@
             });
     }
 
-    function questionListCtrl($scope, $state, $http) {                      // our controller for this view
+    function questionListCtrl($scope, $state, $http, $localStorage, $rootScope) {                      // our controller for this view
 
         $http({                                                     // get all users from node server
             method: 'GET',
             url: '/api/questions'
         }).then(function successCallback(response) {
+           // var questions = response.data;                           // (async) when receive the response load the data into $scope.users
+            $rootScope.user = $localStorage.user;
             $scope.questions = response.data;                           // (async) when receive the response load the data into $scope.users
         });
 
