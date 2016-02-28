@@ -420,8 +420,6 @@ io.on('connection', function (socket) {
 
         timerStop = false;
         abortTimer();
-        // time = 20;
-        // currentTime = time;
 
         tid = setTimeout(decrease, 1000);
 
