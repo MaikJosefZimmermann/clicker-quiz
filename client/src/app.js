@@ -82,7 +82,7 @@
             console.log("LOCAL");
             return socketFactory({
                 ioSocket: io.connect('localhost:9000', {
-                    path: '/socket.io',
+                    path: '/api/socket.io',
                     'query': 'token=' + $localStorage.token
                 })
             })
