@@ -65,7 +65,7 @@
                 $state.go('login');
                 //TODO Unterscheidung ob Prof oder Student
                 // wenn user eingeloggt
-            }else if (authService.isLogged == true) {
+            } else if (authService.isLogged == true) {
                 //abfragen der UserRolle
                 $rootScope.userRole = $localStorage.userRole;
                 $rootScope.username = $localStorage.username;
@@ -74,16 +74,31 @@
 
     }
 
+    function socket(socketFactory, $localStorage, $location) {
 
-    function socket(socketFactory, $localStorage) {
-        return socketFactory({
-            // Amazon Server  ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com:9000')
-            ioSocket: io.connect('localhost:9000', {
-                path: '/socket.io',
-                'query': 'token=' + $localStorage.token
+        console.log($location.absUrl());
 
+        if ($location.absUrl().indexOf('localhost') >= 0) {
+            console.log("LOCAL");
+            return socketFactory({
+                ioSocket: io.connect('localhost:9000', {
+                    path: '/socket.io',
+                    'query': 'token=' + $localStorage.token
+                })
             })
-        });
+        }
+        else {
+            console.log("SERVER");
+            return socketFactory({
+
+                // Amazon Server  ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com:9000')
+                ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com', {
+                    path: '/api/socket.io'
+                })
+            });
+
+
+        }
     }
 
 
