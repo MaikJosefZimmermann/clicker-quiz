@@ -38,12 +38,12 @@
             vm.maxPoints = result;
 
         });
-        /*socket.on('users', function (result) {
+        socket.on('users', function (result) {
          console.log("users");
          console.log(result);
          vm.users = result;
 
-         });*/
+        });
 
     }
 })();

@@ -327,20 +327,7 @@ io.on('connection', function (socket) {
         });
 
         //Anzahl der Teilnehmer in einem Quiz
-        Answer.find([
-            {
-                $match: {
-                    quizId: id
-
-                }
-            },
-            {
-                $group: {
-                    _id: "quizId",
-                    users: {kurzel: "$kurzel"}
-                }
-            }
-        ], function (err, result) {
+        Answer.distinct("kurzel", {quizId: id}, function (err, result) {
             if (err) {
                 console.log(err);
                 return;
@@ -349,8 +336,6 @@ io.on('connection', function (socket) {
             console.log(result);
             socket.emit('users', result);
         });
-
-
 
     });
 
