@@ -55,15 +55,6 @@ function shuffle(array) {
     return array;
 }
 
-io.sockets
-    .on('connection', socketioJwt.authorize({
-        secret: 'acff95d7cb2dasdb22bd90e90c01',
-        timeout: 15000 // 15 seconds to send the authentication message
-    })).on('authenticated', function (socket) {
-    //this socket is authenticated, we are good to handle more events from it.
-
-});
-
 io.on('connection', function (socket) {
 
 
@@ -88,7 +79,8 @@ io.on('connection', function (socket) {
     console.log("Socket.io connection done");
 
 
-    socket.on('joinQuiz', function (quiz, currentUser) {
+    socket.on('joinQuiz', function (quiz) {
+        console.log("JOINQUIZ");
 
         currentQuiz = quiz;
         var moment = require('moment');
