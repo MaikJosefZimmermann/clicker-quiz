@@ -44,6 +44,19 @@
          vm.users = result;
 
         });
+        socket.on('resultQuestion', function (result) {
+            console.log("resultQuestion");
+            console.log(result);
+            /* for(var i; i<result.sumCorrect.length; i++){
+             var l = vm.quiz.questions.length
+             var li = vm.resultQuestion.sumCorrect
+             console.log(l)
+             console.log(li)
+             }*/
+            vm.resultQuestion = result;
+
+        });
+
 
     }
 })();

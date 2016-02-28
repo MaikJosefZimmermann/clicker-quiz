@@ -296,15 +296,17 @@ io.on('connection', function (socket) {
     //---------------------------------------//
     socket.on('requestLecturerResults', function (quiz) {
         console.log("im Socket requestLecturerResults!!!!");
-        var id = quiz._id
+        var id = quiz._id.toString();
+        var oId = quiz.ObjectId
         console.log(id);
-
+        console.log(oId)
 
         //Summe der maximal erreichbaren Punkte in einem Quiz
         Quiz.aggregate([
             {
                 $match: {
-                    //_id: ObjectId("id"),
+                    //_id: id
+                    //TODO anhand der ID finden
                     qname: quiz.qname
                 }
             },
@@ -336,6 +338,61 @@ io.on('connection', function (socket) {
             console.log(result);
             socket.emit('users', result);
         });
+
+        // Frage auslesen und Antworten zurdnen
+        /*Answer.aggregate([
+         {
+         $match: {
+         //_id: id
+         //TODO anhand der ID finden
+         quizId: id
+         }
+         },
+         { "$group": {
+         "_id": {"question": "$question" },
+         maxPoints: {$sum: "points"}}}
+         ],function (err, result) {
+         if (err) {
+         console.log(err);
+         return;
+         }
+         console.log("ANNSWEEEEER");
+         console.log(result);
+         socket.emit('resultQuestion', result);
+         });*/
+
+        Answer.aggregate(
+            [{
+                $match: {
+                    //_id: id
+                    //TODO anhand der ID finden
+                    quizId: id
+                }
+            },
+                {
+                    $project: {
+                        question: "$question",
+                        correct: {$cond: ["$result", 1, 0]}
+                    }
+                },
+                {
+                    $group: {
+                        _id: "$question",
+                        answerss: {$push: {result: "$correct"}},
+                        sumCorrect: {$sum: "$correct"}
+                    },
+
+                }
+
+            ],
+            function (err, result) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log(result);
+                socket.emit('resultQuestion', result);
+            });
 
     });
 
