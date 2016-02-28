@@ -17,6 +17,11 @@ var corsOptions = {
     "preflightContinue": false,
     credentials: true
 };
+var socketioJwt = require("socketio-jwt");
+io.use(socketioJwt.authorize({
+    secret: 'acff95d7cb2dasdb22bd90e90c01',
+    handshake: true
+}));
 
 
 app.use(cors(corsOptions));
