@@ -15,6 +15,7 @@ var corsOptions = {
     "preflightContinue": false,
     credentials: true
 };
+var socketioJwt = require("socketio-jwt");
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
@@ -34,12 +35,10 @@ app.use('/api/questions', require('./app/routes/question.js'));
 
 console.log('Magic happens on port ' + port);
 
-io.use(function (socket, next) {
-    var handshake = socket.handshake;
-    console.log(handshake.query);
-    console.log(handshake.extra);
-    next();
-});
+io.use(socketioJwt.authorize({
+    secret: 'acff95d7cb2dasdb22bd90e90c01',
+    handshake: true
+}));
 
 
 var Quiz = require('./app/models/quiz'),
@@ -54,7 +53,17 @@ function shuffle(array) {
     return array;
 }
 
+io.sockets
+    .on('connection', socketioJwt.authorize({
+        secret: 'acff95d7cb2dasdb22bd90e90c01',
+        timeout: 15000 // 15 seconds to send the authentication message
+    })).on('authenticated', function (socket) {
+    //this socket is authenticated, we are good to handle more events from it.
+
+});
+
 io.on('connection', function (socket) {
+
 
     var quizData,
         counter,
@@ -65,10 +74,13 @@ io.on('connection', function (socket) {
         tid,
         currentQuiz = new Quiz,
         answ,
-        currentUser;
+        currentUser = socket.decoded_token;
+
+    console.log(currentUser.username);
+
 
     socket.on('auth', function (user) {
-        currentUser = user;
+        // currentUser = user;
     });
 
     console.log("Socket.io connection done");
@@ -77,23 +89,12 @@ io.on('connection', function (socket) {
     socket.on('joinQuiz', function (quiz, currentUser) {
 
         currentQuiz = quiz;
-        // console.log("QQQQQQQQQQQQQQQQQ:");
-        //console.log(currentQuiz);
-        //console.log(currentUser);
-
-        //console.log("QQQ befüllt:");
-        // console.log(currentQuiz);
-
         var moment = require('moment');
         var quizTime = moment(new Date(quiz.myDate));
         var currentTime = moment();
         //Differenz bis zum QuizStart
         var diffTime =  quizTime.diff(currentTime, 'seconds');
         var now = moment().toDate(); var calendar = moment().calendar();
-        console.log("Quiz Date: " + quizTime);
-        console.log("Date Now: " + currentTime);
-        console.log('differenz: ' + diffTime);
-        console.log('now: ' + now);
         var verifiedStart = quiz.verifiedStart;
         var quizStart;
 
@@ -104,18 +105,12 @@ io.on('connection', function (socket) {
             // Zeit bis zum Quizbeginn < 5 Min
             if (diffTime <=300 && diffTime >=0) {
 
-                console.log("in der IF");
                 socket.join(quiz._id);
                 var rooms = io.sockets.adapter.rooms;
                 console.log("alle räume: ");
                 console.log(rooms);
                 countdownQuiz(diffTime);
-                // var clientNumber = io.sockets.adapter.rooms[quizId];
-                //  console.log("ClientNumbers from currentRoom");
-                //  console.log(clientNumber);
-                console.log("eigene socketID: ");
-                console.log(socket.id);
-                console.log('User ist im Quiz ' + quiz._id);
+
                 // User in Warteraum schicken
                 socket.emit('waitingRoom', currentQuiz.qname);
 
@@ -123,16 +118,12 @@ io.on('connection', function (socket) {
 
             //  Wenn Quiz kein Startzeitpunkt hat
             }else if(verifiedStart == true) {
-                console.log("in der IF");
+
                 socket.join(quiz._id);
                 var rooms = io.sockets.adapter.rooms;
-                console.log("alle räume: ");
-                console.log(rooms);
+
                 adhocStart(quizStart);
 
-                console.log("eigene socketID: ");
-                console.log(socket.id);
-                console.log('User ist im Quiz ' + quiz._id);
                 // User in Warteraum schicken
                 socket.emit('waitingRoom', currentQuiz.qname);
 
@@ -162,12 +153,6 @@ io.on('connection', function (socket) {
 
     socket.on('answer', function (answer, question, user) {
 
-        //  console.log("NEUNEUNEU");
-        // console.log(answer);
-        //  console.log(question);
-        // console.log("CurrenQuiz");
-        // console.log(currentQuiz);
-
         saveAnswer(answer, question, user);
         nextQuestion();
 
@@ -185,7 +170,7 @@ io.on('connection', function (socket) {
             if (err) {
                 res.send(err);
             }
-            //   console.log(quizes);
+
             socket.emit('printQuizzes', quizes);
         });
 
@@ -193,8 +178,8 @@ io.on('connection', function (socket) {
 
 
     socket.on('requestQuiz', function () {
-        console.log(socket.id);
-            counter = 0;
+
+        counter = 0;
         socket.emit('printQuiz', currentQuiz);
             quizData = currentQuiz;
             shuffle(quizData.questions);
@@ -204,10 +189,7 @@ io.on('connection', function (socket) {
 
 
     function saveAnswer(ans, ques, user) {
-        console.log("ANSWER");
-        console.log(ans);
-        console.log("FRAGE Question.question");
-        console.log(ques);
+
         var questionName = ques.question,
             questionPoints;
 
@@ -234,17 +216,16 @@ io.on('connection', function (socket) {
         });
 
         //Answer.update(a);
-        console.log("DAAAAAAATAA");
+
 
         answ = a;
 
         a.save(function (err, a) {
-            console.log("SAVEEEEEE");
+
             if (err) return console.error(err);
             console.dir(a);
         });
-        console.log("ANSWEEEERER");
-        //console.log(Answer)
+
         return answ;
     }
 
@@ -261,20 +242,20 @@ io.on('connection', function (socket) {
          return answers
          });*/
         var quizId = currentQuiz._id;
-        console.log(quizId);
+
 
         //Summe der erreichten Punkte des Studenten
         Answer.aggregate([
             {
                 $match: {
                     quizId: quizId,
-                    kurzel: "mz059"
+                    kurzel: currentUser.username
                 }
             },
             {
                 $group: {
                     _id: "quizId",
-                    sumPoints: {$sum: "$points"},
+                    sumPoints: {$sum: "$points"}
                 }
             }
         ], function (err, result) {
@@ -287,22 +268,21 @@ io.on('connection', function (socket) {
         });
 
         //alle richtigen Antworten des Studenten
-        Answer.find({"quizId": quizId, "kurzel": "mz059", "result": "true"},
+        Answer.find({"quizId": quizId, "kurzel": currentUser.username, "result": "true"},
             function (err, result) {
                 if (err) {
                     return console.error(err);
-                    return;
+
                 }
                 result = result.length;
                 socket.emit('correctQuestions', result);
             });
 
         //alle falschen Antworten des Studenten
-        Answer.find({"quizId": quizId, "kurzel": "mz059", "result": "false"},
+        Answer.find({"quizId": quizId, "kurzel": currentUser.username, "result": "false"},
             function (err, result) {
                 if (err) {
                     return console.error(err);
-                    return;
                 }
                 result = result.length;
                 socket.emit('falseQuestions', result);
@@ -466,7 +446,6 @@ io.on('connection', function (socket) {
      * @param id
      */
     function countdownQuiz(time, id) {
-        console.log(socket.id);
 
         timerStop = false;
         abortTimer();
