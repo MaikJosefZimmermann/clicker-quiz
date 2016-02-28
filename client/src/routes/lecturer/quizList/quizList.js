@@ -28,12 +28,8 @@
 
         });
 
-        vm.quizStart = function (quizStart, id) {
-            //TODO Startfunktion adhoc
-            console.log("vor klick: "+quizStart)
-            quizStart = true;
-            console.log("quizStart: "+quizStart);
-            socket.emit('test', quizStart, id)
+        vm.quizStart = function (id) {
+            socket.emit('test', id)
         };
 
         vm.delete = function (id) {                           // declare a scope function ( which is also accessible from html template)

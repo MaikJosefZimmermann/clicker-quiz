@@ -368,9 +368,8 @@ io.on('connection', function (socket) {
         }
     }
 
-    socket.on('test', function(quizStart, id) {
-       adhocStart(quizStart);
-        console.log("im socket on test")
+    socket.on('test', function (id) {
+        io.to(id).emit('message', id);
     });
 
     /**
@@ -430,34 +429,34 @@ io.on('connection', function (socket) {
         timerStop = false;
         abortTimer();
         // time = 20;
-        currentTime = time;
+        // currentTime = time;
 
         tid = setTimeout(decrease, 1000);
 
         // set timeout
 
-        socket.emit('printTimeQuiz', currentTime);
+        socket.emit('printTimeQuiz', time);
 
         function decrease() {
-            if (currentTime === 0) {
+            if (time === 0) {
                 timerStop = true;
 
             }
             if (timerStop === true) {
                 socket.emit('startQuiz', id);
-                socket.emit('printTimeQuiz', currentTime);
+                socket.emit('printTimeQuiz', time);
                 //  saveAnswer(null);
                 abortTimer();
                 console.log("STOP");
             } else {
-                socket.emit('printTimeQuiz', currentTime);
-                currentTime--;
+                socket.emit('printTimeQuiz', time);
+                time--;
 
 
                 tid = setTimeout(decrease, 1000);
             }
 
-            console.log(currentTime);
+            console.log(time);
 
             // do some stuff...
             // repeat myself

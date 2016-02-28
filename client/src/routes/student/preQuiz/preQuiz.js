@@ -32,8 +32,9 @@
             console.log("START");
             $state.go('quizSingleStudent', {id: id});
         });
-        socket.on('message', function () {
+        socket.on('message', function (id) {
             console.log("BROADCAST an den Raum");
+            socket.emit('start', id);
 
         });
 
