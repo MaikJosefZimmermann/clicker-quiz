@@ -376,26 +376,30 @@ io.on('connection', function (socket) {
      * @param time
      */
     function countdown(time) {
-
+        if (tid) {
+            clearInterval(tid);
+        }
         timerStop = false;
         currentTime = time;
 
 
         tid = setInterval(decrease, 1000);
 
-
-
         function decrease() {
             if (currentTime === 0) {
+
                 clearInterval(tid);
                 nextQuestion();
 
             }
             if (timerStop === true) {
-
+                console.log(tid);
+                clearInterval(tid);
+                tid = null;
                 socket.emit('printTime', currentTime);
                 //  saveAnswer(null);
                 console.log("STOP");
+
             }
 
             else {
