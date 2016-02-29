@@ -278,25 +278,25 @@
 
             }
 
-            vm.goDialog = function (question) {
 
-
-                $mdDialog.show({
-
-                    controller: 'dialogCtrl as vm',
-                    templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
-                    parent: angular.element(document.body),
-                    clickOutsideToClose: true,
-                    locals: {question: question}
-
-
-                })
-
-            };
         }
 
+        vm.goDialog = function (question) {
 
-    };
+
+            $mdDialog.show({
+
+                controller: 'dialogCtrl as vm',
+                templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                locals: {question: question}
+
+
+            })
+
+        };
+    }
 
 
     function dialogCtrl($mdDialog, $http, question) {
