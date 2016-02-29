@@ -17,7 +17,7 @@
             <p ng-if="quiz.myDate !== undefined">Startzeitpunkt: {{quiz.myDate | date: "dd.MM.yyyy HH:mm"}} Uhr </p>
             <div></div>
             <md-button class="md-raised md-primary" ng-if="!quiz.used && quiz.myDate == undefined" ng-click="vm.quizStart(quiz._id)">Starten</md-button>
-            <md-button class="md-raised md-primary" ng-if="!quiz.used" ng-click="vm.goScoreSingle(quiz._id)">Auswertung
+            <md-button class="md-raised md-primary" ng-if="!quiz.used" ng-click="vm.goScoreSingle(quiz._id, quiz)">Auswertung
             </md-button>
             <md-button class="md-raised md-primary" ng-click="vm.goQSingle(quiz._id)">Bearbeiten</md-button>
 

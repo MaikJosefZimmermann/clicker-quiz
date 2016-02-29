@@ -6,7 +6,7 @@
         <input type="text" ng-model="searchBox">
     </md-input-container>
 
-    <md-list-item class="md-3-line md-long-text" ng-repeat="question in questions| filter:searchBox">
+    <md-list-item class="md-3-line md-long-text" ng-repeat="question in questions| filter:searchBox" ng-if="question.creator === $root.user">
 
         <div class="md-list-item-text">
             <p>
@@ -18,7 +18,8 @@
             <p>Schwierigkeitsgrad: {{question.points}}</p>
             <p>Zeit in Sekunden: {{question.time}}</p>
             <p>Tags: {{ question.tags }} </p>
-
+            <p>Ersteller: {{ question.creator }} </p>
+            <p>localStorage: {{$root.user}} </p>
 
             <md-button class="md-raised md-primary" ng-click="goQSingle(question._id)">Bearbeiten</md-button>
 

@@ -23,74 +23,16 @@
         <input type="text" ng-model="searchBox">
     </md-input-container>
 
-
-    <!--    <md-list-item class="md-5-line md-long-text" ng-repet="quiz in vm.quizes| filter:searchBox">
-
-            <table>
-                <tr>
-                    <td style="vertical-align: top">
-                        <div class="md-list-item-text">
-                            <p>Thomas Müller{{quiz.qname}}</p>
-                            <p>Richtig beantwortete Fragen: (7/10) </p>
-                        </div>
-                    <td>
-                        <div class="questions">
-                            <p class=question>Frage 1</p>
-                            <p class="answer">Antwort 1 </p>
-                        </div>
-                        <div class="questions">
-                            <p class=question>Frage 2</p>
-                            <p class="answer">Antwort 4 </p>
-                        </div>
-                    </td>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top">
-                        <div class="md-list-item-text">
-                            <p>Werner Weiß{{quiz.qname}}</p>
-                            <p>Richtig beantwortete Fragen: (3/10) </p>
-                        </div>
-                    <td>
-                        <div class="questions">
-                            <p class=question>Frage 1</p>
-                            <p class="answer">Antwort 1 </p>
-                        </div>
-                        <div class="questions">
-                            <p class=question>Frage 2</p>
-                            <p class="answer">Antwort 1 </p>
-                        </div>
-                        <div class="questions">
-                            <p class=question>Frage 3</p>
-                            <p class="answer">Antwort 1 </p>
-                        </div>
-                    </td>
-                    </td>
-                </tr>
-            </table>
-
-            &lt;!&ndash; <tr>
-                 <td>
-                     <div class="md-3-list-item-text" style="margin-left: 10px">
-                         <p>Name: Thomas Müller{{quiz.qname}}</p>
-                         <p>Richtig beantwortete Fragen: (7/10) </p>
-                         <p></p>
-                     </div>
-                 </td>
-                 <td >
-                     <div class="question">
-                         <p style="font-weight: bold; margin-bottom: 0">Frage 1</p>
-                         <p>Antwort 1 </p>
-                     </div>
-                     <div class="question">
-                         <p style="font-weight: bold; margin-bottom: 0">Frage 1</p>
-                         <p>Antwort 1 </p>
-                     </div>
-                 </td>
-             </tr>&ndash;&gt;
-
-
-        </md-list-item>-->
+    <md-list-item class="md-3-line md-long-text" ng-repeat="question in vm.resultQuestion| filter:searchBox">
+        <div class="md-list-item-text">
+            <p>
+            <h3>Frage: {{question._id}}</h3>
+            <p>Anzahl der richtig beantworteten Fragen: {{question.sumCorrect}} </p>
+            <p>Anzahl der falsch beantworteten Fragen: {{vm.num}} </p>
+            <hr/>
+            </p>
+        </div>
+    </md-list-item>
 
 </div>
 
