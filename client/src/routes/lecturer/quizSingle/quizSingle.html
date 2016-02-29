@@ -22,7 +22,7 @@
         <div layout="" layout-sm="column">
             <md-input-container flex="">
                 <label>Einschreibeschlüssel</label>
-                <input ng-model="vm.quiz.key">
+                <input id="key" ng-model="vm.quiz.key">
             </md-input-container>
 
         </div>
@@ -108,7 +108,7 @@
 
         </div>
 
-        <md-button class="md-raised" ng-if="vm.new" ui-sref="quizList" ng-click="vm.saveQuiz()">Quiz generieren
+    <md-button class="md-raised" ng-disabled="vm.noKey" ng-if="vm.new" ng-click="vm.saveQuiz()">Quiz generieren
         </md-button>
         <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="vm.qsave(vm)">Speichern</md-button>
         <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="">Abbrechen</md-button>

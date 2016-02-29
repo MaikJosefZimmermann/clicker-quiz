@@ -174,7 +174,7 @@
 
 
 // var vm;
-    function qAddCtrl($http, $mdDialog) {
+    function qAddCtrl($http, $mdDialog, $state) {
 
         var vm = this;
         vm.selected = [];
@@ -232,62 +232,71 @@
 
         };
 
-        vm.saveQuiz = function ($state) {
-            var ergebnis = [];
+        vm.saveQuiz = function () {
+
+            if (vm.quiz.key) {
 
 
-            angular.forEach(vm.questions, function (question) {
+                var ergebnis = [];
 
-                if (question.selected === true) {
-                    ergebnis.push(question)
+
+                angular.forEach(vm.questions, function (question) {
+
+                    if (question.selected === true) {
+                        ergebnis.push(question)
+                    }
+
+                });
+
+                if (vm.verifiedStart == true) {
+                    vm.quiz.dateTime = undefined;
                 }
 
-            });
+                var data = {
+                    qname: vm.quiz.qname,
+                    questions: ergebnis,
+                    key: vm.quiz.key,
+                    myDate: vm.quiz.dateTime,
+                    verifiedStart: vm.verifiedStart,
+                    quizStart: vm.quizStart
+                };
 
-            if (vm.verifiedStart == true) {
-                vm.quiz.dateTime = undefined;
+                // for new users we only need the save function
+                $http({                                              // same as in the EditCtrl
+                    method: 'POST',
+                    data: data,
+                    url: '/api/quizes'
+                }).then(function successCallback() {
+                    $state.go('quizList');
+                })
+
+            }
+            else {
+                console.log("leer!");
+                alert("Bitte vergeben Sie einen Einschreibeschlüssel")
+                document.getElementById("key").focus();
+
             }
 
-            var data = {
-                qname: vm.quiz.qname,
-                questions: ergebnis,
-                key: vm.quiz.key,
-                myDate: vm.quiz.dateTime,
-                verifiedStart: vm.verifiedStart,
-                quizStart: vm.quizStart
+            vm.goDialog = function (question) {
+
+
+                $mdDialog.show({
+
+                    controller: 'dialogCtrl as vm',
+                    templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true,
+                    locals: {question: question}
+
+
+                })
+
             };
+        }
 
 
-            console.log(data);
-            // for new users we only need the save function
-            $http({                                              // same as in the EditCtrl
-                method: 'POST',
-                data: data,
-                url: '/api/quizes'
-            }).then(function successCallback(response) {
-                //   $state.go('quizList');
-            })
-        };
-
-
-        vm.goDialog = function (question) {
-
-
-            $mdDialog.show({
-
-                controller: 'dialogCtrl as vm',
-                templateUrl: 'routes/lecturer/quizSingle/questionEditDialog.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: true,
-                locals: {question: question}
-
-
-            })
-
-        };
-
-
-    }
+    };
 
 
     function dialogCtrl($mdDialog, $http, question) {

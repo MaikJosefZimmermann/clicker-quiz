@@ -34,7 +34,7 @@
     </md-toolbar>
 
     <!-- Menü Dozent/Admin -->
-    <md-toolbar class="toolbar" ng-if="$root.userRole === 'admin'">
+    <md-toolbar class="toolbar" ng-if="$root.userRole === 'admin' || $root.userRole === 'eduPerson'">
         <div class="md-toolbar-tools">
             <a ui-sref="quiz">Clicker-05</a>
 
