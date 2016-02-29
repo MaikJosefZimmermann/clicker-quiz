@@ -272,7 +272,7 @@
 
             }
             else {
-                console.log("leer!");
+
                 alert("Bitte vergeben Sie einen Einschreibeschlüssel")
                 document.getElementById("key").focus();
 
