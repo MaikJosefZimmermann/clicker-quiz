@@ -340,27 +340,6 @@ io.on('connection', function (socket) {
         });
 
         // Frage auslesen und Antworten zurdnen
-        /*Answer.aggregate([
-         {
-         $match: {
-         //_id: id
-         //TODO anhand der ID finden
-         quizId: id
-         }
-         },
-         { "$group": {
-         "_id": {"question": "$question" },
-         maxPoints: {$sum: "points"}}}
-         ],function (err, result) {
-         if (err) {
-         console.log(err);
-         return;
-         }
-         console.log("ANNSWEEEEER");
-         console.log(result);
-         socket.emit('resultQuestion', result);
-         });*/
-
         Answer.aggregate(
             [{
                 $match: {
@@ -372,18 +351,30 @@ io.on('connection', function (socket) {
                 {
                     $project: {
                         question: "$question",
-                        correct: {$cond: ["$result", 1, 0]}
+                        correct: {$cond: ["$result", 1, 0]},
+                        count: {
+                            $subtract: ["$correct", "5"]
+                        }
                     }
                 },
                 {
                     $group: {
                         _id: "$question",
                         answerss: {$push: {result: "$correct"}},
-                        sumCorrect: {$sum: "$correct"}
-                    },
-
+                        sumCorrect: {$sum: "$correct"},
+                        sumquestions: {$sum: 1}
+                    }
+                },
+                {
+                    $project: {
+                        question: "$question",
+                        correct: "$sumCorrect",
+                        sumquestions: "$sumquestions",
+                        wrong: {
+                            $subtract: ["$sumquestions", "$sumCorrect"]
+                        }
+                    }
                 }
-
             ],
             function (err, result) {
                 if (err) {
