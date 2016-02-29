@@ -400,8 +400,7 @@ io.on('connection', function (socket) {
         nextQuestion();
     });
     function nextQuestion() {
-        console.log(counter);
-        console.log(socket.id);
+
         if (counter < currentQuiz.questions.length) {
             var question = currentQuiz.questions[counter];
             correct = question.answer1;
@@ -439,44 +438,41 @@ io.on('connection', function (socket) {
      * @param time
      */
     function countdown(time) {
-        console.log(socket.id);
-
+        if (tid) {
+            clearInterval(tid);
+        }
         timerStop = false;
-        abortTimer();
-        // time = 20;
         currentTime = time;
 
-        tid = setTimeout(decrease, 1000);
 
-        // set timeout
-
+        tid = setInterval(decrease, 1000);
 
         function decrease() {
             if (currentTime === 0) {
+
+                clearInterval(tid);
                 nextQuestion();
+
             }
             if (timerStop === true) {
-
+                console.log(tid);
+                clearInterval(tid);
+                tid = null;
                 socket.emit('printTime', currentTime);
                 //  saveAnswer(null);
-                abortTimer();
                 console.log("STOP");
-            } else {
+
+            }
+
+            else {
                 socket.emit('printTime', currentTime);
                 currentTime--;
 
-
-                tid = setTimeout(decrease, 1000);
         }
 
             console.log(currentTime);
 
-            // do some stuff...
-            // repeat myself
-    }
 
-        function abortTimer() { // to be called when you want to stop the timer
-            clearTimeout(tid);
         }
 
     }
@@ -490,8 +486,6 @@ io.on('connection', function (socket) {
 
         timerStop = false;
         abortTimer();
-        // time = 20;
-        // currentTime = time;
 
         tid = setTimeout(decrease, 1000);
 
