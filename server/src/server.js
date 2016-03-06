@@ -68,7 +68,8 @@ io.on('connection', function (socket) {
         tid,
         currentQuiz = new Quiz,
         answ,
-        currentUser = socket.decoded_token;
+        currentUser = socket.decoded_token,
+        studentArr = [];
 
     console.log(currentUser.username);
 
@@ -234,7 +235,7 @@ io.on('connection', function (socket) {
          if (err) return console.error(err);
          console.log("!!!!!!!!!!!");
          console.dir(answers);
-         return answers
+         L        return answers
          });*/
         var quizId = currentQuiz._id;
 
@@ -260,6 +261,7 @@ io.on('connection', function (socket) {
             }
             result = result[0].sumPoints;
             socket.emit('UserReachedPoints', result);
+            studentArr[0] = result;
         });
 
         //alle richtigen Antworten des Studenten
@@ -287,6 +289,7 @@ io.on('connection', function (socket) {
         var quiz = currentQuiz;
         console.log("vm.quiz");
         socket.emit('quizResult', quiz);
+        studentArr[1] = quiz
 
 
     });
