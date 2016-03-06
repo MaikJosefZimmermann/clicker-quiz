@@ -3,7 +3,7 @@
         <h1>Fragenübersicht </h1></md-subheader>
     <md-input-container flex="">
         <label>Suche hier deine gewünschte Frage</label>
-        <input type="text" ng-model="searchBox">
+        <input type="text" ng-model="searchBox.question">
     </md-input-container>
 
     <md-list-item class="md-3-line md-long-text" ng-repeat="question in questions| filter:searchBox" ng-if="question.creator === $root.user">

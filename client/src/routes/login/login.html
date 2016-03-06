@@ -2,28 +2,38 @@
     <div class="content">
 
 
-        <md-subheader class="md-no-sticky">
-            <strong>Login</strong>
-        </md-subheader>
+        <!-- <md-subheader class="md-no-sticky">
+             <strong>Login</strong>
+         </md-subheader>
+ -->
+        <div class="logo">
+            <img src="https://www.hdm-stuttgart.de/stylesheets_bilder/Logo_Graustufen_1.gif">
+        </div>
+        <md-card class="login">
 
+            <md-card-title>
+                <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">Log In</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content flex layout-padding>
 
-        <md-content flex layout-padding>
-
-            <div layout="" layout-sm="column">
-                <md-input-container flex="">
-                    <label>Kürzel</label>
+                <md-input-container flex="" class="login-input">
+                    <label style="color: black">Kürzel</label>
                     <input ng-model="vm.user.username">
                 </md-input-container>
-                <md-input-container flex="">
-                    <label>Passwort</label>
+                <md-input-container flex="" class="login-input" placeholder="Passwort">
+                    <label style="color: black">Passwort</label>
                     <input ng-keypress="vm.submitt($event)" ng-model="vm.user.password" type="password">
                 </md-input-container>
-            </div>
 
-            <div layout="row" layout-align="end center">
-                <md-button class="md-raised md-primary" ng-click="vm.submit()">Login</md-button>
-            </div>
-        </md-content>
 
+                <div layout="row" layout-align=" center">
+                    <md-button class="md-raised md-primary" ng-click="vm.submit()"
+                               style="background: #3EB2AC none repeat scroll 0 0;">Log In
+                    </md-button>
+                </div>
+            </md-card-content>
+        </md-card>
     </div>
 </md-content>
