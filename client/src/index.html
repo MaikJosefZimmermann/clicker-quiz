@@ -7,55 +7,56 @@
 </head>
 <body>
 <div class="site">
-<!-- HEADER -->
-<md-content>
-    <!-- Startleiste -->
-    <!-- TODO notLogged überarbeiten -->
-    <md-toolbar class="toolbar" ng-if="$root.notLogged === 'notLogged'">
-        <div class="md-toolbar-tools">
-            <a ui-sref="quiz">Clicker-05</a>
-            <span flex="35"></span> <h2> <span> HdM - Quizzler </span> </h2>
+    <!-- HEADER -->
+    <md-content>
+        <!-- Startleiste -->
+        <!-- TODO notLogged überarbeiten -->
+        <md-toolbar class="toolbar" ng-if="$root.notLogged === 'notLogged'">
+            <div class="md-toolbar-tools">
+                <a ui-sref="quiz">Clicker-05</a>
+                <span flex="35"></span> <h2> <span style="margin-left: 25px"> HdM - Quizzler </span> </h2>
             </div>
-    </md-toolbar>
+        </md-toolbar>
 
-    <!-- Menü Student -->
-    <!-- TODO anpassen welche Menüpunkte student sehen darf -->
-    <md-toolbar class="toolbar" ng-if="$root.userRole === 'student'">
-        <div class="md-toolbar-tools">
-            <a ui-sref="quiz">Clicker-05</a>
-            <md-button class="md-raised" ui-sref="quiz">Quizübersicht</md-button>
-            <md-button class="md-raised" ui-sref="quizList">Quizverwaltung</md-button>
-            <md-button class="md-raised" ui-sref="scoreStudent">Score</md-button>
+        <!-- Menü Student -->
+        <!-- TODO anpassen welche Menüpunkte student sehen darf -->
+        <md-toolbar class="toolbar" ng-if="$root.userRole === 'student'">
+            <div class="md-toolbar-tools">
+                <a ui-sref="quiz">Clicker-05 <br>Student</a>
+                <md-button class="md-raised" ui-sref="quiz">Quizübersicht</md-button>
+                <md-button class="md-raised" ui-sref="quizList">Quizverwaltung</md-button>
+                <md-button class="md-raised" ui-sref="scoreStudent">Score</md-button>
 
-            <span flex=""> </span>
-            <label> {{ $root.username }}</label>
-            <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>
+                <span flex=""> </span>
+                <label> {{ $root.username }}</label>
+                <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>
             </div>
-    </md-toolbar>
+        </md-toolbar>
 
-    <!-- Menü Dozent/Admin -->
-    <md-toolbar class="toolbar" ng-if="$root.userRole === 'admin' || $root.userRole === 'eduPerson'">
-        <div class="md-toolbar-tools">
-            <a ui-sref="quiz">Clicker-05</a>
+        <!-- Menü Dozent/Admin -->
+        <md-toolbar class="toolbar" ng-if="$root.userRole === 'admin' || $root.userRole === 'eduPerson'">
+            <div class="md-toolbar-tools">
+                <a ui-sref="quiz">Clicker-05<br>Professor</a></br>
 
-            <md-button class="md-raised" ui-sref="list">Userverwaltung</md-button>
-            <md-button class="md-raised" ui-sref="quizList">Quizverwaltung</md-button>
-            <md-button class="md-raised" ui-sref="questionList">Fragenverwaltung</md-button>
-            <span flex=""> </span>
-            <label> {{ $root.username }}</label>
-            <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>
 
-        </div>
-    </md-toolbar>
-</md-content>
+                <md-button class="md-raised" ui-sref="list">Userverwaltung</md-button>
+                <md-button class="md-raised" ui-sref="quizList">Quizverwaltung</md-button>
+                <md-button class="md-raised" ui-sref="questionList">Fragenverwaltung</md-button>
+                <span flex=""> </span>
+                <label> {{ $root.username }}</label>
+                <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>
 
-<ui-view>
-    <!-- Your view will be rendered here -->
-</ui-view>
-<script src="vendor.js" defer></script>
-<script src="app.js" defer></script>
+            </div>
+        </md-toolbar>
+    </md-content>
 
-<link rel="stylesheet" href="style.css">
+    <ui-view>
+        <!-- Your view will be rendered here -->
+    </ui-view>
+    <script src="vendor.js" defer></script>
+    <script src="app.js" defer></script>
+
+    <link rel="stylesheet" href="style.css">
 </div>
 </body>
 </html>

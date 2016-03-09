@@ -6,6 +6,16 @@
         <input type="text" ng-model="searchBox.question">
     </md-input-container>
 
+    <div layout="row" layout-align="start">
+
+        <md-button class="md-raised" ui-sref="questionadd">
+            Neue Frage erstellen
+        </md-button>
+
+
+    </div>
+
+
     <md-list-item class="md-3-line md-long-text" ng-repeat="question in questions| filter:searchBox" ng-if="question.creator === $root.user">
 
         <div class="md-list-item-text">
@@ -31,16 +41,5 @@
 
 
     </md-list-item>
-
-
-    <div layout="row" layout-align="end center">
-
-        <md-button class="md-fab md-primary addBtn" ui-sref="questionadd">
-            +
-        </md-button>
-
-
-    </div>
-
 
 </div>
