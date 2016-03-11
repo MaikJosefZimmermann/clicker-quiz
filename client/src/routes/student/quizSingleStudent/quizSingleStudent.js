@@ -21,7 +21,7 @@
             });
     }
 
-    function startCtrl($stateParams, $state, $timeout, socket, $localStorage) {// our controller for this view
+    function startCtrl($state, socket, $localStorage) {                 // our controller for this view
         var vm = this;
         var quizData;
         vm._id = 0;

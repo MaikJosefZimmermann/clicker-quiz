@@ -1,4 +1,4 @@
-<div class="content" id="home">
+<div class="content" id="home" style="padding:10px" ng-cloak>
     <div ng-if="vm.new">
         <md-subheader class="md-no-sticky">
             <h2>Quiz erstellen</h2>
@@ -11,22 +11,26 @@
         </md-subheader>
 
     </div>
-    <div layout="" layout-sm="column">
-        <md-input-container flex="">
-            <label>Quiz Name</label>
-            <input ng-model="vm.quiz.qname">
-        </md-input-container>
+    <form name="quizCorrect">
+        <div ng-cloak>
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label>Quiz Name</label>
+                    <input ng-model="vm.quiz.qname" required>
+                </md-input-container>
+            </div>
+        </div>
 
-    </div>
-    <div style="padding:10px" ng-cloak>
+        <div ng-cloak>
         <div layout="" layout-sm="column">
             <md-input-container flex="">
                 <label>Einschreibeschlüssel</label>
-                <input id="key" ng-model="vm.quiz.key">
+                <input id="key" ng-model="vm.quiz.key" required>
             </md-input-container>
-
         </div>
-        <div layout layout-fill>
+        </div>
+    </form>
+    <div layout layout-fill>
             <md-checkbox ng-model="vm.verifiedStart" ng-init="vm.verifiedStart == true" aria-label="Checkbox 1">
                 <p> variabler Startzeitpunkt: {{ vm.verifiedStart}}</p>
             </md-checkbox>
@@ -40,7 +44,7 @@
             </md-input-container>
         </div>
 
-        <div layout="" layout-sm="column">
+    <div layout="" layout-sm="column" style="padding:10px" ng-cloak>
                 <md-input-container flex="">
                     <label>Suche hier deine gewünschte Frage</label>
                     <input type="text" ng-model="searchBox">
@@ -64,7 +68,6 @@
 
             <md-list-item class="list-lecturer" ng-if="vm.edit"
                           ng-repeat="question in vm.quiz.questions| filter:searchBox">
-
                 <div class="md-list-item-text" ng-if="vm.edit">
                     <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
                         Frage: {{question.question}} Tags: {{ question.tags }}
@@ -75,20 +78,16 @@
                 <div>
                     <md-button class="md-raised md-warn" layout="row" layout-align="center"
                                ng-click="vm.goDialog(question)"
-                               ng-if="question.selected">
-                        Frage
-                        bearbeiten
+                               ng-if="question.selected"> Frage bearbeiten
                     </md-button>
                 </div>
                 <div class="md-padding" layout="row" layout-align="center center" ng-if="vm.edit" ng-cloak>
-
                 </div>
-
             </md-list-item>
             <hr/>
+
             <h3>Verfügbare Fragen</h3>
             <md-list-item class="list-lecturer" ng-if="vm.edit" ng-repeat="question in vm.questions| filter:searchBox">
-
                 <div class="md-list-item-text" ng-if="vm.edit">
                     <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
                         Frage: {{question.question}} Tags: {{ question.tags }}
@@ -97,22 +96,23 @@
                 <span flex=""></span>
                 <div class="md-padding" ng-if="vm.edit" ng-cloak>
                     <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
-                               ng-if="question.selected">
-                        Frage
-                        bearbeiten
+                               ng-if="question.selected"> Frage bearbeiten
                     </md-button>
                 </div>
-
             </md-list-item>
 
-
-        </div>
-
-    <md-button class="md-raised" ng-disabled="vm.noKey" ng-if="vm.new" ng-click="vm.saveQuiz()">Quiz generieren
+    <md-button class="md-raised"
+               ng-disabled="quizCorrect.$invalid"
+               ng-disabled="vm.noKey"
+               ng-if="vm.new"
+               ng-click="vm.saveQuiz()"> Quiz generieren
         </md-button>
-        <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="vm.qsave(vm)">Speichern</md-button>
+    <md-button class="md-raised" ng-disabled="quizCorrect.$invalid" ng-if="vm.edit" ui-sref="quizList"
+               ng-click="vm.qsave(vm)">Speichern
+    </md-button>
         <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="">Abbrechen</md-button>
-    </div>
+
+</div>
 
 
 

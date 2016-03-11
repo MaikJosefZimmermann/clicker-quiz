@@ -17,7 +17,7 @@
     }
 
 
-    function QuizCtrl($http, $state, socket) {// our controller for this view
+    function QuizCtrl($state, socket) {// our controller for this view
         var vm = this;
 
 
