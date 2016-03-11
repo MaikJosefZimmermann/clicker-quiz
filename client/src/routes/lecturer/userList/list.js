@@ -12,21 +12,22 @@
             .state('list', {                                        // declare list view
                 url: '/list',                                       // set url
                 templateUrl: 'routes/lecturer/userList/list.html',           // defines the HTML template
-                controller: 'ListCtrl'                              // this view shall use the ListCtrl previously declared.
+                controller: 'ListCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
     }
 
     function ListCtrl($scope, $state, $http) {                      // our controller for this view
+        var vm = this;
 
         $http({                                                     // get all users from node server
             method: 'GET',
             url: '/api/users'
         }).then(function successCallback(response) {
-            $scope.users = response.data;                           // (async) when receive the response load the data into $scope.users
+            vm.users = response.data;                           // (async) when receive the response load the data into $scope.users
         });
 
 
-        $scope.goSingle = function (id) {                           // scope function which calls a single state
+        vm.goSingle = function (id) {                           // scope function which calls a single state
             console.log("UserID" + id);
             $state.go('edit', {id: id});
         };

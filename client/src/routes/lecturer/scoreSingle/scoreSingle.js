@@ -21,7 +21,7 @@
             });
     }
 
-    function scoreSingleCtrl($stateParams, $http, $state, $timeout, socket) {// our controller for this view
+    function scoreSingleCtrl($stateParams, $http, socket) {// our controller for this view
         var vm = this;
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',

@@ -2,12 +2,12 @@
     <div class="content">
 
 
-        <md-subheader class="md-no-sticky" ng-if="new">
+        <md-subheader class="md-no-sticky" ng-if="vm.new">
             Erstelle eine neue Frage
         </md-subheader>
 
-        <md-subheader class="md-no-sticky" ng-if="edit">
-            Bearbeite Frage mit id: {{question._id}}
+        <md-subheader class="md-no-sticky" ng-if="vm.edit">
+            Bearbeite Frage mit id: {{vm.question._id}}
         </md-subheader>
 
 
@@ -36,7 +36,7 @@
                 <div layout="" layout-sm="column">
                     <md-input-container flex="" required>
                     <label>Frage</label>
-                        <input name="question.question" required ng-model="question.question">
+                        <input name="vm.question.question" required ng-model="vm.question.question">
                 </md-input-container>
 
             </div>
@@ -45,11 +45,11 @@
             <div layout="" layout-sm="column">
                 <md-input-container flex="">
                     <label>Richtige Antwort</label>
-                    <input type="text" required ng-model="question.answer1">
+                    <input type="text" required ng-model="vm.question.answer1">
                 </md-input-container>
                 <md-input-container flex="">
                     <label>Antwort 2</label>
-                    <input type="text" required ng-model="question.answer2">
+                    <input type="text" required ng-model="vm.question.answer2">
                 </md-input-container>
 
 
@@ -57,11 +57,11 @@
             <div layout="" layout-sm="column">
                 <md-input-container flex="">
                     <label>Antwort 3</label>
-                    <input type="text" required ng-model="question.answer3">
+                    <input type="text" required ng-model="vm.question.answer3">
                 </md-input-container>
                 <md-input-container flex="">
                     <label>Antwort 4</label>
-                    <input type="text" ng-model="question.answer4">
+                    <input type="text" ng-model="vm.question.answer4">
                 </md-input-container>
             </div>
             </form>
@@ -96,14 +96,15 @@
 
                     <div flex="10" layout-align="center center">
 
-                        <input flex type="number" ng-model="question.time" aria-label="red" aria-controls="red-slider"
+                        <input flex type="number" ng-model="vm.question.time" aria-label="red"
+                               aria-controls="red-slider"
                                align="center">
                     </div>
                     <div layout>
                         <div flex="10" layout layout-align="center center">
                             <span class="md-body-1">Default</span>
                         </div>
-                        <md-slider flex min="0" max="180" ng-model="question.time" aria-label="red" id="red-slider"
+                        <md-slider flex min="0" max="180" ng-model="vm.question.time" aria-label="red" id="red-slider"
                                    class>
                         </md-slider>
                         <div flex="10" layout layout-align="center center">
@@ -116,10 +117,11 @@
 
 
             <div layout="row" layout-align="end center">
-                <md-button class="md-raised md-warn" ng-click="delete()" ng-if="edit">Frage löschen</md-button>
+                <md-button class="md-raised md-warn" ng-click="vm.delete(vm.question._id)" ng-if="edit">Frage löschen
+                </md-button>
                 <md-button class="md-raised" ui-sref="questionList">Abbrechen</md-button>
                 <md-button class="md-raised md-primary" ng-disabled="questionCorrect.$invalid"
-                           ng-click="questionSave()">Speichern
+                           ng-click="vm.questionSave()">Speichern
                 </md-button>
             </div>
         </md-content>
