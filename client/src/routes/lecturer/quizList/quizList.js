@@ -17,7 +17,6 @@
 
     function quizListCtrl($state, $http, socket) {                      // our controller for this view
         var vm = this;
-        timeSum(vm.quizes);
 
         $http({                                                     // get all users from node server
             method: 'GET',
@@ -54,7 +53,7 @@
             $state.go('qedit', {id: id});
         };
 
-        function timeSum(quizes) {
+        /*function timeSum(quizes) {
 
 
 
@@ -82,7 +81,7 @@
             //console.log(vm.quiz.timeSum);
             //return total;
 
-        }
+         }*/
 
     }
 })();
