@@ -5,18 +5,15 @@
         <label>Suche hier deine gewünschte Frage</label>
         <input type="text" ng-model="searchBox.question">
     </md-input-container>
-
     <div layout="row" layout-align="start">
-
         <md-button class="md-raised" ui-sref="questionadd">
             Neue Frage erstellen
         </md-button>
-
-
     </div>
 
 
-    <md-list-item class="md-3-line md-long-text" ng-repeat="question in questions| filter:searchBox" ng-if="question.creator === $root.user">
+    <md-list-item class="md-3-line md-long-text" ng-repeat="question in vm.questions| filter:searchBox"
+                  ng-if="question.creator === $root.user">
 
         <div class="md-list-item-text">
             <p>
@@ -31,10 +28,10 @@
             <p>Ersteller: {{ question.creator }} </p>
             <p>localStorage: {{$root.user}} </p>
 
-            <md-button class="md-raised md-primary" ng-click="goQSingle(question._id)">Bearbeiten</md-button>
+            <md-button class="md-raised md-primary" ng-click="vm.goQSingle(question._id)">Bearbeiten</md-button>
 
 
-            <md-button class="md-raised md-accent" ng-click="delete(question._id)">Löschen</md-button>
+            <md-button class="md-raised md-accent" ng-click="vm.delete(question._id)">Löschen</md-button>
             <hr/>
             </p>
         </div>

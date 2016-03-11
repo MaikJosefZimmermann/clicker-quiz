@@ -1,19 +1,19 @@
-<div class="content" id="home">
+<div class="content" id="home" style="padding:10px">
     <md-subheader class="md-no-sticky">
         <h1 style="text-align: center">Warteraum für das Quiz: {{vm.qname}}</h1>
     </md-subheader>
-    <div layout-align="center center">
-        <!--TODO adhoc Start -->
-        <p> Das Quiz startet in: {{ vm.timeQuiz }}</p>
-        <p> ...sie werden automatisch weitergeleitet!</p>
-        <md-button class="md-raised md-primary"   ng-click="vm.goQuiz(vm.id)"
-                   style="background-color: #3EB2AC">
-            Zum Quiz  
-        </md-button>
-        <md-button class="md-raised md-primary"   ng-click="vm.test()"
-                   style="background-color: #3EB2AC">
-            Broadcast test
-        </md-button>
-    </div>
+
+    <md-card style="margin:0 auto; width: 400px">
+        <md-card-content layout="row" layout-align="center center">
+            <!--TODO adhoc Start -->
+            <p style="text-align: center"> Das Quiz startet in: {{ vm.timeQuiz }} <br> ...sie werden automatisch
+                weitergeleitet!</p>
+            <p></p>
+            <md-button class="md-raised md-primary" ng-click="vm.goQuiz(vm.id)"
+                       style="background-color: #3EB2AC">
+                Zum Quiz  
+            </md-button>
+        </md-card-content>
+    </md-card>
 
 </div>

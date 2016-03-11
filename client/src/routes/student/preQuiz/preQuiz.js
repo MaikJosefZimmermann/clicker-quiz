@@ -48,6 +48,7 @@
 
         });
 
+
         vm.goQuiz = function (id) {
             socket.emit('start', id);
 
