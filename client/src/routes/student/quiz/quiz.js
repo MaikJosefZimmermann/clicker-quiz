@@ -20,11 +20,13 @@
     function QuizCtrl($state, socket) {// our controller for this view
         var vm = this;
 
-
         socket.emit('getQuizzes');
         socket.on('printQuizzes', function (quizzes) {
             vm.quizes = quizzes;
+            console.log(vm.quizes)
+            timeSum(vm.quizes);
         });
+
 
 
         vm.goQuiz = function (quiz) {
@@ -40,5 +42,32 @@
 
         };
 
+        socket.on('sendQuizTime', function (time) {
+            console.log("Time");
+            console.log(time);
+            vm.timeSum = time;
+        });
+
+        function timeSum(quizes) {
+
+
+            angular.forEach(quizes, function (quiz) {
+                var total = 0;
+                for (var i = 0; i < quiz.questions.length; i++) {
+                    total = total + quiz.questions[i].time;
+
+                }
+                var min = total / 60;
+                var sek = total % 60;
+
+                var str = min.toString();
+                str = str.substring(0, str.indexOf("."));
+
+
+                quiz.TiSum = str + " Minuten " + sek + " Sekunden ";
+
+
+            });
+        }
     }
 })();

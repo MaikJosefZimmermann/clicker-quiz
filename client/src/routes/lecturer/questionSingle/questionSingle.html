@@ -75,15 +75,16 @@
                         Schwierigkeitsgrad:
                     </h3>
                     <div flex="10" layout layout-align="center center">
-                        <input flex type="number" ng-model="question.points" aria-label="red" aria-controls="red-slider"
+                        <input flex type="number" ng-model="vm.question.points" aria-label="red"
+                               aria-controls="red-slider"
                                align="center">
                     </div>
                     <div layout>
-                        <div flex="10" layout layout-align="center center">
+                        <div flex="10" layout layout-align="center center" aria-valuenow="3">
                             <span class="md-body-1">Sehr leicht</span>
                         </div>
-                        <md-slider flex min="1" max="5" ng-model="question.points" aria-label="red" id="red-slider"
-                                   class>
+                        <md-slider flex class="md-warn" md-discrete ng-model="vm.question.points" step="1" min="1"
+                                   max="5" aria-label="rating">
                         </md-slider>
                         <div flex="10" layout layout-align="center center">
                             <span class="md-body-1">Sehr schwer</span>
@@ -94,18 +95,19 @@
                         Zeitlimit:
                     </h3>
 
-                    <div flex="10" layout-align="center center">
+                    <div flex="10" layout-align="center center" aria-valuenow="70">
 
-                        <input flex type="number" ng-model="vm.question.time" aria-label="red"
+                        <input flex type="number" value="10" ng-model="vm.question.time" aria-label="rating"
                                aria-controls="red-slider"
                                align="center">
+
                     </div>
                     <div layout>
                         <div flex="10" layout layout-align="center center">
                             <span class="md-body-1">Default</span>
                         </div>
-                        <md-slider flex min="0" max="180" ng-model="vm.question.time" aria-label="red" id="red-slider"
-                                   class>
+                        <md-slider flex class="md-warn" md-discrete ng-model="vm.question.time" step="5" min="1"
+                                   max="180" aria-label="rating">
                         </md-slider>
                         <div flex="10" layout layout-align="center center">
                             <span class="md-body-1">180 Sekunden</span>
