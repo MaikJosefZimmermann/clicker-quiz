@@ -2,7 +2,7 @@
 
     <md-subheader class="md-no-sticky">Available Users</md-subheader>
 
-    <md-list-item class="md-3-line md-long-text" ng-click="goSingle(user._id)" ng-repeat="user in users">
+    <md-list-item class="md-3-line md-long-text" ng-click="vm.goSingle(vm.user._id)" ng-repeat="user in vm.users">
 
         <img ng-src="{{user.imageUrl}}" class="md-avatar">
 
