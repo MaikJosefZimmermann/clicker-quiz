@@ -32,8 +32,8 @@
 
     function qEditCtrl($stateParams, $http, $state, $mdDialog) {
         var vm = this;
-
         vm.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
+        vm.time;
 
         $http({                                                     // get all users from node server
             method: 'GET',
@@ -62,8 +62,6 @@
         angular.forEach(vm.quiz, function (question) {
 
             if (question.selected === true) {
-                console.log("neue FRAGE");
-                console.log(question);
                 ergebnis.push(question)
             }
 
@@ -71,13 +69,14 @@
 
 
         vm.qsave = function (vm) {
-            console.log(vm);
+
             var ergebnis = [];
             angular.forEach(vm.questions, function (question) {
 
                 if (question.selected === true) {
-                    console.log("neue FRAGE");
-                    console.log(question);
+                    if (question.time === 0) {
+                        question.time = vm.time;
+                    }
                     ergebnis.push(question)
                 }
 
@@ -86,8 +85,6 @@
             angular.forEach(vm.quiz.questions, function (question) {
 
                 if (question.selected === true) {
-                    console.log("alte FRAGE");
-                    console.log(question);
                     ergebnis.push(question)
                 }
 
@@ -181,6 +178,7 @@
         vm.new = true;
         vm.verifiedStart = false;
         vm.quizStart = false;
+        vm.time;
 
 
         $http({                                                     // get all users from node server
@@ -238,12 +236,17 @@
 
 
                 var ergebnis = [];
-
+                console.log("vm.time")
+                console.log(vm.time)
 
                 angular.forEach(vm.questions, function (question) {
 
                     if (question.selected === true) {
+                        if (question.time === 0) {
+                            question.time = vm.time;
+                        }
                         ergebnis.push(question)
+
                     }
 
                 });

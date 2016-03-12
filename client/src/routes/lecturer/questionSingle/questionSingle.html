@@ -68,7 +68,7 @@
                 <div>
                     <label> Ersteller der Frage: {{$root.username}} </label>
                 </div>
-
+            </form>
                 <div ng-controller="AppCtrl" ng-cloak>
                     <md-content style="margin: 16px; padding:16px">
                         <h3>
@@ -83,7 +83,7 @@
                             <div flex="10" layout layout-align="center center" aria-valuenow="3">
                                 <span class="md-body-1">Sehr leicht</span>
                             </div>
-                            <md-slider flex class="md-warn" md-discrete ng-model="vm.question.points = 2" step="1"
+                            <md-slider flex class="md-warn" md-discrete ng-model="vm.question.points" step="1"
                                        min="1"
                                        max="5" aria-label="rating">
                             </md-slider>
@@ -92,23 +92,24 @@
                             </div>
 
                         </div>
+
                         <h3>
                             Zeitlimit:
                         </h3>
 
                         <div flex="10" layout-align="center center">
 
-                            <input flex type="number" value="10" ng-model="vm.question.time = 20" aria-label="rating"
+                            <input flex type="number" value="10" ng-model="vm.question.time" aria-label="rating"
                                    aria-controls="red-slider"
                                    align="center" required>
 
                         </div>
                         <div layout>
                             <div flex="10" layout layout-align="center center">
-                                <span class="md-body-1">10 Sekunden</span>
+                                <span class="md-body-1">Default</span>
                             </div>
-                            <md-slider flex class="md-warn" md-discrete ng-model="vm.question.time = 20" step="5"
-                                       min="10"
+                            <md-slider flex class="md-warn" md-discrete ng-model="vm.question.time" step="5"
+                                       min="0"
                                        max="180" aria-label="rating">
                             </md-slider>
                             <div flex="10" layout layout-align="center center">
@@ -117,7 +118,6 @@
                         </div>
                     </md-content>
                 </div>
-            </form>
 
 
             <div layout="row" layout-align="end center">

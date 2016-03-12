@@ -54,8 +54,8 @@
             <h3>Verwendete Fragen</h3>
             <md-list-item class="list-lecturer" ng-if="vm.new" ng-repeat="question in vm.questions| filter:searchBox">
                 <div class="md-list-item-text">
-                    <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)"> Frage:
-                        {{question.question}} Tags: {{ question.tags }}
+                    <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)"><b>Frage:
+                        {{question.question}}</b> <br>Tags: {{ question.tags }} <br> Dauer: {{ question.time }} Sekunden
                     </md-checkbox>
                 </div>
                 <span flex=""></span>
@@ -69,8 +69,8 @@
             <md-list-item class="list-lecturer" ng-if="vm.edit"
                           ng-repeat="question in vm.quiz.questions| filter:searchBox">
                 <div class="md-list-item-text" ng-if="vm.edit">
-                    <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
-                        Frage: {{question.question}} Tags: {{ question.tags }}
+                    <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)"><b>Frage:
+                        {{question.question}}</b> <br>Tags: {{ question.tags }} <br> Dauer: {{ question.time }} Sekunden
                     </md-checkbox>
 
                 </div>
@@ -89,8 +89,8 @@
             <h3>Verfügbare Fragen</h3>
             <md-list-item class="list-lecturer" ng-if="vm.edit" ng-repeat="question in vm.questions| filter:searchBox">
                 <div class="md-list-item-text" ng-if="vm.edit">
-                    <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)">
-                        Frage: {{question.question}} Tags: {{ question.tags }}
+                    <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)"><b>Frage:
+                        {{question.question}}</b> <br>Tags: {{ question.tags }} <br> Dauer: {{ question.time }} Sekunden
                     </md-checkbox>
                 </div>
                 <span flex=""></span>
@@ -100,17 +100,26 @@
                     </md-button>
                 </div>
             </md-list-item>
+    <hr/>
+    <div layout-gt-sm="column">
+        <h3>Default Wert für Fragen mit der Dauer von 0 Sekunden</h3>
+        <md-input-container flex="15">
+            <input type="number" ng-model="vm.time" placeholder="in Sekunden">
+        </md-input-container>
+    </div>
+
 
     <md-button class="md-raised"
                ng-disabled="quizCorrect.$invalid"
                ng-disabled="vm.noKey"
                ng-if="vm.new"
                ng-click="vm.saveQuiz()"> Quiz generieren
-        </md-button>
+    </md-button>
+
     <md-button class="md-raised" ng-disabled="quizCorrect.$invalid" ng-if="vm.edit" ui-sref="quizList"
                ng-click="vm.qsave(vm)">Speichern
     </md-button>
-        <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="">Abbrechen</md-button>
+    <md-button class="md-raised" ng-if="vm.edit" ui-sref="quizList" ng-click="">Abbrechen</md-button>
 
 </div>
 
