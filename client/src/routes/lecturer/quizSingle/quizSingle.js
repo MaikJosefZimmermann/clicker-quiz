@@ -33,7 +33,6 @@
     function qEditCtrl($stateParams, $http, $state, $mdDialog) {
         var vm = this;
         vm.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
-        vm.time;
 
         $http({                                                     // get all users from node server
             method: 'GET',
@@ -72,7 +71,6 @@
 
             var ergebnis = [];
             angular.forEach(vm.questions, function (question) {
-
                 if (question.selected === true) {
                     if (question.time === 0) {
                         question.time = vm.time;

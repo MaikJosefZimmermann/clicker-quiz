@@ -9,7 +9,6 @@
         <md-subheader class="md-no-sticky">
             <h2>Quiz bearbeiten</h2>
         </md-subheader>
-
     </div>
     <form name="quizCorrect">
         <div ng-cloak>
@@ -22,41 +21,45 @@
         </div>
 
         <div ng-cloak>
-        <div layout="" layout-sm="column">
-            <md-input-container flex="">
-                <label>Einschreibeschlüssel</label>
-                <input id="key" ng-model="vm.quiz.key" required>
-            </md-input-container>
-        </div>
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label>Einschreibeschlüssel</label>
+                    <input id="key" ng-model="vm.quiz.key" required>
+                </md-input-container>
+            </div>
         </div>
     </form>
     <div layout layout-fill>
-            <md-checkbox ng-model="vm.verifiedStart" ng-init="vm.verifiedStart == true" aria-label="Checkbox 1">
-                <p> variabler Startzeitpunkt: {{ vm.verifiedStart}}</p>
-            </md-checkbox>
-            <md-input-container ng-if="!vm.verifiedStart">
-                <label>Datum</label>
-                <input type="date" mdp-date-picker ng-model="vm.quiz.dateTime" />
-            </md-input-container>
-            <md-input-container ng-if="!vm.verifiedStart">
-                <label>Uhrzeit</label>
-                <input type="time" mdp-time-picker ng-model="vm.quiz.dateTime" />
-            </md-input-container>
-        </div>
+        <md-checkbox ng-model="vm.verifiedStart" ng-init="vm.verifiedStart == true" aria-label="Checkbox 1">
+            <p> variabler Startzeitpunkt: {{ vm.verifiedStart}}</p>
+        </md-checkbox>
+        <md-input-container ng-if="!vm.verifiedStart">
+            <label>Datum</label>
+            <input type="date" mdp-date-picker ng-model="vm.quiz.dateTime"/>
+        </md-input-container>
+        <md-input-container ng-if="!vm.verifiedStart">
+            <label>Uhrzeit</label>
+            <input type="time" mdp-time-picker ng-model="vm.quiz.dateTime"/>
+        </md-input-container>
+    </div>
 
     <div layout="" layout-sm="column" style="padding:10px" ng-cloak>
-                <md-input-container flex="">
-                    <label>Suche hier deine gewünschte Frage</label>
-                    <input type="text" ng-model="searchBox">
-                </md-input-container>
-            </div>
+        <md-input-container flex="">
+            <label>Suche hier deine gewünschte Frage</label>
+            <input type="text" ng-model="searchBox">
+        </md-input-container>
+    </div>
 
-            <h3>Verwendete Fragen</h3>
+    <div ng-if="vm.edit">
+        <h3>Verwendete Fragen</h3>
+        <div style="overflow:scroll; height:400px;">
             <md-list-item class="list-lecturer" ng-if="vm.new" ng-repeat="question in vm.questions| filter:searchBox">
                 <div class="md-list-item-text">
                     <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)"><b>Frage:
                         {{question.question}}</b> <br>Tags: {{ question.tags }} <br> Dauer: {{ question.time }} Sekunden
                     </md-checkbox>
+                    <md-divider md-inset ng-if="!$last"></md-divider>
+
                 </div>
                 <span flex=""></span>
                 <div class="md-padding" id="popupContainer" ng-cloak>
@@ -84,22 +87,26 @@
                 <div class="md-padding" layout="row" layout-align="center center" ng-if="vm.edit" ng-cloak>
                 </div>
             </md-list-item>
-            <hr/>
+        </div>
+        <hr/>
+    </div>
 
-            <h3>Verfügbare Fragen</h3>
-            <md-list-item class="list-lecturer" ng-if="vm.edit" ng-repeat="question in vm.questions| filter:searchBox">
-                <div class="md-list-item-text" ng-if="vm.edit">
-                    <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)"><b>Frage:
-                        {{question.question}}</b> <br>Tags: {{ question.tags }} <br> Dauer: {{ question.time }} Sekunden
-                    </md-checkbox>
-                </div>
-                <span flex=""></span>
-                <div class="md-padding" ng-if="vm.edit" ng-cloak>
-                    <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
-                               ng-if="question.selected"> Frage bearbeiten
-                    </md-button>
-                </div>
-            </md-list-item>
+    <h3>Verfügbare Fragen</h3>
+    <div style="overflow:scroll; height:400px;">
+        <md-list-item class="list-lecturer" ng-repeat="question in vm.questions| filter:searchBox">
+            <div class="md-list-item-text">
+                <md-checkbox ng-checked="vm.exists(question)" ng-click="vm.change(question)"><b>Frage:
+                    {{question.question}}</b> <br>Tags: {{ question.tags }} <br> Dauer: {{ question.time }} Sekunden
+                </md-checkbox>
+            </div>
+            <span flex=""></span>
+            <div class="md-padding" ng-cloak>
+                <md-button class="md-raised md-warn" ng-click="vm.goDialog(question)"
+                           ng-if="question.selected"> Frage bearbeiten
+                </md-button>
+            </div>
+        </md-list-item>
+    </div>
     <hr/>
     <div layout-gt-sm="column">
         <h3>Default Wert für Fragen mit der Dauer von 0 Sekunden</h3>
@@ -107,7 +114,6 @@
             <input type="number" ng-model="vm.time" placeholder="in Sekunden">
         </md-input-container>
     </div>
-
 
     <md-button class="md-raised"
                ng-disabled="quizCorrect.$invalid"
