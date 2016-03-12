@@ -35,87 +35,88 @@
             <form name="questionCorrect">
                 <div layout="" layout-sm="column">
                     <md-input-container flex="" required>
-                    <label>Frage</label>
+                        <label>Frage</label>
                         <input name="vm.question.question" required ng-model="vm.question.question">
-                </md-input-container>
+                    </md-input-container>
 
-            </div>
-
-
-            <div layout="" layout-sm="column">
-                <md-input-container flex="">
-                    <label>Richtige Antwort</label>
-                    <input type="text" required ng-model="vm.question.answer1">
-                </md-input-container>
-                <md-input-container flex="">
-                    <label>Antwort 2</label>
-                    <input type="text" required ng-model="vm.question.answer2">
-                </md-input-container>
+                </div>
 
 
-            </div>
-            <div layout="" layout-sm="column">
-                <md-input-container flex="">
-                    <label>Antwort 3</label>
-                    <input type="text" required ng-model="vm.question.answer3">
-                </md-input-container>
-                <md-input-container flex="">
-                    <label>Antwort 4</label>
-                    <input type="text" ng-model="vm.question.answer4">
-                </md-input-container>
-            </div>
+                <div layout="" layout-sm="column">
+                    <md-input-container flex="">
+                        <label>Richtige Antwort</label>
+                        <input type="text" required ng-model="vm.question.answer1">
+                    </md-input-container>
+                    <md-input-container flex="">
+                        <label>Antwort 2</label>
+                        <input type="text" required ng-model="vm.question.answer2">
+                    </md-input-container>
+
+
+                </div>
+                <div layout="" layout-sm="column">
+                    <md-input-container flex="">
+                        <label>Antwort 3</label>
+                        <input type="text" required ng-model="vm.question.answer3">
+                    </md-input-container>
+                    <md-input-container flex="">
+                        <label>Antwort 4</label>
+                        <input type="text" required ng-model="vm.question.answer4">
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <label> Ersteller der Frage: {{$root.username}} </label>
+                </div>
+
+                <div ng-controller="AppCtrl" ng-cloak>
+                    <md-content style="margin: 16px; padding:16px">
+                        <h3>
+                            Schwierigkeitsgrad:
+                        </h3>
+                        <div flex="10" layout layout-align="center center">
+                            <input flex type="number" ng-model="vm.question.points" aria-label="red"
+                                   aria-controls="red-slider"
+                                   align="center" required>
+                        </div>
+                        <div layout>
+                            <div flex="10" layout layout-align="center center" aria-valuenow="3">
+                                <span class="md-body-1">Sehr leicht</span>
+                            </div>
+                            <md-slider flex class="md-warn" md-discrete ng-model="vm.question.points" step="1" min="1"
+                                       max="5" aria-label="rating">
+                            </md-slider>
+                            <div flex="10" layout layout-align="center center">
+                                <span class="md-body-1">Sehr schwer</span>
+                            </div>
+
+                        </div>
+                        <h3>
+                            Zeitlimit:
+                        </h3>
+
+                        <div flex="10" layout-align="center center">
+
+                            <input flex type="number" value="10" ng-model="vm.question.time" aria-label="rating"
+                                   aria-controls="red-slider"
+                                   align="center" required>
+
+                        </div>
+                        <div layout>
+                            <div flex="10" layout layout-align="center center">
+                                <span class="md-body-1">10 Sekunden</span>
+                            </div>
+                            <md-slider flex class="md-warn" md-discrete ng-model="vm.question.time" step="5" min="10"
+                                       max="180" aria-label="rating">
+                            </md-slider>
+                            <div flex="10" layout layout-align="center center">
+                                <span class="md-body-1">180 Sekunden</span>
+                            </div>
+
+                        </div>
+                    </md-content>
+                </div>
             </form>
-            <div>
-                <label> Ersteller der Frage: {{$root.username}} </label>
-            </div>
-
-            <div ng-controller="AppCtrl" ng-cloak>
-                <md-content style="margin: 16px; padding:16px">
-                    <h3>
-                        Schwierigkeitsgrad:
-                    </h3>
-                    <div flex="10" layout layout-align="center center">
-                        <input flex type="number" ng-model="vm.question.points" aria-label="red"
-                               aria-controls="red-slider"
-                               align="center">
-                    </div>
-                    <div layout>
-                        <div flex="10" layout layout-align="center center" aria-valuenow="3">
-                            <span class="md-body-1">Sehr leicht</span>
-                        </div>
-                        <md-slider flex class="md-warn" md-discrete ng-model="vm.question.points" step="1" min="1"
-                                   max="5" aria-label="rating">
-                        </md-slider>
-                        <div flex="10" layout layout-align="center center">
-                            <span class="md-body-1">Sehr schwer</span>
-                        </div>
-
-                    </div>
-                    <h3>
-                        Zeitlimit:
-                    </h3>
-
-                    <div flex="10" layout-align="center center" aria-valuenow="70">
-
-                        <input flex type="number" value="10" ng-model="vm.question.time" aria-label="rating"
-                               aria-controls="red-slider"
-                               align="center">
-
-                    </div>
-                    <div layout>
-                        <div flex="10" layout layout-align="center center">
-                            <span class="md-body-1">Default</span>
-                        </div>
-                        <md-slider flex class="md-warn" md-discrete ng-model="vm.question.time" step="5" min="1"
-                                   max="180" aria-label="rating">
-                        </md-slider>
-                        <div flex="10" layout layout-align="center center">
-                            <span class="md-body-1">180 Sekunden</span>
-                        </div>
-
-                    </div>
-                </md-content>
-            </div>
 
 
             <div layout="row" layout-align="end center">

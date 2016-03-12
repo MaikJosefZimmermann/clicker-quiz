@@ -166,7 +166,6 @@ io.on('connection', function (socket) {
             if (err) {
                 res.send(err);
             }
-            console.log(quizes)
             socket.emit('printQuizzes', quizes);
         });
 
