@@ -53,7 +53,7 @@
             $state.go('qedit', {id: id});
         };
 
-        /*function timeSum(quizes) {
+        function timeSum(quizes) {
 
 
 
@@ -61,7 +61,6 @@
                 var total = 0;
                 for (var i = 0; i < quiz.questions.length; i++) {
                     total = total + quiz.questions[i].time;
-
                 }
                 var min = total / 60;
                 var sek = total % 60;
@@ -81,7 +80,7 @@
             //console.log(vm.quiz.timeSum);
             //return total;
 
-         }*/
+        }
 
     }
 })();
