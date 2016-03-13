@@ -15,7 +15,7 @@
         // inject $stateProvider into config object
         $stateProvider
             .state('scoreStudent', {                                        // declare list view
-                url: '/scoreStudent/:id',                                       // set url
+                url: '/auswertung-student/:id',                                       // set url
                 templateUrl: 'routes/student/scoreStudent/scoreStudent.html',           // defines the HTML template
                 controller: 'scoreStudentCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });

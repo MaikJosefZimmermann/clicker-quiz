@@ -9,7 +9,7 @@
     function config($stateProvider) {                               // inject $stateProvider into config object
         $stateProvider
             .state('quizList', {                                        // declare list view
-                url: '/quizList',                                       // set url
+                url: '/quizverwaltung   ',                                       // set url
                 templateUrl: 'routes/lecturer/quizList/quizList.html',           // defines the HTML template
                 controller: 'quizListCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });

@@ -408,6 +408,12 @@ io.on('connection', function (socket) {
         } else {
             if (counter === currentQuiz.questions.length) {
                 console.log("Quiz fertig");
+                console.log(currentQuiz._id);
+                Quiz.update(
+                    {qname: currentQuiz.qname},
+                    {used: true}
+                );
+                //quiz.used = true;
                 socket.emit('endQuiz');
                 timerStop = true;
                 //countDown(0);

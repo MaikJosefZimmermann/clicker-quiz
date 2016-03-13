@@ -15,7 +15,7 @@
         // inject $stateProvider into config object
         $stateProvider
             .state('quizSingleStudent', {                                        // declare list view
-                url: '/quizSingleStudent/:id',                                       // set url
+                url: '/quiz-single/:id',                                       // set url
                 templateUrl: 'routes/student/quizSingleStudent/quizSingleStudent.html',           // defines the HTML template
                 controller: 'startCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });

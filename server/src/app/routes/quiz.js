@@ -25,7 +25,6 @@ router.route('/')
         quiz.verifiedStart = req.body.verifiedStart;
         quiz.quizStart = req.body.quizStart;
 
-
         quiz.save(function (err) {
             if (err){
                 res.send(err);}
