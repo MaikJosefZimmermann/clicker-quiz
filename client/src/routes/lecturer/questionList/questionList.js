@@ -25,19 +25,15 @@
            // var questions = response.data;                           // (async) when receive the response load the data into $scope.users
             $rootScope.user = $localStorage.user;
             vm.questions = response.data;                       // (async) when receive the response load the data into $scope.users
-            console.log(vm.questions)
         });
 
-        //TODO Delete funktion
 
         vm.delete = function (id) {                           // declare a scope function ( which is also accessible from html template)
-            console.log(id);
-            console.log("Delete funktion");
+
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
                 method: 'DELETE',
                 url: '/api/questions/' + id
             }).then(function successCallback(response) {
-                console.log(response);
                 $state.go('questionList');
                 // when the server responses we rediret to the list
             });

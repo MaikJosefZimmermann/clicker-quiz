@@ -37,8 +37,6 @@
         function submit() {
             $http.post('/api/auth', vm.user).then(function (res) {
                 // success
-                console.log("response");
-                console.log(res);
                 authService.isLogged = true;
                 authService.user = res.data.user.username; //userrole admin oder student
 
@@ -53,8 +51,6 @@
                 //$rootScope.notLogged = 'false';
                 $rootScope.notLogged = authService.isLogged;
 
-                console.log("User " + authService.user + " eingeloggt");
-                console.log("Role " + authService.userRole + " eingeloggt");
 
                 //Rollenunterscheidung
                 //Student - Startseite
@@ -67,7 +63,6 @@
                     $state.go('quizList');
                 }
             }, function (err) {
-                console.log(err);
                 vm.loginErr = true;
                 //alert("Error: " + err.statusText);
             });

@@ -80,7 +80,6 @@
 
         vm.questionSave = function () {                        // for new users we only need the save function
             saveTags(vm.question);
-            console.log(vm.question);
             vm.question.creator = $localStorage.user;
 
 
