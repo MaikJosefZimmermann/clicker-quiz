@@ -1,13 +1,12 @@
 <div class="content" id="home" style="padding:10px">   
     <md-content>  
         <div class="content">  <h1>Quiz - Übersicht</h1>  
-            <div class="content" ng-cloak>  
+            <div class="" ng-cloak>  
                 <md-content class="" layout="row">  
                     <div flex="50" ng-repeat="quiz in vm.quizes">  
                         <md-card class="md-padding">  
-                            <md-card-title>  
-                                <md-card-title-text>  <p class="md-headline">Quiz: {{quiz.qname}}</p> <span 
-                                    class="md-subhead">Dozent</span>  
+                            <md-card-title layout="row" layout-align="start">  
+                                <md-card-title-text>  <p class="md-headline">Quiz: {{quiz.qname}}</p>
                                 </md-card-title-text>
                             </md-card-title>
                                 
@@ -25,7 +24,8 @@
                             </md-card-content>
                                 
                             <md-card-actions layout="row" layout-align="space-between center">  
-                                <p ng-if="!quiz.verifiedStart">Startzeitpunkt: {{quiz.myDate | date: "dd.MM.yyyy HH:mm"}} Uhr </p>
+                                <p ng-if="!quiz.verifiedStart">Startzeitpunkt: {{quiz.myDate | date: "dd.MM.yyyy
+                                    HH:mm"}} Uhr </p>
                                 <p ng-if="quiz.verifiedStart"> Quiz wird vom Dozenten gestartet </p>
                                 <md-button class="md-raised md-primary"   ng-click="vm.goQuiz(quiz)"
                                            style="background-color: #3EB2AC" ng-disabled="quiz.verifiedStart">
@@ -39,8 +39,6 @@
                         </md-card>
                             
                     </div>
-                            
-
                          
                 </md-content>
                     
