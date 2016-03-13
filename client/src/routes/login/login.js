@@ -63,6 +63,8 @@
                     // Admin - Startseite
                 }else if($localStorage.userRole === 'admin') {
                     $state.go('quizList');
+                } else if ($localStorage.userRole === 'Dozent') {
+                    $state.go('quizList');
                 }
             }, function (err) {
                 console.log(err);
