@@ -13,12 +13,10 @@
 
 
             /* Routes: */
-            //'app.display',
             'app.scoreList',
             'app.scoreSingle',
             'app.preQuiz',
-            // 'app.questionList',
-            // 'app.questionSingle',
+
             'app.login',
             'app.quiz',
             'app.quizSingle',
@@ -26,7 +24,6 @@
             'app.questionList',
             'app.list',
             'app.single',
-            'app.quizListLecturer',
             'app.quizList',
             'app.quizSingleStudent',
             'app.scoreStudent',
