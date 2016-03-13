@@ -35,7 +35,6 @@ var auth = {
 
         if (username.match(zahlen) === null) {
 
-
             User.findOne(
                 {
                     $or: [
@@ -43,13 +42,22 @@ var auth = {
                         {'password': password}
                     ]
                 }, function (err, result) {
+
+                    if (err) {
+                        console.log("ERROR " + err);
+                    }
+                    if (result) {
+
                         res.json(genToken({
                             username: result.username,
                             fullname: result.firstName,
                             type: result.role,
                             mail: 'admin@mail'
                         }));
-                        // console.log(results);
+
+                    }
+
+                    // console.log(results);
 
                 }
             );
