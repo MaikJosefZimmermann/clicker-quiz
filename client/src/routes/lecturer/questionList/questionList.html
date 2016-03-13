@@ -17,7 +17,7 @@
 
         <div class="md-list-item-text">
             <p>
-            <h3>Frage: {{question.question}}</h3>
+            <h3 style="font-weight: bold">Frage: {{question.question}}</h3>
             <p>Richtige Antwort: {{question.answer1}} </p>
             <p>alternative Antworten: {{question.answer2}}</p>
             <p>alternative Antworten: {{question.answer3}}</p>
@@ -26,8 +26,6 @@
             <p>Zeit in Sekunden: {{question.time}}</p>
             <p>Tags: {{ question.tags }} </p>
             <p>Ersteller: {{ question.creator }} </p>
-            <p>localStorage: {{$root.user}} </p>
-
             <md-button class="md-raised md-primary" ng-click="vm.goQSingle(question._id)">Bearbeiten</md-button>
             <md-button class="md-raised md-accent" ng-click="vm.delete(question._id)">Löschen</md-button>
             <hr/>
