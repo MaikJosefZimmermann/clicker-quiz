@@ -35,7 +35,6 @@ app.post('/api/logout', auth.logout);
 /*Anfrage wird erst bearbeitet wenn request bearbeitet wird
  * anschließend gehts zur api*/
 app.use([require('./app/middlewares/validateRequest')]);
-//TODO hier kommen alle anwendungsrouten rein
 app.use('/api/quizes', require('./app/routes/quiz.js'));
 app.use('/api/users', require('./app/routes/user.js'));
 app.use('/api/questions', require('./app/routes/question.js'));
@@ -71,18 +70,13 @@ io.on('connection', function (socket) {
         currentUser = socket.decoded_token,
         studentArr = [];
 
-    console.log(currentUser.username);
-
 
     socket.on('auth', function (user) {
         // currentUser = user;
     });
 
-    console.log("Socket.io connection done");
-
 
     socket.on('joinQuiz', function (quiz) {
-        console.log("JOINQUIZ");
 
         currentQuiz = quiz;
         var moment = require('moment');
@@ -103,8 +97,7 @@ io.on('connection', function (socket) {
 
                 socket.join(quiz._id);
                 var rooms = io.sockets.adapter.rooms;
-                console.log("alle räume: ");
-                console.log(rooms);
+
                 countdownQuiz(diffTime);
 
                 // User in Warteraum schicken
@@ -125,9 +118,7 @@ io.on('connection', function (socket) {
 
             } else {
                 if (diffTime < 0) {
-                    console.log("Startzeitpunkt verpasst")
                 }
-                console.log("Anmeldung nicht möglich")
             }
 
 
@@ -147,7 +138,6 @@ io.on('connection', function (socket) {
 
     });
     socket.on('start', function (id) {
-        console.log("START");
         socket.emit('startQuiz', id);
     });
 
@@ -179,11 +169,9 @@ io.on('connection', function (socket) {
             questionPoints;
 
         if (correct === ans) {
-            console.log("richtig");
             socket.emit('result', result = true);
             questionPoints = ques.points;
         } else {
-            console.log("falsch");
             socket.emit('result', result = false);
             questionPoints = 0;
         }
@@ -219,13 +207,7 @@ io.on('connection', function (socket) {
     //---------------Student-----------------//
     //---------------------------------------//
     socket.on('requestStudentResult', function (id) {
-        console.log("im Socket requestStudentResult");
-        /*Answer.find({ quizId: id }, function(err, answers) {
-         if (err) return console.error(err);
-         console.log("!!!!!!!!!!!");
-         console.dir(answers);
-         L        return answers
-         });*/
+
         var quizId = currentQuiz._id;
 
 
@@ -245,7 +227,6 @@ io.on('connection', function (socket) {
             }
         ], function (err, result) {
             if (err) {
-                console.log(err);
                 return;
             }
             result = result[0].sumPoints;
@@ -276,7 +257,6 @@ io.on('connection', function (socket) {
 
         //Anzahl der Fragen im Quiz
         var quiz = currentQuiz;
-        console.log("vm.quiz");
         socket.emit('quizResult', quiz);
         studentArr[1] = quiz
 
@@ -287,18 +267,14 @@ io.on('connection', function (socket) {
     //---------------Dozent------------------//
     //---------------------------------------//
     socket.on('requestLecturerResults', function (quiz) {
-        console.log("im Socket requestLecturerResults!!!!");
         var id = quiz._id.toString();
         var oId = quiz.ObjectId
-        console.log(id);
-        console.log(oId)
 
         //Summe der maximal erreichbaren Punkte in einem Quiz
         Quiz.aggregate([
             {
                 $match: {
                     //_id: id
-                    //TODO anhand der ID finden
                     qname: quiz.qname
                 }
             },
@@ -311,11 +287,9 @@ io.on('connection', function (socket) {
             }
         ], function (err, result) {
             if (err) {
-                console.log(err);
                 return;
             }
-            console.log("RESULT");
-            console.log(result);
+
             result = result[0].maxPoints;
             socket.emit('maxPoints', result);
         });
@@ -323,11 +297,8 @@ io.on('connection', function (socket) {
         //Anzahl der Teilnehmer in einem Quiz
         Answer.distinct("kurzel", {quizId: id}, function (err, result) {
             if (err) {
-                console.log(err);
                 return;
             }
-            console.log("RESULT");
-            console.log(result);
             socket.emit('users', result);
         });
 
@@ -335,8 +306,6 @@ io.on('connection', function (socket) {
         Answer.aggregate(
             [{
                 $match: {
-                    //_id: id
-                    //TODO anhand der ID finden
                     quizId: id
                 }
             },
@@ -370,10 +339,8 @@ io.on('connection', function (socket) {
             ],
             function (err, result) {
                 if (err) {
-                    console.log(err);
                     return;
                 }
-                console.log(result);
                 socket.emit('resultQuestion', result);
             });
 
@@ -404,8 +371,6 @@ io.on('connection', function (socket) {
             counter++;
         } else {
             if (counter === currentQuiz.questions.length) {
-                console.log("Quiz fertig");
-                console.log(currentQuiz._id);
                 Quiz.update(
                     {qname: currentQuiz.qname},
                     {used: true}
@@ -444,12 +409,10 @@ io.on('connection', function (socket) {
 
             }
             if (timerStop === true) {
-                console.log(tid);
                 clearInterval(tid);
                 tid = null;
                 socket.emit('printTime', currentTime);
                 //  saveAnswer(null);
-                console.log("STOP");
 
             }
 
@@ -458,8 +421,6 @@ io.on('connection', function (socket) {
                 currentTime--;
 
         }
-
-            console.log(currentTime);
 
 
         }
@@ -492,7 +453,6 @@ io.on('connection', function (socket) {
                 socket.emit('printTimeQuiz', time);
                 //  saveAnswer(null);
                 abortTimer();
-                console.log("STOP");
             } else {
                 socket.emit('printTimeQuiz', time);
                 time--;
@@ -501,10 +461,6 @@ io.on('connection', function (socket) {
                 tid = setTimeout(decrease, 1000);
             }
 
-            console.log(time);
-
-            // do some stuff...
-            // repeat myself
         }
 
         function abortTimer() { // to be called when you want to stop the timer
@@ -517,25 +473,20 @@ io.on('connection', function (socket) {
     /**
      * Quiz Start Adhoc
      * @param id
-     * TODO startfunktion adhoc
      */
     function adhocStart(quizStart, id) {
-        console.log("quizstart in function adhoc: "+quizStart);
-        console.log(socket.id);
+
 
         if (quizStart == true) {
             // socket um quiz zu starten
             socket.emit('startQuiz', id);
-            console.log("quiz startet");
         }else {
-            console.log("quiz kann nicht gestartet werden");
         }
         // socket um Zeit zu zeigen
         //socket.emit('printTimeQuiz', currentTime);
 
     }
     socket.on('disconnect', function () {
-        console.log('Socket.io connection disconnect');
     })
 });
 /*
