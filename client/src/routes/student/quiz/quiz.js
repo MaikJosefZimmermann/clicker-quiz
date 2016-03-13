@@ -23,7 +23,6 @@
         socket.emit('getQuizzes');
         socket.on('printQuizzes', function (quizzes) {
             vm.quizes = quizzes;
-            console.log(vm.quizes)
             timeSum(vm.quizes);
         });
 
@@ -37,14 +36,11 @@
             });
             socket.on('passwordFalse', function () {
                 quiz.loginerr = true;
-                console.log("Falsches Passwort");
             });
 
         };
 
         socket.on('sendQuizTime', function (time) {
-            console.log("Time");
-            console.log(time);
             vm.timeSum = time;
         });
 

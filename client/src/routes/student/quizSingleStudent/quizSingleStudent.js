@@ -39,7 +39,6 @@
 
 
         socket.on('endQuiz', function () {
-            console.log("END");
             $state.go('scoreStudent');
         });
 
@@ -63,7 +62,6 @@
         });
 
         socket.on('result', function (result) {
-            console.log("im RESULT");
             // socket.emit('nextQuestion');
 
             if (result == true) {
@@ -78,8 +76,6 @@
 
         vm.answerButton = function (answer, question) {
             var user = $localStorage.user;
-            console.log(answer);
-            console.log(user);
             socket.emit('answer', answer, question, user);
 
         };

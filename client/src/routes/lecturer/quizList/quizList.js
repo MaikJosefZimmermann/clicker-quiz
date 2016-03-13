@@ -9,7 +9,7 @@
     function config($stateProvider) {                               // inject $stateProvider into config object
         $stateProvider
             .state('quizList', {                                        // declare list view
-                url: '/quizverwaltung   ',                                       // set url
+                url: '/quizverwaltung',                                       // set url
                 templateUrl: 'routes/lecturer/quizList/quizList.html',           // defines the HTML template
                 controller: 'quizListCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
@@ -42,10 +42,7 @@
         };
 
         vm.goScoreSingle = function (id, quiz) {                           // scope function which calls a single state
-            console.log("QUIZZZZmööp")
-            console.log(quiz);
             $state.go('scoreSingle', {id: id});
-            console.log("scoreSingle " + id)
         };
 
 
@@ -54,7 +51,6 @@
         };
 
         function timeSum(quizes) {
-
 
 
             angular.forEach(quizes, function (quiz) {
@@ -74,11 +70,6 @@
 
             });
 
-
-            // vm.quiz.timeSum = total;
-            // console.log("timesum");
-            //console.log(vm.quiz.timeSum);
-            //return total;
 
         }
 

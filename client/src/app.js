@@ -47,7 +47,6 @@
         $rootScope.$on('$stateChangeStart', function (event, nextRoute) {
             if (!authService.isLogged && nextRoute.name !== 'login') {
                 $rootScope.notLogged = true;
-                console.log("Nutzer eingeloggt");
                 event.preventDefault();
                 $state.go('login');
             }
@@ -59,7 +58,6 @@
         $rootScope.$on('$stateChangeSuccess', function (event, nextRoute) {
             if (authService.isLogged === true && nextRoute.name === 'login') {
                 $rootScope.userRole = $localStorage.userRole;
-                console.log("eingeloggt");
                 event.preventDefault();
                 $state.go('login');
                 //TODO Unterscheidung ob Prof oder Student
@@ -75,10 +73,8 @@
 
     function socket(socketFactory, $localStorage, $location) {
 
-        console.log($location.absUrl());
 
         if ($location.absUrl().indexOf('localhost') >= 0) {
-            console.log("LOCAL");
             return socketFactory({
                 ioSocket: io.connect('localhost:9000', {
                     path: '/api/socket.io',
@@ -87,7 +83,6 @@
             })
         }
         else {
-            console.log("SERVER");
             return socketFactory({
 
                 // Amazon Server  ioSocket: io.connect('https://ec2-52-35-34-22.us-west-2.compute.amazonaws.com:9000')

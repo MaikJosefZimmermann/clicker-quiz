@@ -28,7 +28,6 @@
 
 
         vm.goSingle = function (id) {                           // scope function which calls a single state
-            console.log(id);
             $state.go('edit', {id: id});
         };
 

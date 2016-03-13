@@ -32,24 +32,16 @@
         });
         console.log("scoreStudentCtrlscoreStudentCtrl");
         socket.on('UserReachedPoints', function (result) {
-            console.log("UserReachedPoints");
-            console.log(result);
             vm.UserReachedPoints = result;
         });
         socket.on('quizResult', function (quizResult) {
-            console.log("quizResult");
-            console.log(quizResult);
             vm.quizResult = quizResult;
         });
 
         socket.on('correctQuestions', function (result) {
-            console.log("correctQuestions");
-            console.log(result);
             vm.correctQuestions = result;
         });
         socket.on('falseQuestions', function (result) {
-            console.log("falseQuestions");
-            console.log(result);
             vm.falseQuestions = result;
         });
 

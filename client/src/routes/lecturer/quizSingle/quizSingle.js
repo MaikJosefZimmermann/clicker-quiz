@@ -54,7 +54,6 @@
                 vm.quiz.dateTime = new Date(vm.quiz.myDate);
             }
 
-            console.log(vm.quiz)
 
         });
         var currentQuestion = [];
@@ -103,7 +102,7 @@
                 used: false
             };
 
-            console.log(data);
+
             // for new users we only need the save function
 
             $http({
@@ -119,10 +118,7 @@
 
 
             return question.selected;
-            console.log(question.selected);
 
-
-            // console.log(question);
 
         };
 
@@ -196,8 +192,6 @@
             return question.selected;
 
 
-            // console.log(question);
-
         };
 
         vm.change = function (question) {
@@ -236,8 +230,6 @@
 
 
                 var ergebnis = [];
-                console.log("vm.time")
-                console.log(vm.time)
 
                 angular.forEach(vm.questions, function (question) {
 
