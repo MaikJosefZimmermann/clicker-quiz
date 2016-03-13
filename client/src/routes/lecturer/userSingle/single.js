@@ -27,7 +27,7 @@
     function EditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
 
         $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
-        console.log($stateParams)
+        console.log($stateParams);
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
             url: '/api/users/' + $stateParams.id
@@ -60,7 +60,7 @@
 
         $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
         //$window.sessionStorage.token
-        console.log("FIRE")
+
         $scope.save = function () {                              // for new users we only need the save function
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
@@ -76,7 +76,7 @@
     function AddRole() {
 
         this.userRole = '';
-        this.role = ('Dozent Administrator Student').split(' ').map(function (role) {
+        this.role = ('Dozent Administrator').split(' ').map(function (role) {
             return {abbrev: role};
         });
 

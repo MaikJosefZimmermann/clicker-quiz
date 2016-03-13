@@ -17,10 +17,11 @@ router.route('/')
     .post(function (req, res) {
         var user = new User();
 
+        user.username = req.body.username;
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
-        user.kuerzel = req.body.kuerzel;
         user.role = req.body.role;
+        user.password = req.body.password;
 
         user.save(function (err) {
             if (err) {
@@ -64,11 +65,11 @@ router.route('/:userId')
                 res.send(err);
             }
 
-
+            user.username = req.body.username;
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
-            user.kurzel = req.body.kuerzel;
             user.role = req.body.role;
+            user.password = req.body.password;
 
 
             user.save(function (err) {
