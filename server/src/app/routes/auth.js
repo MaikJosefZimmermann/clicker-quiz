@@ -3,6 +3,7 @@
 var jwt = require('jsonwebtoken');
 var request = require('request-promise');
 var User = require('../models/user');
+
 var zahlen = /[0-9]/;
 
 
@@ -33,27 +34,30 @@ var auth = {
 
         if (username.match(zahlen) === null) {
 
-            User.findById(req.params.userId, function (err, user) {
 
-                if (err) {
-                    console.log("Nutzer nicht gefunden");
+            User.findOne(
+                {
+                    $or: [
+                        {'username': username}
+                    ]
+                }, function (err, result) {
+                    if (password === result.password) {
+                        res.json(genToken({
+                            username: result.username,
+                            fullname: result.firstName,
+                            type: result.role,
+                            mail: 'admin@mail'
+                        }));
+                        // console.log(results);
+                    }
                 }
+            );
 
-                if (password === 'admin') {
-                    res.json(genToken({
-                        username: user,
-                        fullname: '',
-                        type: 'admin',
-                        mail: 'admin@mail'
-                    }));
-                }
-            });
-
-            return;
         }
+        ;
 
 
-        if (username === 'admin' || password === 'admin') {
+        if (username === 'admfsdin' || password === 'aadfdsfdsfdsamin') {
 
             res.json(genToken({
                 username: username,
