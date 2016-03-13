@@ -31,16 +31,7 @@ var auth = {
         var username = req.body.username || '';
         var password = req.body.password || '';
 
-        if (username === 'admfsdin' || password === 'aadfdsfdsfdsamin') {
 
-            res.json(genToken({
-                username: username,
-                fullname: 'admin',
-                type: 'admin',
-                mail: 'admin@mail'
-            }));
-            return;
-        }
 
         if (username.match(zahlen) === null) {
 
