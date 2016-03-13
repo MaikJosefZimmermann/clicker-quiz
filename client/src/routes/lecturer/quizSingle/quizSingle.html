@@ -31,16 +31,21 @@
     </form>
     <div layout layout-fill>
         <md-checkbox ng-model="vm.verifiedStart" ng-init="vm.verifiedStart == true" aria-label="Checkbox 1">
-            <p> variabler Startzeitpunkt: {{ vm.verifiedStart}}</p>
+            <p ng-if="!vm.verifiedStart"> Startdatum festlegen</p>
+            <p ng-if="vm.verifiedStart"> Quiz manuell starten</p>
         </md-checkbox>
-        <md-input-container ng-if="!vm.verifiedStart">
+        <div layout layout-fill>
+            <md-input-container ng-if="!vm.verifiedStart">
             <label>Datum</label>
             <input type="date" mdp-date-picker ng-model="vm.quiz.dateTime"/>
         </md-input-container>
-        <md-input-container ng-if="!vm.verifiedStart">
-            <label>Uhrzeit</label>
-            <input type="time" mdp-time-picker ng-model="vm.quiz.dateTime"/>
-        </md-input-container>
+            <md-input-container ng-if="!vm.verifiedStart">
+                <label>Uhrzeit</label>
+                <input type="time" mdp-time-picker ng-model="vm.quiz.dateTime"/>
+            </md-input-container>
+
+        </div>
+
     </div>
 
     <div layout="" layout-sm="column" style="padding:10px" ng-cloak>
