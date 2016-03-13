@@ -72,7 +72,7 @@
             var ergebnis = [];
             angular.forEach(vm.questions, function (question) {
                 if (question.selected === true) {
-                    if (question.time === 0) {
+                    if (question.time === 0 || question.time === null) {
                         question.time = vm.time;
                     }
                     ergebnis.push(question)
@@ -84,6 +84,7 @@
 
                 if (question.selected === true) {
                     ergebnis.push(question)
+
                 }
 
             });
@@ -240,11 +241,10 @@
                 angular.forEach(vm.questions, function (question) {
 
                     if (question.selected === true) {
-                        if (question.time === 0) {
+                        if (question.time === 0 || question.time === null) {
                             question.time = vm.time;
                         }
                         ergebnis.push(question)
-
                     }
 
                 });
