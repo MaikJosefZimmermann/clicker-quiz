@@ -14,29 +14,31 @@
             .state('edit', {                        // edit state..
                 url: '/edit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
                 templateUrl: 'routes/lecturer/userSingle/single.html',       // defines the HTML template
-                controller: 'EditCtrl'              // this view shall use the EditCtrl previously declared.
+                controller: 'EditCtrl as vm'              // this view shall use the EditCtrl previously declared.
             })
             .state('add', {                         // add view
                 url: '/add',                        // this time without any parameters in the url
                 templateUrl: 'routes/lecturer/userSingle/single.html',   // loads the HTML template
-                controller: 'AddCtrl'               // this view shall use the AddCtrl previously declared.
+                controller: 'AddCtrl as vm'               // this view shall use the AddCtrl previously declared.
             });
 
     }
 
-    function EditCtrl($stateParams, $scope, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
+    function EditCtrl($stateParams, $http, $state) {    // inject stuff into our Ctrl Function so that we can use them.
+        var vm = this;
+        vm.edit = true;// set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
 
-        $scope.edit = true;                                     // set the scope variable "edit" to true, anything that is within the scope is accessible from within the html template. See single.html line #5, ng if uses this
+        console.log("statep");
         console.log($stateParams);
         $http({                                                 // http get requst to our api passing the id. this will load a specific user object
             method: 'GET',
             url: '/api/users/' + $stateParams.id
         }).then(function successCallback(response) {            // hint: async! when the data is fetched we do ..
-            $scope.user = response.data;                        // load the response data to the scope.user obj
+            vm.user = response.data;                        // load the response data to the scope.user obj
         });
 
 
-        $scope.delete = function () {                           // declare a scope function ( which is also accessible from html template)
+        vm.delete = function () {                           // declare a scope function ( which is also accessible from html template)
             $http({                                             // if button (single.html line 44) is clicked this function will send a DELETE request to our node server and passes the id
                 method: 'DELETE',
                 url: '/api/users/' + $stateParams.id
@@ -45,10 +47,10 @@
             });
         };
 
-        $scope.save = function () {                             // another scope function that will save a user object to our nodejs server
+        vm.save = function () {                             // another scope function that will save a user object to our nodejs server
             $http({
                 method: 'PUT',                                  // hint: learn http request verbs: get, put (change), delete
-                data: $scope.user,                              // this passes the data from the user object  to the request.
+                data: vm.user,                              // this passes the data from the user object  to the request.
                 url: '/api/users/' + $stateParams.id
             }).then(function successCallback(response) {
                 $state.go('list');
@@ -56,15 +58,15 @@
         };
     }
 
-    function AddCtrl($scope, $http, $state) {
-
-        $scope.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
+    function AddCtrl($http, $state) {
+        var vm = this;
+        vm.new = true;                                       // counterpart to line 28 to set apart whether edit or save operations should be displayed in the view.
         //$window.sessionStorage.token
 
-        $scope.save = function () {                              // for new users we only need the save function
+        vm.save = function () {                              // for new users we only need the save function
             $http({                                              // same as in the EditCtrl
                 method: 'POST',
-                data: $scope.user,
+                data: vm.user,
                 url: '/api/users/'
             }).then(function successCallback(response) {
                 $state.go('list');
