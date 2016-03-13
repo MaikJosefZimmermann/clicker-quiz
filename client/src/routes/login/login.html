@@ -10,6 +10,9 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content flex layout-padding>
+                <p ng-if="vm.loginErr" ng-show="vm.loginErr" style="color: red; text-align: center">
+                    Falsches Kürzel oder Passwort
+                </p>
 
                 <md-input-container flex="" class="login-input">
                     <label style="color: black">Kürzel</label>
@@ -17,7 +20,7 @@
                 </md-input-container>
                 <md-input-container flex="" class="login-input" placeholder="Passwort">
                     <label style="color: black">Passwort</label>
-                    <input ng-keypress="vm.submitt($event)" ng-model="vm.user.password" type="password">
+                    <input ng-model="vm.user.password" type="password">
                 </md-input-container>
 
                 <div layout="row" layout-align=" center">
