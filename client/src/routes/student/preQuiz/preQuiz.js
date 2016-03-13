@@ -47,11 +47,6 @@
         });
 
 
-        vm.goQuiz = function (id) {
-            socket.emit('start', id);
-
-        }
-
         vm.test = function () {
             socket.emit('ttt');
         }
