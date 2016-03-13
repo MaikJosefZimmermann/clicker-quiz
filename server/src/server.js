@@ -136,15 +136,6 @@ io.on('connection', function (socket) {
             socket.emit('passwordFalse');
         }
 
-        socket.on('ttt', function () {
-            console.log("TTTTTT");
-            io.to(quiz._id).emit('message');
-            // socket.to(quiz._id).emit('message');
-
-
-        });
-
-
     });
 
     socket.on('answer', function (answer, question, user) {
@@ -166,7 +157,9 @@ io.on('connection', function (socket) {
             if (err) {
                 res.send(err);
             }
-            socket.emit('printQuizzes', quizes);
+
+        }).then(function successCallback(response) {
+            socket.emit('printQuizzes', response);                         // (async) when receive the response load the data into $scope.users
         });
 
     });

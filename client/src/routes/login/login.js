@@ -61,7 +61,9 @@
                 if($localStorage.userRole === 'student') {
                     $state.go('quiz');
                     // Admin - Startseite
-                }else if($localStorage.userRole === 'admin') {
+                } else if ($localStorage.userRole === 'Administrator') {
+                    $state.go('quizList');
+                } else if ($localStorage.userRole === 'Dozent') {
                     $state.go('quizList');
                 }
             }, function (err) {

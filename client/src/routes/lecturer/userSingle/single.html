@@ -16,6 +16,10 @@
 
             <div layout="" layout-sm="column">
                 <md-input-container flex="">
+                    <label>Username</label>
+                    <input ng-model="user.username">
+                </md-input-container>
+                <md-input-container flex="">
                     <label>Vorname</label>
                     <input ng-model="user.firstName">
                 </md-input-container>
@@ -24,8 +28,8 @@
                     <input ng-model="user.lastName">
                 </md-input-container>
                 <md-input-container flex="">
-                    <label>Kürzel</label>
-                    <input ng-model="user.kuerzel">
+                    <label>Passwort</label>
+                    <input ng-model="user.password">
                 </md-input-container>
             </div>
             <div ng-controller="AppCtrl as ctrl" layout-sm="column">
@@ -43,9 +47,9 @@
 
 
             <div layout="row" layout-align="end center">
-                <md-button class="md-raised md-warn" ng-click="delete()" ng-if="edit">Delete User</md-button>
-                <md-button class="md-raised" ui-sref="list">Abort</md-button>
-                <md-button class="md-raised md-primary" ng-click="save()">Save</md-button>
+                <md-button class="md-raised md-warn" ng-click="delete()" ng-if="edit">Nutzer löschen</md-button>
+                <md-button class="md-raised" ui-sref="list">Abbrechen</md-button>
+                <md-button class="md-raised md-primary" ng-click="save()">Speichern</md-button>
             </div>
         </md-content>
 
