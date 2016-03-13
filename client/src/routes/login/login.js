@@ -66,7 +66,8 @@
                 }
             }, function (err) {
                 console.log(err);
-                alert("Error: " + err.statusText);
+                vm.loginErr = true;
+                //alert("Error: " + err.statusText);
             });
 
         }
