@@ -55,16 +55,6 @@ var auth = {
             );
             return;
         }
-        if (username === 'admin1') {
-            res.json(genToken({
-                username: 'ff',
-                fullname: 'ff',
-                type: 'Administrator',
-                mail: 'admin@mail'
-            }));
-
-            return;
-        }
 
 
 
