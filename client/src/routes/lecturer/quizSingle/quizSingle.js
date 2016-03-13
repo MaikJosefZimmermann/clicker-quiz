@@ -15,13 +15,13 @@
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
             .state('qedit', {                        // edit state..
-                url: '/qedit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
+                url: '/quiz-edit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
                 templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',       // defines the HTML template
                 controller: 'qEditCtrl as vm'              // this view shall use the EditCtrl previously declared.
             })
 
             .state('qadd', {                         // add view
-                url: '/qadd',                        // this time without any parameters in the url
+                url: '/quiz-add',                        // this time without any parameters in the url
                 templateUrl: 'routes/lecturer/quizSingle/quizSingle.html',   // loads the HTML template
                 controller: 'qAddCtrl as vm'               // this view shall use the AddCtrl previously declared.
             });
@@ -99,7 +99,8 @@
                 questions: ergebnis,
                 key: vm.quiz.key,
                 myDate: vm.quiz.dateTime,
-                verifiedStart: vm.verifiedStart
+                verifiedStart: vm.verifiedStart,
+                used: false
             };
 
             console.log(data);
@@ -259,7 +260,8 @@
                     key: vm.quiz.key,
                     myDate: vm.quiz.dateTime,
                     verifiedStart: vm.verifiedStart,
-                    quizStart: vm.quizStart
+                    quizStart: vm.quizStart,
+                    used: false
                 };
 
                 // for new users we only need the save function

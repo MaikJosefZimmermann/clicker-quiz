@@ -11,12 +11,12 @@
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
             .state('questionedit', {                        // edit state..
-                url: '/questionedit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
+                url: '/frage-edit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
                 templateUrl: 'routes/lecturer/questionSingle/questionSingle.html',       // defines the HTML template
                 controller: 'questionEditCtrl as vm'              // this view shall use the EditCtrl previously declared.
             })
             .state('questionadd', {                         // add view
-                url: '/questionadd',                        // this time without any parameters in the url
+                url: '/frage-add',                        // this time without any parameters in the url
                 templateUrl: 'routes/lecturer/questionSingle/questionSingle.html',   // loads the HTML template
                 controller: 'questionAddCtrl as vm'               // this view shall use the AddCtrl previously declared.
             });

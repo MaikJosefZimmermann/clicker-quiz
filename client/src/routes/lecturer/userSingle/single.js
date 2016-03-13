@@ -12,12 +12,12 @@
 
         $stateProvider                              // declare our two views ( both use the same template but have different controllers
             .state('edit', {                        // edit state..
-                url: '/edit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
+                url: '/nutzer-edit/:id',                   // url is '/edit/'+id as a url parameter ( check line  32 to see how we use the id with $stateParams
                 templateUrl: 'routes/lecturer/userSingle/single.html',       // defines the HTML template
                 controller: 'EditCtrl as vm'              // this view shall use the EditCtrl previously declared.
             })
             .state('add', {                         // add view
-                url: '/add',                        // this time without any parameters in the url
+                url: '/nutzer-add',                        // this time without any parameters in the url
                 templateUrl: 'routes/lecturer/userSingle/single.html',   // loads the HTML template
                 controller: 'AddCtrl as vm'               // this view shall use the AddCtrl previously declared.
             });

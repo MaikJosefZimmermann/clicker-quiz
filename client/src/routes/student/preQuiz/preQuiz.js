@@ -14,7 +14,7 @@
         // inject $stateProvider into config object
         $stateProvider
             .state('preQuiz', {                                        // declare list view
-                url: '/preQuiz/:qname',                                       // set url
+                url: '/warteraum/:qname',                                       // set url
                 templateUrl: 'routes/student/preQuiz/preQuiz.html',           // defines the HTML template
                 controller: 'preQuizCtrl as vm'                              // this view shall use the ListCtrl previously declared.
             });
