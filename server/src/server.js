@@ -158,7 +158,7 @@ io.on('connection', function (socket) {
                 res.send(err);
             }
 
-            socket.emit('printQuizzes', response);                         // (async) when receive the response load the data into $scope.users
+            socket.emit('printQuizzes', quizes);                         // (async) when receive the response load the data into $scope.users
         });
 
     });
