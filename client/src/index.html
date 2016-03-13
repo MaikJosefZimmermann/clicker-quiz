@@ -28,26 +28,40 @@
                 <!--<md-button class="md-raised" ui-sref="scoreStudent">Score</md-button>-->
 
                 <span flex=""> </span>
-                <label> {{ $root.username }}</label>
+                <label>Hallo, {{ $root.username }}</label>
                 <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>
             </div>
         </md-toolbar>
 
-        <!-- Menü Dozent/Admin -->
+        <!-- Menü Dozent -->
         <md-toolbar class="toolbar" ng-if="$root.userRole === 'admin' || $root.userRole === 'Dozent'">
             <div class="md-toolbar-tools">
                 <a ui-sref="quiz">Clicker-05<br>Professor</a></br>
 
-
-                <md-button class="md-raised" ui-sref="list">Userverwaltung</md-button>
                 <md-button class="md-raised" ui-sref="quizList">Quizverwaltung</md-button>
                 <md-button class="md-raised" ui-sref="questionList">Fragenverwaltung</md-button>
                 <span flex=""> </span>
-                <label> {{ $root.username }}</label>
+                <label>Hallo, {{ $root.username }}</label>
                 <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>
 
             </div>
         </md-toolbar>
+    </md-content>
+
+    <!-- Menü Admin -->
+    <md-toolbar class="toolbar" ng-if="$root.userRole === 'Administrator'">
+        <div class="md-toolbar-tools">
+            <a ui-sref="quiz">Clicker-05<br>Administrator</a></br>
+
+            <md-button class="md-raised" ui-sref="list">Nutzerverwaltung</md-button>
+            <md-button class="md-raised" ui-sref="quizList">Quizverwaltung</md-button>
+            <md-button class="md-raised" ui-sref="questionList">Fragenverwaltung</md-button>
+            <span flex=""> </span>
+            <label>Hallo, {{ $root.username }}</label>
+            <md-button class="md-raised md-warn" ng-click="$root.logout()">Logout</md-button>
+
+        </div>
+    </md-toolbar>
     </md-content>
 
     <ui-view>

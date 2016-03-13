@@ -2,12 +2,12 @@
     <div class="content">
 
 
-        <md-subheader class="md-no-sticky" ng-if="new">
-            Add a new user
+        <md-subheader class="md-no-sticky" ng-if="vm.new">
+            <h2>Neuen Nutzer erstellen</h2>
         </md-subheader>
 
-        <md-subheader class="md-no-sticky" ng-if="edit">
-            Edit user with the id: {{user._id}}
+        <md-subheader class="md-no-sticky" ng-if="vm.edit">
+            <h2>Nutzer: <b>{{vm.user.username}}</b> editieren</h2>
         </md-subheader>
 
 
@@ -17,26 +17,26 @@
             <div layout="" layout-sm="column">
                 <md-input-container flex="">
                     <label>Username</label>
-                    <input ng-model="user.username">
+                    <input ng-model="vm.user.username">
                 </md-input-container>
                 <md-input-container flex="">
                     <label>Vorname</label>
-                    <input ng-model="user.firstName">
+                    <input ng-model="vm.user.firstName">
                 </md-input-container>
                 <md-input-container flex="">
                     <label>Nachname</label>
-                    <input ng-model="user.lastName">
+                    <input ng-model="vm.user.lastName">
                 </md-input-container>
                 <md-input-container flex="">
                     <label>Passwort</label>
-                    <input ng-model="user.password">
+                    <input ng-model="vm.user.password">
                 </md-input-container>
             </div>
             <div ng-controller="AppCtrl as ctrl" layout-sm="column">
 
                 <md-input-container>
                     <label>Rolle</label>
-                    <md-select ng-model="user.role">
+                    <md-select ng-model="vm.user.role">
                         <md-option ng-repeat="role in ctrl.role" value="{{role.abbrev}}">
                             {{role.abbrev}}
                         </md-option>
@@ -47,9 +47,9 @@
 
 
             <div layout="row" layout-align="end center">
-                <md-button class="md-raised md-warn" ng-click="delete()" ng-if="edit">Nutzer löschen</md-button>
+                <md-button class="md-raised md-warn" ng-click="vm.delete()" ng-if="vm.edit">Nutzer löschen</md-button>
                 <md-button class="md-raised" ui-sref="list">Abbrechen</md-button>
-                <md-button class="md-raised md-primary" ng-click="save()">Speichern</md-button>
+                <md-button class="md-raised md-primary" ng-click="vm.save()">Speichern</md-button>
             </div>
         </md-content>
 
