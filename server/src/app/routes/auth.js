@@ -31,32 +31,6 @@ var auth = {
         var username = req.body.username || '';
         var password = req.body.password || '';
 
-
-        if (username.match(zahlen) === null) {
-
-
-            User.findOne(
-                {
-                    $or: [
-                        {'username': username}
-                    ]
-                }, function (err, result) {
-                    if (password === result.password) {
-                        res.json(genToken({
-                            username: result.username,
-                            fullname: result.firstName,
-                            type: result.role,
-                            mail: 'admin@mail'
-                        }));
-                        // console.log(results);
-                    }
-                }
-            );
-
-        }
-        ;
-
-
         if (username === 'admfsdin' || password === 'aadfdsfdsfdsamin') {
 
             res.json(genToken({
@@ -67,6 +41,33 @@ var auth = {
             }));
             return;
         }
+
+        if (username.match(zahlen) === null) {
+
+
+            User.findOne(
+                {
+                    $or: [
+                        {'username': username},
+                        {'password': password}
+                    ]
+                }, function (err, result) {
+                        res.json(genToken({
+                            username: result.username,
+                            fullname: result.firstName,
+                            type: result.role,
+                            mail: 'admin@mail'
+                        }));
+                        // console.log(results);
+
+                }
+            );
+            return;
+        }
+        ;
+
+
+
 
 
         if (username === '' || password === '') {
