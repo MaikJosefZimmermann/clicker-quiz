@@ -8,12 +8,15 @@ sudo npm install -g bower
 bower install
 
 cd ..
-cd mongobox
-vagrant up
+Install Mongobox 
+https://github.com/bobthecow/vagrant-mongobox
 
 cd ..
 cd server
+
+//start server
 node server.js
+
 npm install gulp --save
 sudo npm install -g gulp
 npm install --save-dev gulp-nodemon
@@ -30,4 +33,6 @@ npm install --save gulp-ng-annotate
 npm install --save gulp-less gulp-minify-css
 npm install main-bower-files
 npm install --save gulp-sourcemaps
+
+//start client
 gulp
